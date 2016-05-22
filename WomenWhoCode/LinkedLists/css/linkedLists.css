@@ -17,7 +17,9 @@
   word-wrap: break-word; 
 }
 
-
+.reveal code.linkedList { 
+  font-size:50%;
+ }
 
 .reveal table.alterconf { 
   border: 0;
