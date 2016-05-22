@@ -50,7 +50,7 @@
 					<p class="alterconf">Linked lists are very minimalistic data structures</p>
 					<p class="alterconf">A linked list is a set of nodes, each of which has a reference to the next node.</p>
 					<p class="alterconf">All we "know" about a linked list is its head node.</p>
-					<p class="alterconf">Here is C# or Java definition of a node that contains an integer value:</p>
+					<p class="alterconf">On the left is C# or Java definition of a node that contains an integer value. On the right there is a Javascript definition.</p>
 
 <pre><code class="linkedList">
 				  <div style="float: left">
@@ -70,60 +70,30 @@ function ListNode(value, nextNode) {
 				</section>
 
 				<section><!-- slide 3 -->
- <table class="alterconf">
-  <tr class="alterconf">
-   <td class="alterconf">
-   <blockquote class="triangle-border left">But surely you have bugs to fix?</blockquote>
-   </td>
-   <td class="alterconf"></td>	
-  </tr>
-  <tr class="alterconf">
-   <td class="alterconf"></td>	
-   <td class="alterconf">
-   <blockquote class="triangle-border right">Our team code doesn't have any bugs</blockquote>
-	<p class="alterconf">(This was actually said to me once!)</p>
-   </td>
-  </tr>
-  <tr class="alterconf">
-   <td class="alterconf"></td>	
-   <td class="alterconf">
-   <blockquote class="triangle-border right">All the bug needs to be fixed fast, and you are too new for that</blockquote>
-   </td>
-  </tr>
- </table>
-
-						<aside class="notes">
-<p>You don't give up. You ask if you could fix some bugs. Surely this company has some bugs to fix?</p>
-
-<p>You get these responses:</p>
-
-<p>- this team doesn't really have any bugs to fix (yes, it was said to me once!)</p>
-
-<p>- all the bugs need to be fixed very urgently, so they need to be assigned to the experienced developers. You are too new for that.</p>
-
-
-						</aside>
+					<p class="alterconf">Linked lists can be understood recursively:</p>
+					<p class="alterconf">A list is its head node followed by a linked list.</p>
+					<p class="alterconf">Many linked list operations can be written recursively, but for now we'll implement them non-recursively.</p>
+					<h4 class="alterconf">Exercise 1: create a linked list.</h4>
+					<p class="alterconf">Create 4 ListNode objects, each of which has a reference to the next one, and contains an integer value.</p>
 				</section>
 
 				<section><!-- slide 4 -->
-					<h4><b>Maybe they finally give you something to do</b></h4>
-					<p class="alterconf">only to cancel that project in a week</p>
-					<p class="alterconf">or reimplement it behind your back</p>
-					<ul>
-						<li class="alterconf">they decided -- in a hallway conversation -- that it needs to be done differently</li>
-						<p/>
-						<li class="alterconf">instead of web service interface you're writing, they'll FTP the file to the client</li>
-						<p/>
-						<li class="alterconf">but didn't bother to tell you</li>
-					</ul>
-						<p/>
-					<p class="alterconf">You are still working on the code they're about to throw away.</p>
-						<aside class="notes">
-<p>Maybe they'll finally come up with something for you to do. You will get started on it, only to be told a few days later that it got cancelled. Or, worse, nobody will even tell you that your project got cancelled.</p>
+					<h4>Exercise 2.</h4>
+					<p class="alterconf">Write a function that takes the head node as an argument, and writes out the values of all the nodes in the list.</p>
+					<p class="alterconf">Left: C# or Java; right: Javascript.</p>
 
-<p>You may overhear in a hallway that some more senior developers have decided -- informally, without inviting you to their meeting, and without documenting any changes -- that instead of building a web service to interface with a third party vendor (which is what you were tasked to do) they'll just write the data to a file and send it to the vendor via FTP, or something. They didn't even bother to tell you that. Instead, they are rewriting that functionality even as you are still working under the original requirements. They are going to throw away the code you are still writing.</p>
-
-						</aside>
+<pre><code class="linkedList">
+				  <div style="float: left">
+public void writeOutAllNodes(ListNode headNode) {
+	// Your code
+}
+</div>
+				  <div style="float: right">
+function writeOutAllNodes(headNode) {
+	// Your code
+}
+	</div>
+</code></pre>
 
 				</section>
 
