@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>The basics of linked lists</title>
+
+		<meta name="description" content="Women Who Code technical interview preparation">
+		<meta name="author" content="Elze Hamilton">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/reveal.js/3.3.0/css/reveal.min.css">
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/reveal.js/3.3.0/css/theme/sky.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/reveal.js/3.3.0/lib/css/zenburn.css">
+
+		<link rel="stylesheet" href="css/linkedLists.css">
+
+		<!--[if lt IE 9]>
+		<script src="//cdn.jsdelivr.net/reveal.js/3.3.0/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<p style="text-align: center; font-size: 25px"><small>The basics of linked lists | <a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</a> | <a href="http://www.alterconf.com/sessions/austin-tx">Women Who Code tech interview preparation</a></small></p>
+			<p style="text-align: center; font-size: 12px">Press Esc to see thumbnails of all slides. Press 's' to see the spoken text.</p>
+			<!-- Any section element inside of this container is displayed as a slide -->
+
+			<div class="slides">			
+				<section>
+					<h2>The basics of linked lists</h2>
+					<p>
+						<small>By <a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</a></small>
+					</p>
+					<p>
+						<small>A talk given at <a href="http://www.alterconf.com/sessions/austin-tx">AlterConf Austin</a></small>
+					</p>
+				</section>
+
+				<section><!-- slide 2 -->
+					<h3>Linked lists are very minimalistic data structures</h3>
+					<p class="alterconf">A linked list is a set of nodes, each of which has a reference to the next node.</p>
+					<p class="alterconf">All we "know" about a linked list is its head node.</p>
+					<p class="alterconf">All we "know" about a linked list is its head node.</p>
+				  <div><code>Here is C# or Java definition of a node that contains an integer value:
+public class ListNode {
+       int value;
+       ListNode nextNode;
+}
+	</code></div>
+				</section>
+
+				<section><!-- slide 3 -->
+ <table class="alterconf">
+  <tr class="alterconf">
+   <td class="alterconf">
+   <blockquote class="triangle-border left">But surely you have bugs to fix?</blockquote>
+   </td>
+   <td class="alterconf"></td>	
+  </tr>
+  <tr class="alterconf">
+   <td class="alterconf"></td>	
+   <td class="alterconf">
+   <blockquote class="triangle-border right">Our team code doesn't have any bugs</blockquote>
+	<p class="alterconf">(This was actually said to me once!)</p>
+   </td>
+  </tr>
+  <tr class="alterconf">
+   <td class="alterconf"></td>	
+   <td class="alterconf">
+   <blockquote class="triangle-border right">All the bug needs to be fixed fast, and you are too new for that</blockquote>
+   </td>
+  </tr>
+ </table>
+
+						<aside class="notes">
+<p>You don't give up. You ask if you could fix some bugs. Surely this company has some bugs to fix?</p>
+
+<p>You get these responses:</p>
+
+<p>- this team doesn't really have any bugs to fix (yes, it was said to me once!)</p>
+
+<p>- all the bugs need to be fixed very urgently, so they need to be assigned to the experienced developers. You are too new for that.</p>
+
+
+						</aside>
+				</section>
+
+				<section><!-- slide 4 -->
+					<h4><b>Maybe they finally give you something to do</b></h4>
+					<p class="alterconf">only to cancel that project in a week</p>
+					<p class="alterconf">or reimplement it behind your back</p>
+					<ul>
+						<li class="alterconf">they decided -- in a hallway conversation -- that it needs to be done differently</li>
+						<p/>
+						<li class="alterconf">instead of web service interface you're writing, they'll FTP the file to the client</li>
+						<p/>
+						<li class="alterconf">but didn't bother to tell you</li>
+					</ul>
+						<p/>
+					<p class="alterconf">You are still working on the code they're about to throw away.</p>
+						<aside class="notes">
+<p>Maybe they'll finally come up with something for you to do. You will get started on it, only to be told a few days later that it got cancelled. Or, worse, nobody will even tell you that your project got cancelled.</p>
+
+<p>You may overhear in a hallway that some more senior developers have decided -- informally, without inviting you to their meeting, and without documenting any changes -- that instead of building a web service to interface with a third party vendor (which is what you were tasked to do) they'll just write the data to a file and send it to the vendor via FTP, or something. They didn't even bother to tell you that. Instead, they are rewriting that functionality even as you are still working under the original requirements. They are going to throw away the code you are still writing.</p>
+
+						</aside>
+
+				</section>
+
+				<section><!-- slide 5 -->
+					<h3>Weeks go by</h3>
+					<p>&nbsp;</p>
+					<p class="alterconf-left">you can't gain any traction in the company</p>
+					<p class="alterconf-left">you can't significantly contribute to any project</p>
+					<p class="alterconf-left">even without a chance to prove yourself, you think they've decided you're not good enough</p>
+					<p class="alterconf-left">you don't understand why they hired you in the first place</p>
+					</p>
+						<aside class="notes">
+<p>And so weeks go by and you don't get any traction. You can't significantly contribute to any project. You are assigned to work on projects that get cancelled soon, or that no one can explain you the requirements properly (there is, of course, no documentation for requirements either), or that turn out in one way or another not ready to work on.</p>
+
+<p>You get a feeling that the company already decided you are not good enough, even without giving you a chance to prove yourself. You don't understand why they hired you in the first place.</p>
+						</aside>
+				</section>
+
+				<section><!-- slide 6 -->
+					<h4><b>If you are a junior developer</b></h4>
+					<p class="alterconf-left">you may be questioning your choice to work in software industry;</p>
+					<p class="alterconf-left">perhaps you decide that you're not cut out for software development;</p>
+					<h4><b>If you are an experienced developer</b></h4>
+					<p class="alterconf-left">perhaps you've been at healthier workplaces; you were a respected contributor on the team;</p>
+					<p class="alterconf-left">you've successfully coded some projects to completion;</p>
+					<p class="alterconf-left">you know you can program;</p>
+					<h4><b>You start thinking it's not you. It could be <i>them</i>.</b></h4>
+						<aside class="notes">
+<p>If you are a junior developer, you might get so strongly discouraged by this experience that you might even leave the software industry. Maybe you'll decide you are not cut out for software development.</p>
+
+<p>If you are an experienced developer, you are still not immune to such thoughts, but maybe you've worked in healthier places. Places where you were able to contribute to projects and see them through to completion. You know you can program. So you start thinking that maybe it's not you. Maybe it's <i>them</i>.</p>
+						</aside>
+				</section>
+
+				<section><!-- slide 7 -->
+					<h3>Maybe it's toxic structurelessness?</h3>
+					<p>
+					<p>&nbsp;</p>
+					<p class="alterconf-left">Self-organizing teams are good? </p>
+					<p class="alterconf-left">But what if they self-organize by the same principles they learned as children on the playground?</p>
+					<p class="alterconf-left">Most of your teammates were once boys.</p>
+					<p class="alterconf-left">They are used to games where they "won" their places in the hierarchy and recognition of being one of the team. </p>
+					<p class="alterconf-left">They might still be perpetuating them at work. </p>
+					<p class="alterconf-left">The most dominant, most overconfident ones grab the projects. </p>
+					<p>
+						<aside class="notes">
+<p>We keep hearing that self-organizing teams are good. Developers allegedly don't like management, they like to manage themselves. But what if those teams self-organize by the same principles as children on the playground, what if they follow unwritten rules of dominance and submission? Such a team "structure" emerges in the lack of any real structure, or any effective method to organize the work. The most overconfident people declare their "ownership" of projects, whether they are really the best-qualified or not.</p>
+
+<p>When most software developers in the company are men, they may be used to playing these hierarchy-establishing games since childhood; it is their way of "proving" that they belong in this team. Perhaps after they have claimed their proper place in the pecking order, they are considered their teammates to be valid members of the team.</p>
+						</aside>
+
+				</section>
+
+
+				<section><!-- slide 8 -->
+					<h3>What if you didn't play those hierarchical games?</h3>
+					<p>&nbsp;</p>
+					<p class="alterconf-left">If you are a woman, you are probably not overconfident.</p>
+					<p class="alterconf-left">Your confidence level accurately reflects what you can/cannot do. </p>
+					<p class="alterconf-left">If you are new to the company (even experienced developer) you know how much you don't know. </p>
+					<p class="alterconf-left">You don't know the company's codebase, their products, the business reasons. </p>
+					<p class="alterconf-left">It's natural to not be overconfident. </p>
+					<p>
+
+						<aside class="notes">
+<p>But suppose you are a woman, and you never played these types of games on the playground with boys. And it shouldn't be necessary: that's not what makes an effective software developer. Also, you are likely not overconfident. You probably have an accurate measure of your abilities and skills, of what you can and cannot do. You are new to the organization, and no matter how experienced a programmer you are, you don't know this particular company's codebase, you don't know its business rules, or what the customers want. You realize how easy it is to break the code in a catastrophic way and put the company's livelihood at risk. So for you it seems completely reasonable to move with caution and learn as much as you can about this company's code specifics before you claim leadership or ownership of some project. When you are new to a company, it is smart and reasonable to not be overconfident.</p>
+						</aside>
+				</section>
+
+				<section><!-- slide 9 -->
+					<h2>So what can companies do?</h2>
+					<p>
+					<h3>Have structure.</h3>	
+					<p>
+					<h3>Have process.</h3>	
+						<aside class="notes">
+<p>So what can companies do? Have structure in your development process.</p>
+						</aside>
+				</section>
+
+				<section><!-- slide 10 -->
+					<h3>Clear ramp-up path</h3>
+					<p>
+					<h4><b>Identify beginner-friendly bugs</b></h4>	
+					<p>
+					<ul>
+						<li class="alterconf">Not super-urgent -- can take 1-2 weeks to complete; </li>
+						<li class="alterconf">Not too critical to the customer -- can be used for a new hire ramp-up; </li>
+						<li class="alterconf">Cover many code areas - give the new hire a tour of application functionality. </li>
+					</ul>
+					<p class="alterconf">I guarantee every company has those kinds of bugs. </p>
+						<aside class="notes">
+<p>Have a clear ramp-up path for new hires. </p>
+
+<p>One path would be letting the new hires fix bugs first. But this has to be structured with some thought.</p>
+
+<p>Management and senior developers need to review the bugs in your bug-tracking system, and identify those that are beginner-friendly --  not just to junior developers, but to any new hire, even experienced one. By that I don't mean technically easy -- I mean this: </p>
+
+<p>(1) not super-urgent or too critical to the customer -- can take 1-2 weeks to complete, and you won't lose a customer if it is implemented imperfectly; <p>
+
+<p>(2) the ones that don't depend on requirements that are not fully hashed-out yet; bugs that are not a point of contention between developers and product management; bugs where a technical glitch doesn't actually mask ambiguity or undocumented change in business rules. If the requirements are not clear, and the new developer does not yet know your company's product to have an opinion how some functionality should behave, what are the underlying business rules that would make one solution or another more logical, most likely a new developer would stall, even if a more experienced one knows how to work informally with the product management, what ropes to pull to figure this out.</p>
+
+<p>(3) This collection of beginner-friendly bugs (it will constantly change as the bugs get fixed and new ones appear, but still) should cover various areas of the codebase. It should give the new hire a tour of the codebase, so the he or she could later contribute to a wide variety of proejcts.</p>
+
+<p>I guarantee every company has those kinds of bugs.</p>
+						</aside>
+				</section>
+
+				<section><!-- slide 11 -->
+					<h4><b>Have some starter projects</b></h4>
+					<p>&nbsp;</p>
+					<p class="alterconf-left">In every project, identify parts that could be done by a new hire.</p>
+					<ul>
+					<li class="alterconf">projects that have clear-cut requirements</li> 
+					<li class="alterconf">projects that don't rely on unspoken/unwritten business knowledge</li>
+					<li class="alterconf">projects where it's not very easy to break the existing functionality</li>
+					</ul>
+					<p class="alterconf-left">It means managers and senior developers have to think through it. </p>
+					<p class="alterconf-left">It takes time, but it's better than keeping a developer idle and unable to make progress. </p>
+						<aside class="notes">
+<p>Same for new development projects.</p>
+
+<p>In every project, identify parts that could be done by a new hire, such as: projects that have clear-cut requirements, projects that don't rely on unspoken or unwritten business knowledge, projects where it's not very easy to accidentally break the existing codebase.</p>
+
+<p>It means managers and senior developers have to think through it. That takes time. But it's better than keeping a developer idle and unable to make progress, and eventually leaving the company. It also means that your team will be more than just people who are good at playing power games. So you'll have a more diverse team.</p>
+						</aside>
+			</section>
+
+			<section><!-- slide 12 -->
+					<h3>THE END</h3>
+					<p>&nbsp;</p>
+					<p><a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</p>
+			</section>
+
+			</div>
+		</div>
+
+		<script src="//cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+		<script src="//cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '//cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: '//cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+<script type="text/javascript">
+sc_project=2721969;
+sc_invisible=0;
+sc_security="5cfe5782";
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="site stats"
+href="http://www.statcounter.com/free-web-stats/"
+target="_blank"><img class="statcounter"
+src="http://c29.statcounter.com/2721969/0/5cfe5782/0/"
+alt="free hit counter" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+
+	</body>
+</html>
