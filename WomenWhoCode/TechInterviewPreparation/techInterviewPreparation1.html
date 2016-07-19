@@ -20,6 +20,8 @@
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css">
 
+		<link rel="stylesheet" href="../common/css/style.css">
+
 		<!--[if lt IE 9]>
 		<script src="//cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -45,29 +47,21 @@
 				</section>
 
 				<section><!-- slide 2 -->
-					<h2>Dictionaries</h2>
-					<p>also known as: <b>maps, key-value maps, lookup tables</b>; (less accurately) <b>hashmaps, hashtables</b></p>
-										
+					<h3>Dictionaries</h3>
+					<p class="alterconf">also known as: <b>maps, key-value maps, lookup tables</b>; (less accurately) <b>hashmaps, hashtables</b></p>
+					<table class="presentation">
+					 <tr><td>Key</td><td>Value</td></tr>
+					 <tr><td>Dog</td><td>Woof</td></tr>
+					 <tr><td>Cat</td><td>Meow</td></tr>
+					 <tr><td>Fox</td><td></td></tr>
+					 <tr><td>Bird</td><td>Chirp</td></tr>
+					</table>
 
-					<p class="alterconf">Linked lists are very minimalistic data structures</p>
-					<p class="alterconf">A linked list is a set of nodes, each of which has a reference to the next node.</p>
-					<p class="alterconf">All we "know" about a linked list is its head node.</p>
-					<p class="alterconf">On the left is C# or Java definition of a node that contains an integer value. On the right there is a Javascript definition.</p>
-
-<pre><code class="linkedList">
-				  <div style="float: left">
-public class ListNode {
-       int value;
-       ListNode nextNode;
-}
-</div>
-				  <div style="float: right">
-function ListNode(value, nextNode) {
-	this.storedValue = value;
-	this.nextNode = nextNode;
-}
-	</div>
-</code></pre>
+					<p class="alterconf">In C#: IDictionary&lt;type1, type2&gt;, Hashtable (older)</p>
+					<p class="alterconf">In Java: HashTable, HashMap</p>
+					<p class="alterconf">In Python: Dictionary</p>
+					<p class="alterconf">In PHP: array (the kind with keys and values)</p>
+					<p class="alterconf">In Javascript: object (the object's fields are keys, field values are values)</p>
 
 				</section>
 
