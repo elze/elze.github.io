@@ -48,7 +48,7 @@
 
 				<section><!-- slide 2 -->
 					<h3>Dictionaries</h3>
-					<p class="alterconf">also known as: <b>maps, key-value maps, lookup tables</b>; (less accurately) <b>hashmaps, hashtables</b></p>
+					<p class="alterconf">also known as: <b>associative arrays, maps, hashmaps, hashtables, key-value maps, lookup tables</b></p>
 					<table class="presentation">
 					 <tr><td>Key</td><td>Value</td></tr>
 					 <tr><td>Dog</td><td>Woof</td></tr>
@@ -66,35 +66,22 @@
 				</section>
 
 				<section><!-- slide 3 -->
-					<p class="alterconf">Linked lists can be understood recursively:</p>
-					<p class="alterconf">A list is its head node followed by a linked list.</p>
-					<p class="alterconf">Many linked list operations can be written recursively, but for now we'll implement them non-recursively.</p>
-					<h4 class="alterconf">Exercise 1: create a linked list.</h4>
-					<p class="alterconf">Create 4 ListNode objects, each of which has a reference to the next one, and contains an integer value.</p>
+					<h3>Important things to know about dictionaries:</h3>
+					<p class="alterconf">The key-value pairs are NOT sorted by key or by value. If you iterate through the keys, keep in mind that they'll be in any random order. If you want them to be in order, sort them first.</p>
+					<p class="alterconf">Lookup time for an element is O(1): constant-time independent of dictionary size.</p>
+					<p class="alterconf">This is made possible by the <b>hash function</b>. For every key it computes some value, e.g. hash("foo") = 3. That way the dictionary knows to always look for "foo" in slot 3. (It's an oversimplifation.)</p>
 				</section>
 
 				<section><!-- slide 4 -->
-					<h4>Exercise 2. Write out the list.</h4>
-					<p class="alterconf">Write a function that takes the head node as an argument, and writes out the values of all the nodes in the list.</p>
-					<p class="alterconf">Left: C# or Java; right: Javascript.</p>
-
-<pre><code class="linkedList">
-				  <div style="float: left">
-public void writeOutAllNodes(ListNode headNode) {
-	// Your code
-}
-</div>
-				  <div style="float: right">
-function writeOutAllNodes(headNode) {
-	// Your code
-}
-	</div>
-</code></pre>
-
+					<h3>Exercise 1. Anagrams</h3>
+					<p class="alterconf">Write a function that determines whether two words are anagrams of each other. </p>
+					<p class="alterconf">Anagrams are words formed from the same set of letters, e.g. "cilantro" and "contrail". </p>
+					<p class="alterconf">Two words are anagrams if they have the same set of letters, and every letter in both words occurs the same number of times. </p>
+					<p class="alterconf">The naive way to implement a test if two words are anagrams of each other?</p>
 				</section>
 
 				<section><!-- slide 5 -->
-					<h4 class="alterconf">Exercise 3. Insert a node at the beginning of the list.</h4>
+					<h3 class="alterconf">Anagrams: the hashtable way</h4>
 					<p class="alterconf-left">Write a function that takes the head node of the list and an integer value, creates a new node with that value, prepends it before the head node, and returns the head node of the resulting list.</p>
 					<p class="alterconf">Left: C# or Java; right: Javascript.</p>
 
