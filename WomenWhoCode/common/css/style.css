@@ -97,6 +97,12 @@
   font-size:75%;
   text-align: left;
  }
+ 
+ .reveal p.sixty-percent-left { 
+  font-size:60%;
+  text-align: left;  
+ }
+
 
 .reveal li.alterconf { 
   font-size:60%;
