@@ -121,18 +121,18 @@ public areAnagrams (string word1, string word2) {
 
 				<section><!-- slide 7 -->
 					<h3>Anticipating error conditions</h3>
-					<p class="sixty-percent-left"><b>What possible error conditions should you check for in this function?</b></p>
-					<p class="sixty-percent-left">What happens when either argument to the function is null? What happens when you call <code><b>length</b></code> off of a null argument? </p>
-					<p class="sixty-percent-left">The very first thing the function should do is check if either argument is null.</p>
-					<p class="sixty-percent-left">If both <code><b>word1</b></code> and <code><b>word2</b></code> are null, what should the function do? You need to decide if two null strings are anagrams of each other or not.</p>
-					<p class="sixty-percent-left">The interviewer may not care so much if you decide that they are or are not. S/he wants to see you have thought about handling edge cases.</p>
-					<p class="sixty-percent-left">In any coding problem ALWAYS think of error conditions. Interviewers want to see that. </p>
-					<p class="sixty-percent-left">The bare minimum of error conditions / edge cases to check for:</p>
+					<p class="fifty-percent-left"><b>What possible error conditions should you check for in this function?</b></p>
+					<p class="fifty-percent-left">What happens when either argument to the function is null? What happens when you call <code><b>length</b></code> off of a null argument? </p>
+					<p class="fifty-percent-left">The very first thing the function should do is check if either argument is null.</p>
+					<p class="fifty-percent-left">If both <code><b>word1</b></code> and <code><b>word2</b></code> are null, what should the function do? You need to decide if two null strings are anagrams of each other or not.</p>
+					<p class="fifty-percent-left">The interviewer may not care so much if you decide that they are or are not. S/he wants to see you have thought about handling edge cases.</p>
+					<p class="fifty-percent-left">In any coding problem ALWAYS think of error conditions. Interviewers want to see that. </p>
+					<p class="fifty-percent-left">The bare minimum of error conditions / edge cases to check for:</p>
 					<ul>
 						<li class="alterconf">How should the code behave if any of the arguments is null?</li>
 						<li class="alterconf">How should the code behave if any of the arguments, such as a string, list, dictionary, etc., is empty? (That's distinct from null.)</li>
 					</ul>
-			<p class="sixty-percent-left">You can write the "meat" of the function first and add error checking last. (Leave enough spaces between lines on the whiteboard.)</p>
+			<p class="fifty-percent-left">You can write the "meat" of the function first and add error checking last. (Leave enough spaces between lines on the whiteboard.)</p>
 				</section>
 
 
@@ -168,6 +168,33 @@ public areAnagrams (string word1, string word2) {
 					<p class="sixty-percent-left">If an operation involves a suboperation (e.g. doing something in each iteration of the loop), multiply complexity of the "outer" operation by the complexity of the "inner" operation. </p>
 					<p class="sixty-percent-left">E.g. in the "naive anagrams" algorithm, the outer loop is O(n) and the inner loop is O(n) => total is O(n<sup>2</sup>)</p>
 				</section>
+
+				<section><!-- slide 11 -->
+					<h3>Recursion</h3>
+					<p class="alterconf">Computing a fuction value by recursion</p>
+<pre><code class="linkedList"><div style="float: left">
+recursiveFunc (int n) {
+	if (n == 1) 
+		return 1; // or some predetermined value
+	return (do_something_with(func(n-1));
+}
+</div>
+</code></pre>				
+<p>Example: factorial</p>
+<pre><code class="linkedList"><div style="float: left">
+int factorial (int n) {
+	// for the sake of simplicity let's say it's an error to try to get a factorial of a negative number
+	if (n < 0)
+		throw new Exception("Argument cannot be negative");
+	if ((n == 0) || (n == 1))
+		return 1;
+	return n * factorial(n-1);
+}
+
+</div>
+</code></pre>
+				</section>
+
 				
 			<section><!-- slide 12 -->
 					<h3>THE END</h3>
