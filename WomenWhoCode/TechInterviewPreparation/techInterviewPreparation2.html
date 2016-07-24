@@ -170,6 +170,18 @@ public boolm areAnagrams (string word1, string word2) {
 				</section>
 
 				<section><!-- slide 11 -->
+						<p class="alterconf">To find hashtable problems for practising at home:</p>
+						<p class="alterconf"><b>https://www.careercup.com/page?pid=hash-table-interview-questions</b></p>
+						<p class="alterconf">Especially these problems</p>
+						<ul>
+						<li class="fifty-percent">Given multiple strings like "candy", "carry", "dummy"... (https://www.careercup.com/question?id=5760847872786432)</li>
+						<li class="fifty-percent">Remove duplicates in an array of numbers.... (https://www.careercup.com/question?id=5750165744910336)</li>
+						<li class="fifty-percent">there are numbers in between 0-9999999999 (10-digits) which are assigned someone.... (https://www.careercup.com/question?id=5759194646970368)</li>
+						<li class="fifty-percent">[Phone screen] Let's say I gave you a long String and I wanted you to tell me the most common word in that String. How would you do that?  (https://www.careercup.com/question?id=5715664853532672)</li>
+						</ul>
+				</section>
+
+				<section><!-- slide 12 -->
 					<h3>Recursion</h3>
 <pre><code class="eighty-percent"><div style="float: left">
 recursiveFunc (int n) {
@@ -194,7 +206,7 @@ int factorial (int n) {
 </div>
 </code></pre>
 				</section>
-				<section><!-- slide 12 -->
+				<section><!-- slide 13 -->
 					<h4>Common recursion problem: compute Fibonacci numbers</h4>
 					<p class="alterconf">1, 1, 2, 3, 5, 8, 13, 21</p>
 					<p class="alterconf">After n<sub>0</sub> = 1 and n<sub>1</sub> = 1, every number is a sum of two preceding numbers.</p>
@@ -210,18 +222,18 @@ int fibonacci(int index) {
 
 				</section>
 				
-				<section><!-- slide 13 -->
+				<section><!-- slide 14 -->
 					<h4>"Naive" Fibonacci time complexity</h4>
 <img src="img/fibonacciDiagram.png">
 <p class="alterconf fragment">For every n, number of steps doubles => <code><b>O(2<sup>n</sup>))</b></code>, or exponential.</p>
 				</section>
-				<section><!-- slide 14 -->
+				<section><!-- slide 15 -->
 					<p class="alterconf">Exponential time complexity means that even for relatively low n, the function will take longer than the existence of the universe to compute. </p>
 					<p class="alterconf">What would be a better way to implement it?</p>
 					<p class="alterconf">Lots of computation here repeats. Can we cache it?</p>
 
 				</section>
-				<section><!-- slide 14 -->
+				<section><!-- slide 16 -->
 					<h4>Fibonacci with memoization (C#)</h4>
 <pre class="compact" style="float: left"><code class="compact">
 class FibonacciWithMemo {
@@ -252,7 +264,7 @@ class FibonacciWithMemo {
 </code></pre>	
 				</section>
 
-				<section><!-- slide 15 -->
+				<section><!-- slide 17 -->
 					<h4>Fibonacci with printing at each iteration (C#)</h4>
 <pre class="compact" style="float: left"><code class="compact">
 class FibonacciWithMemo {
@@ -289,14 +301,14 @@ class FibonacciWithMemo {
 } // end of the FibonacciWithMemo class
 </code></pre>	
 				</section>
-				<section><!-- slide 16 -->
+				<section><!-- slide 18 -->
 					<h4>Where is recursion used?</h4>
 					<p class="alterconf">You won't get to use recursion much as a developer. </p>
 					<p class="alterconf">It can be used in <b>object serialization</b></p>
 					<p class="alterconf">To serialize an object is to convert it into a text form for saving to a file or transmission over a network.</p>
 					<p class="alterconf">A common serialization format is JSON.</p>
 				</section>
-				<section><!-- slide 17 -->
+				<section><!-- slide 19 -->
 <pre><code class="eighty-percent">
 Person p1 = new Person();
 p.name = "Foo";
@@ -317,7 +329,7 @@ print lpJson;
 </code></pre>
 				</section>
 
-			<section><!-- slide 18 -->
+			<section><!-- slide 20 -->
 					<p class="alterconf">You can imagine serialization like this (oversimplifying): </p>
 					<p class="alterconf"><code><b>IsBasicType()</b></code> determines whether the key is a "basic" type like string, number or boolean, or if it an object. Object needs to be serialized further. </p>
 <pre><code>
@@ -338,7 +350,15 @@ string serialize (Object o) {
 </code></pre>
 					<p class="alterconf">(This is pseudocode written in no particular language, combining features of C# and Javascript. Please don't reuse without modifying it for your chosen language.) </p>
 				</section>
-			<section><!-- slide 12 -->
+
+				<section><!-- slide 21 -->
+						<h3>Resources</h3>
+						<p class="alterconf">Interview-type programming problems you should practice solving:</p>
+						<p class="alterconf"><b>http://hackerrank.com</b></p>
+						<p class="alterconf"><b>https://www.codewars.com</b> has code katas, i.e. problems, each with estimated difficulty points, and you access other people's solutions if you want.</p>
+				</section>
+
+			<section><!-- slide 22 -->
 					<h3>THE END</h3>
 					<p>&nbsp;</p>
 					<p><a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</p>
