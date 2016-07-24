@@ -17,6 +17,47 @@
   word-wrap: break-word; 
 }
 
+.reveal pre.compact {
+	display: block;
+	position: relative;
+	width: 50%;
+	margin: 15px auto;
+
+	text-align: left;
+	font-size: 0.55em;
+	font-family: monospace;
+	line-height: 1.2em;
+
+	word-wrap: break-word;
+
+	/* box-shadow: 0px 0px 6px rgba(0,0,0,0.3); */
+}
+
+
+.reveal pre code.compact {
+  padding: 5px;
+  overflow: auto;
+  max-width: 500px;
+  word-wrap: normal;
+  font-size:80%;
+}
+
+.reveal pre code.compact-wider {
+  padding: 5px;
+  overflow: auto;
+  max-width: 500px;
+  word-wrap: normal;
+  font-size:80%;
+}
+
+
+.reveal pre code.eighty-percent { 
+  padding: 5px;
+  overflow: auto;
+  word-wrap: normal;
+  font-size:80%;
+ }
+
 .reveal code.linkedList { 
   font-size:75%;
  }
@@ -96,17 +137,26 @@
 .reveal p.alterconf-left { 
   font-size:75%;
   text-align: left;
- }
+}
+
+.reveal p.fifty-percent-left { 
+  font-size: 50%;
+  text-align: left;  
+}
  
- .reveal p.sixty-percent-left { 
+.reveal p.sixty-percent-left { 
   font-size:60%;
   text-align: left;  
- }
+}
 
 
 .reveal li.alterconf { 
   font-size:60%;
  }
+
+.reveal li.fifty-percent { 
+  font-size: 50%;
+}
 
 .reveal table.presentation { 
   border-collapse: collapse;

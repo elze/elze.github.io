@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>The basics of linked lists</title>
+		<title>Hashtables, recursion, introduction to time complexity</title>
 
-		<meta name="description" content="Women Who Code technical interview preparation: basic data structures">
+		<meta name="description" content="Women Who Code technical interview preparation: Hashtables, recursion, introduction to time complexity">
 		<meta name="author" content="Elze Hamilton">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,13 +31,13 @@
 
 		<div class="reveal">
 
-			<p style="text-align: center; font-size: 25px"><small>Basic data structures, algorithms, and recursion | <a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</a> | Women Who Code tech interview preparation</small></p>
-			<p style="text-align: center; font-size: 12px">Press Esc to see thumbnails of all slides.</p>
+			<p style="text-align: center; font-size: 18px"><small>Hashtables, recursion, introduction to time complexity | <a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</a> | Women Who Code tech interview preparation</small></p>
+			<p style="text-align: center; font-size: 10px">Press Esc to see thumbnails of all slides.</p>
 			<!-- Any section element inside of this container is displayed as a slide -->
 
 			<div class="slides">			
 				<section>
-					<h2>Basic data structures, algorithms, and recursion</h2>
+					<h2>Hashtables, recursion, introduction to time complexity</h2>
 					<p>
 						<small>By <a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</a></small>
 					</p>
@@ -76,9 +76,11 @@
 				<section><!-- slide 4 -->
 					<h3>Exercise 1. Anagrams</h3>
 					<p class="alterconf">Write a function that determines whether two words are anagrams of each other. </p>
-					<p class="alterconf">Anagrams are words formed from the same set of letters, e.g. "cilantro" and "contrail". </p>
-					<p class="alterconf">Two words are anagrams if they have the same set of letters, and every letter in both words occurs the same number of times. </p>
-					<p class="alterconf">The naive way to implement a test if two words are anagrams of each other?</p>
+					<p class="alterconf">Anagrams are words formed from the same set of letters, e.g. "insatiable" and "banalities". </p>
+					<p class="alterconf">What conditions do two words need to meet to be each other's anagrams? </p>
+					<p class="alterconf fragment">Two words are anagrams if they have the same set of letters, and every letter in both words occurs the same number of times. </p>
+					<p class="alterconf fragment">The naive way to implement a test if two words are anagrams of each other?</p>
+					<p class="alterconf fragment">For every letter in the first word, iterate through the second word and count the times it occurs.</p>
 				</section>
 
 				<section><!-- slide 5 -->
@@ -88,71 +90,69 @@
 				</section>
 
 				<section><!-- slide 6 -->
-<pre><code class="linkedList"><div style="float: left">
-public areAnagrams (string word1, string word2) {
+<pre class="stretch"><code class="eighty-percent">
+public boolm areAnagrams (string word1, string word2) {
 	if (word1.length != word2.length)
 		return false;	
 	Dictionary<char, int> characterCounts1;
 	Dictionary<char, int> characterCounts2;
-	for (char c1 in word1) {
-		if (!characterCounts1[c1].exists) { characterCounts1[c1] = 1; }
+	foreach (char c1 in word1) {
+		if (!characterCounts1.ContainsKey(c1)) { characterCounts1[c1] = 1; }
 		else { characterCounts1[c1]++; }
 	}		
-	for (char c2 in word2) {
-		if (!characterCounts2[c2].exists) { characterCounts2[c2] = 1; }
+	foreach (char c2 in word2) {
+		if (!characterCounts2.ContainsKey(c2)) { characterCounts2[c2] = 1; }
 		else { characterCounts2[c2]++; }
 	}		
-</div>
-</code></pre>				
-<pre><code class="linkedList"><div style="float: right">
 	if (characterCounts1.Keys.length != characterCounts2.Keys.length)
 		return false;
 	for (char c in characterCounts1.Keys) {
-		// if the count of character c in word1 is not equal to the count of the same character in word2
+		// if the count of character c in word1 is not equal to the count 
+		// of the same character in word2
 		if (characterCounts1[c] != characterCounts2[c]) 
 			return false;
 	}
 	return true;
 }
-</div>
 </code></pre>
 
 </section>
 
 				<section><!-- slide 7 -->
-					<h3>Anticipating error conditions</h3>
+<br/>
+					<h4>Anticipating error conditions</h4>
 					<p class="fifty-percent-left"><b>What possible error conditions should you check for in this function?</b></p>
-					<p class="fifty-percent-left">What happens when either argument to the function is null? What happens when you call <code><b>length</b></code> off of a null argument? </p>
-					<p class="fifty-percent-left">The very first thing the function should do is check if either argument is null.</p>
-					<p class="fifty-percent-left">If both <code><b>word1</b></code> and <code><b>word2</b></code> are null, what should the function do? You need to decide if two null strings are anagrams of each other or not.</p>
-					<p class="fifty-percent-left">The interviewer may not care so much if you decide that they are or are not. S/he wants to see you have thought about handling edge cases.</p>
-					<p class="fifty-percent-left">In any coding problem ALWAYS think of error conditions. Interviewers want to see that. </p>
-					<p class="fifty-percent-left">The bare minimum of error conditions / edge cases to check for:</p>
-					<ul>
-						<li class="alterconf">How should the code behave if any of the arguments is null?</li>
-						<li class="alterconf">How should the code behave if any of the arguments, such as a string, list, dictionary, etc., is empty? (That's distinct from null.)</li>
+					<p class="fifty-percent-left fragment">What happens when either argument to the function is null? What happens when you call <code><b>length</b></code> off of a null argument? </p>
+					<p class="fifty-percent-left fragment">The very first thing the function should do is check if either argument is null.</p>
+					<p class="fifty-percent-left fragment">If both <code><b>word1</b></code> and <code><b>word2</b></code> are null, what should the function do? You need to decide if two null strings are anagrams of each other or not.</p>
+					<p class="fifty-percent-left fragment">The interviewer may not care so much if you decide that they are or are not. S/he wants to see you have thought about handling edge cases.</p>
+					<p class="fifty-percent-left fragment">In any coding problem ALWAYS think of error conditions. Interviewers want to see that. </p>
+					<p class="fifty-percent-left fragment">The bare minimum of error conditions / edge cases to check for:</p>
+					<ul class="fragment">
+						<li class="fifty-percent">How should the code behave if any of the arguments is null?</li>
+						<li class="fifty-percent">How should the code behave if any of the arguments, such as a string, list, dictionary, etc., is empty? (That's distinct from null.)</li>
 					</ul>
-			<p class="fifty-percent-left">You can write the "meat" of the function first and add error checking last. (Leave enough spaces between lines on the whiteboard.)</p>
+			<p class="fifty-percent-left fragment">You can write the "meat" of the function first and add error checking last. (Leave enough spaces between lines on the whiteboard.)</p>
 				</section>
 
 
 				<section><!-- slide 8 -->
 					<h4>Time complexity of the anagrams-via-hashtables algorithm</h4>
-					<p>It is O(n) </p>
-					<p class="alterconf-left">Why? </p>
-					<p class="alterconf-left">The first two loops iterate through the whole word, so the time taken to execute the loop grows as the lengh of the word (n) </p>
-					<p class="alterconf-left">What is the time complexity of the third loop? </p>
-					<p class="alterconf-left">Does it grow as the length of the input words grow?</p>
-					<p class="alterconf-left">The third loop will be executed at most as many times as there are letters in the English alphabet (26). It does not grow with the input.</p>
-					<p class="alterconf-left">The complexity of the third loop is fixed, O(1).</p>
+					<p class="fragment">It is O(n) </p>
+					<p class="alterconf-left fragment">Why? </p>
+					<p class="alterconf-left fragment">The first two loops iterate through the whole word, so the time taken to execute the loop grows as the length of the word: O(n) </p>
+					<p class="alterconf-left fragment">What is the time complexity of the third loop? </p>
+					<p class="alterconf-left fragment">Does it grow as the length of the input words grow?</p>
+					<p class="alterconf-left fragment">The third loop will be executed at most as many times as there are letters in the English alphabet (26). It does not grow with the input.</p>
+					<p class="alterconf-left fragment">The complexity of the third loop is fixed, O(1).</p>
 				</section>
 
 				<section><!-- slide 9 -->
 					<h4>Time complexity of the anagrams-the-naive-way algorithm</h4>
-					<p>It is <code><b>O(n<sup>2</sup>)</b></code> . </p>
-					<p class="alterconf-left">Why? </p>
-					<p class="alterconf-left">The outer loop iterates through the first word. </p>
-					<p class="alterconf-left">For each iteration of the outer loop, the inner loop traverses the whole second word. </p>
+					<p class="fragment">It is <code><b>O(n<sup>2</sup>)</b></code> . </p>
+					<p class="alterconf-left fragment">Why? </p>
+					<p class="alterconf-left fragment">The outer loop iterates through the first word. </p>
+					<p class="alterconf-left fragment">For each iteration of the outer loop, the inner loop traverses the whole second word. </p>
 				</section>
 				
 				<section><!-- slide 10 -->
@@ -165,25 +165,25 @@ public areAnagrams (string word1, string word2) {
 					</ul>									
 					<p class="sixty-percent-left">Identify operations in your algorithm that are executed independently of each other. Take a maximum of their time complexity.</p>
 					<p class="sixty-percent-left">E.g. in the anagrams solution there are 3 standalone loops of complexities O(n), O(n), and O(1) => total is O(n).</p>
-					<p class="sixty-percent-left">If an operation involves a suboperation (e.g. doing something in each iteration of the loop), multiply complexity of the "outer" operation by the complexity of the "inner" operation. </p>
+					<p class="sixty-percent-left">If an operation involves a suboperation (e.g. doing something in each iteration of the loop), multiply the complexity of the "outer" operation by the complexity of the "inner" operation. </p>
 					<p class="sixty-percent-left">E.g. in the "naive anagrams" algorithm, the outer loop is O(n) and the inner loop is O(n) => total is O(n<sup>2</sup>)</p>
 				</section>
 
 				<section><!-- slide 11 -->
 					<h3>Recursion</h3>
-					<p class="alterconf">Computing a fuction value by recursion</p>
-<pre><code class="linkedList"><div style="float: left">
+<pre><code class="eighty-percent"><div style="float: left">
 recursiveFunc (int n) {
-	if (n == 1) 
+	if (n == 1) // or some minimum allowed value 
 		return 1; // or some predetermined value
 	return (do_something_with(func(n-1));
 }
 </div>
 </code></pre>				
-<p>Example: factorial</p>
-<pre><code class="linkedList"><div style="float: left">
+<p>Example: factorial (1 * 2 * 3 * ... (n-1) * n)</p>
+<pre><code class="eighty-percent"><div style="float: left">
 int factorial (int n) {
-	// for the sake of simplicity let's say it's an error to try to get a factorial of a negative number
+	// to simplify, let's say it's an error to try to get a factorial 
+	// of a negative number
 	if (n < 0)
 		throw new Exception("Argument cannot be negative");
 	if ((n == 0) || (n == 1))
@@ -194,8 +194,150 @@ int factorial (int n) {
 </div>
 </code></pre>
 				</section>
+				<section><!-- slide 12 -->
+					<h4>Common recursion problem: compute Fibonacci numbers</h4>
+					<p class="alterconf">1, 1, 2, 3, 5, 8, 13, 21</p>
+					<p class="alterconf">After n<sub>0</sub> = 1 and n<sub>1</sub> = 1, every number is a sum of two preceding numbers.</p>
+<pre class="fragment"><code><div style="float: left">
+int fibonacci(int index) {
+	if ((index == 0) || (index == 1)) 
+		return 1;
+	return fibonacci(n - 1) + fibonacci(n - 2);
+}
+</div>
+</code></pre>				
+					<p class="alterconf">What is the time complexity of this Fibonacci algorithm?</p>
 
+				</section>
 				
+				<section><!-- slide 13 -->
+					<h4>"Naive" Fibonacci time complexity</h4>
+<img src="img/fibonacciDiagram.png">
+<p class="alterconf fragment">For every n, number of steps doubles => <code><b>O(2<sup>n</sup>))</b></code>, or exponential.</p>
+				</section>
+				<section><!-- slide 14 -->
+					<p class="alterconf">Exponential time complexity means that even for relatively low n, the function will take longer than the existence of the universe to compute. </p>
+					<p class="alterconf">What would be a better way to implement it?</p>
+					<p class="alterconf">Lots of computation here repeats. Can we cache it?</p>
+
+				</section>
+				<section><!-- slide 14 -->
+					<h4>Fibonacci with memoization (C#)</h4>
+<pre class="compact" style="float: left"><code class="compact">
+class FibonacciWithMemo {
+  private List<int> fib;
+  FibonacciWithMemo() {
+    fib = new List<int>(1);
+    fib.Add(1); // Adding the 0th element
+  }
+  public int fibonacci(int n) {
+    if (n == 0) 
+      return fib[0];
+    if (n == 1) {
+      fib.Add(1);
+      return fib[1];
+    }
+    fib.Add(fibonacci(n - 1) + fib[n - 2]);
+    return fib[n];
+    }
+</code></pre>
+<pre class="compact" style="float: right"><code class="compact">
+    static void Main(string[] args) {
+      FibonacciWithMemo fibonacciWithMemo 
+	= new FibonacciWithMemo();
+      int index = 5;
+      int f = fibonacciWithMemo.fibonacci(index);
+    }
+} // end of the FibonacciWithMemo class
+</code></pre>	
+				</section>
+
+				<section><!-- slide 15 -->
+					<h4>Fibonacci with printing at each iteration (C#)</h4>
+<pre class="compact" style="float: left"><code class="compact">
+class FibonacciWithMemo {
+  private List<int> fib;
+  FibonacciWithMemo() {
+    fib = new List<int>(1);
+    fib.Add(1); // Adding the 0th element
+  }
+  public int fibonacci(int n) {
+    if (n == 0) {
+      Console.WriteLine("Fibonacci of 0 = " 
+	+ fib[0]);
+      return fib[0];
+    }
+    if (n == 1) {
+      fib.Add(1);
+      Console.WriteLine("Fibonacci of 1 = " 
+	+ fib[1]);
+      return fib[1];
+    }
+</code></pre>
+<pre class="compact" style="float: right"><code class="compact">
+    fib.Add(fibonacci(n - 1) + fib[n - 2]);
+    Console.WriteLine("Fibonacci of " + n 
+	+ " = " + fib[n]);
+    return fib[n];
+  }
+  static void Main(string[] args) {
+      FibonacciWithMemo fibonacciWithMemo 
+	= new FibonacciWithMemo();
+      int index = 5;
+      int f = fibonacciWithMemo.fibonacci(index);
+  }
+} // end of the FibonacciWithMemo class
+</code></pre>	
+				</section>
+				<section><!-- slide 16 -->
+					<h4>Where is recursion used?</h4>
+					<p class="alterconf">You won't get to use recursion much as a developer. </p>
+					<p class="alterconf">It can be used in <b>object serialization</b></p>
+					<p class="alterconf">To serialize an object is to convert it into a text form for saving to a file or transmission over a network.</p>
+					<p class="alterconf">A common serialization format is JSON.</p>
+				</section>
+				<section><!-- slide 17 -->
+<pre><code class="eighty-percent">
+Person p1 = new Person();
+p.name = "Foo";
+p.age = 56;
+p.gender = "Female";
+
+Person p2 = new Person();
+p.name = "Bar";
+p.age = 34;
+p.gender = "Nonbinary";
+
+List<Person> lp = new List<Person>() [p1, p2];
+string lpJson = lp.SerializeToJson();
+print lpJson;
+</code></pre>	
+<pre><code class="eighty-percent">
+[{"p1": { name: "Foo", age: 56, gender: "Female"}, {"p2": { name: "Bar", age: 34, gender: "Nonbinary"}]
+</code></pre>
+				</section>
+
+			<section><!-- slide 18 -->
+					<p class="alterconf">You can imagine serialization like this (oversimplifying): </p>
+					<p class="alterconf"><code><b>IsBasicType()</b></code> determines whether the key is a "basic" type like string, number or boolean, or if it an object. Object needs to be serialized further. </p>
+<pre><code>
+string serialize (Object o) {
+	string serialized = "";
+	// Iterating through object's fields. In Javascript you can
+	// iterate like this through o.keys, but in many other 
+	// programming languages you can only access object's fields 
+	// through reflection
+	foreach (field in o.fields) {
+		serialized += '{"' + field + '"} : ";
+		if (o[field].IsBasicType()} 
+			serialized +=  + o[field] + '"}, "'
+		else 
+			serialized +=  + serialize(o[field]) + '"}, "'				   
+	return true;
+}
+</code></pre>
+					<p class="alterconf">(This is pseudocode written in no particular language, combining features of C# and Javascript. Please don't reuse without modifying it for your chosen language.) </p>
+				</section>
 			<section><!-- slide 12 -->
 					<h3>THE END</h3>
 					<p>&nbsp;</p>
