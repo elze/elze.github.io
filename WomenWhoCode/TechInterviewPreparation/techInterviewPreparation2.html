@@ -311,21 +311,27 @@ class FibonacciWithMemo {
 				<section><!-- slide 19 -->
 <pre><code class="eighty-percent">
 Person p1 = new Person();
-p.name = "Foo";
-p.age = 56;
-p.gender = "Female";
+p1.name = "Foo";
+p1.age = 56;
+p1.gender = "Female";
+
+Pet pet1 = new Pet();
+pet1.breed = "cat";
+pet1.name = "Fluffy";
+pet1.age = 5;
+p1.pet = pet1;
 
 Person p2 = new Person();
-p.name = "Bar";
-p.age = 34;
-p.gender = "Nonbinary";
+p2.name = "Bar";
+p2.age = 34;
+p2.gender = "Nonbinary";
 
 List<Person> lp = new List<Person>() [p1, p2];
 string lpJson = lp.SerializeToJson();
 print lpJson;
 </code></pre>	
 <pre><code class="eighty-percent">
-[{"p1": { name: "Foo", age: 56, gender: "Female"}, {"p2": { name: "Bar", age: 34, gender: "Nonbinary"}]
+[{"p1": { "name": "Foo", "age": "56", "gender": "Female", "pet": {"breed": "cat", "name": "Fluffy", "age": "5" }, {"p2": { "name": "Bar", "age": "34", "gender": "Nonbinary"}]
 </code></pre>
 				</section>
 
