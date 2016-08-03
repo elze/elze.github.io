@@ -19,6 +19,8 @@
 
 .reveal code.linkedList { 
   font-size:75%;
+  background-color: white;
+  color: black;
  }
 
 .reveal table.alterconf { 
