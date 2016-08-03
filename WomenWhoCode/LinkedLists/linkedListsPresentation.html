@@ -93,6 +93,35 @@ function ListNode(val, nextN) {
 				</section>
 
 				<section><!-- slide 4 -->
+					<img src="img/linkedList.jpg" alt="Linked list">
+
+					<h4 class="alterconf">Exercise 1: solution</h4>
+					<p class="alterconf">Write a function that takes an argument <i>n</i>, and returns a head node of a list with n ListNodes that contain numbers from 1 to n.</p>
+
+<p class="alterconf">Javascript:</p>
+
+<pre><code class="linkedList">
+function ListNode(val, nextN) {
+	this.value = val;
+	this.nextNode = nextN;
+}
+
+function createLinkedList(n) {
+  if (n < 1)
+    return null;
+  var lNode = new ListNode(n, null);
+  for (var i = n-1; i >=1; i--) { 
+    var node = new ListNode(i, lNode);
+    lNode = node;
+  }
+  return lNode;
+}
+
+</code></pre>
+				</section>
+
+
+				<section><!-- slide 4 -->
 					<h4>Exercise 2. Write out the list.</h4>
 					<p class="alterconf">Write a function that takes the head node as an argument, and writes out the values of all the nodes in the list.</p>
 					<p class="alterconf">Left: C# or Java; right: Javascript.</p>
