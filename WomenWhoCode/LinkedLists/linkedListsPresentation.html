@@ -136,7 +136,34 @@ function writeOutAllNodes(headNode) {
 
 				</section>
 
-				<section><!-- slide 5 -->
+				<section><!-- slide 6 -->
+					<h4>Exercise 2. Solution.</h4>
+					<p class="alterconf">Write a function that takes the head node as an argument, and writes out the values of all the nodes in the list.</p>
+					<p class="alterconf">C# or Java</p>
+
+<pre><code class="linkedList">
+public void writeOutAllNodes(ListNode headNode) {
+	ListNode node = headNode;
+	while (node != null) {
+		Console.Writeln("node.value = " + node.value);
+		node = node.nextNode;
+	}
+}
+</code></pre>
+					<p class="alterconf">Javascript</p>
+<pre><code class="linkedList">
+function writeOutAllNodes(headNode) {
+	var node = headNode;
+	while (node != null) {
+		console.log("node.value = " + node.value);
+		node = node.nextNode;
+	}
+}
+</code></pre>
+
+				</section>
+
+				<section><!-- slide 7 -->
 					<h4 class="alterconf">Exercise 3. Insert a node at the beginning of the list.</h4>
 					<p class="alterconf-left">Write a function that takes the head node of the list and an integer value, creates a new node with that value, prepends it before the head node, and returns the head node of the resulting list.</p>
 					<p class="alterconf">Left: C# or Java; right: Javascript.</p>
