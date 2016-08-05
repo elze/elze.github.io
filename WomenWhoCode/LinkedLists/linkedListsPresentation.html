@@ -180,7 +180,28 @@ function insertAtBeginning(headNode, value) {
 </code></pre>
 				</section>
 
-				<section><!-- slide 6 -->
+				<section><!-- slide 8 -->
+					<h4 class="alterconf">Exercise 3. Insert a node at the beginning of the list: solution</h4>
+					<img src="img/insertBeforeHeadNode.jpg" alt="Linked list">
+					<p class="alterconf">Write a function that takes the head node of the list and an integer value, creates a new node with that value, prepends it before the head node, and returns the head node of the resulting list.</p>
+					<p class="alterconf">C# or Java</p>
+
+<pre><code class="linkedList">
+public ListNode insertAtBeginning(ListNode headNode, int value) {
+	ListNode newHeadNode = new ListNode(value, headNode);
+	return newHeadNode;
+}
+</code></pre>
+					<p class="alterconf">Javascript</p>
+<pre><code class="linkedList">
+function insertAtBeginning(headNode, value) {
+	var newNode = new ListNode(value, headNode);		
+	return newNode;
+}
+</code></pre>
+				</section>
+
+				<section><!-- slide 9 -->
 					<h4 class="alterconf">Exercise 4. Append a node at the end of the list.</h4>
 					<p class="alterconf-left">Write a function that takes the head node of the list and an integer value, creates a new node with that value, appends it after the last node, and returns the head node of the resulting list.</p>
 <pre><code class="linkedList">
