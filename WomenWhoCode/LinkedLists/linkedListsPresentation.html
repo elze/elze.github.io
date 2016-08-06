@@ -246,7 +246,32 @@ public ListNode insertAtPosition(ListNode headNode, int value, int position) {
 				</section>
 
 
-				<section><!-- slide 8 -->
+				<section><!-- slide 12 -->
+					<h4 class="alterconf">Exercise 5. Insert a node into linked list at a given position. Solution</h4>
+					<p class="alterconf">Write a function that takes the head node of the list, an integer value, and an integer position, creates a new node with that value, inserts it in the list at the given position, and returns the head node of the resulting list. </p>
+<pre><code class="linkedList">
+function insertAtPosition(headNode, value, positionToInsertAt) {	
+	if (headNode == null) return null;
+	var node = headNode;	
+	for (var i = 0; i < positionToInsertAt - 1; i++) {		
+		if (node.nextNode != null) 
+			node = node.nextNode;
+		else {
+			console.log("Reached the end of the list before reaching position " + positionToInsertAt);
+			return headNode;
+		}			
+	}	
+	// After this loop currentNode will be at position positionToInsertAt - 1		
+	var newNode = new ListNode(value, node.nextNode);
+	node.nextNode = newNode;			
+	return headNode;
+}
+</code></pre>
+			<p class="alterconf"><b>What possible error conditions should you check for in this function?</b></p>
+				</section>
+
+
+				<section><!-- slide 13 -->
 					<h4 class="alterconf">Exercise 6. Reverse the linked list.</h4>
 					<p class="alterconf-left">Write a function that takes the head node of a list, reverses the linked list so that its head would now be its tail, and its tail would be its head, and return the head node of the resulting list. </p>
 <pre><code class="linkedList">
