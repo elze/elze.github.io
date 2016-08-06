@@ -283,6 +283,33 @@ function reverse(headNode) {
 
 				</section>
 
+
+				<section><!-- slide 14 -->
+					<h4 class="alterconf">Exercise 6. Reverse the linked list. Solution</h4>
+					<img src="img/reverseLinkedList.jpg" alt="Linked list">
+					<p class="alterconf">Write a function that takes the head node of a list, reverses the linked list so that its head would now be its tail, and its tail would be its head, and return the head node of the resulting list. </p>
+<pre><code class="linkedList">
+function reverse(headNode) {
+	var prev = startNode;
+	var curr = startNode;
+	var next = startNode;
+	
+	while (next != null) { 
+	  curr = next;
+	  next = next.nextNode;
+	  if (curr != prev)
+	    curr.nextNode = prev;
+	  else
+	    curr.nextNode = null;
+	  prev = curr;
+	}
+	return curr;
+}
+</code></pre>
+			<p class="alterconf"><b>What possible error conditions should you check for in this function?</b></p>
+
+			</section>
+
 			<section><!-- slide 12 -->
 					<h3>THE END</h3>
 					<p>&nbsp;</p>
