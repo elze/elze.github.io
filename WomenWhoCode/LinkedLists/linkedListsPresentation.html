@@ -251,20 +251,20 @@ public ListNode insertAtPosition(ListNode headNode, int value, int position) {
 					<p class="alterconf">Write a function that takes the head node of the list, an integer value, and an integer position, creates a new node with that value, inserts it in the list at the given position, and returns the head node of the resulting list. </p>
 <pre><code class="linkedList">
 function insertAtPosition(headNode, value, positionToInsertAt) {	
-	if (headNode == null) return null;
-	var currentNode = headNode;	
-	for (var i = 0; i < positionToInsertAt - 1; i++) {		
-		if (currentNode.nextNode != null) 
-			currentNode = currentNode.nextNode;
-		else {
-			console.log("Reached the end of the list before reaching position " + positionToInsertAt);
-			return headNode;
-		}			
-	}	
-	// After this loop currentNode will be at position positionToInsertAt - 1		
-	var newNode = new ListNode(value, currentNode.nextNode);
-	currentNode.nextNode = newNode;			
+  if (headNode == null) return null;
+  var currentNode = headNode;	
+  for (var i = 0; i < positionToInsertAt - 1; i++) {		
+    if (currentNode.nextNode != nuall) 
+	currentNode = currentNode.nextNode;
+    else {
+	console.log("Reached the end of the list before reaching position " + positionToInsertAt);
 	return headNode;
+    }			
+  }	
+  // After this loop currentNode will be at position positionToInsertAt - 1		
+  var newNode = new ListNode(value, currentNode.nextNode);
+  currentNode.nextNode = newNode;			
+  return headNode;
 }
 </code></pre>
 				</section>
