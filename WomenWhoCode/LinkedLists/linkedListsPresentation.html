@@ -252,18 +252,18 @@ public ListNode insertAtPosition(ListNode headNode, int value, int position) {
 <pre><code class="linkedList">
 function insertAtPosition(headNode, value, positionToInsertAt) {	
 	if (headNode == null) return null;
-	var node = headNode;	
+	var currentNode = headNode;	
 	for (var i = 0; i < positionToInsertAt - 1; i++) {		
-		if (node.nextNode != null) 
-			node = node.nextNode;
+		if (currentNode.nextNode != null) 
+			currentNode = currentNode.nextNode;
 		else {
 			console.log("Reached the end of the list before reaching position " + positionToInsertAt);
 			return headNode;
 		}			
 	}	
 	// After this loop currentNode will be at position positionToInsertAt - 1		
-	var newNode = new ListNode(value, node.nextNode);
-	node.nextNode = newNode;			
+	var newNode = new ListNode(value, currentNode.nextNode);
+	currentNode.nextNode = newNode;			
 	return headNode;
 }
 </code></pre>
