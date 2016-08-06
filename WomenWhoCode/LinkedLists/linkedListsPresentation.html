@@ -215,7 +215,25 @@ function insertAtEnd(headNode, value) {
 			<p class="alterconf-left"><b>What possible error conditions should you check for in this function?</b></p>
 				</section>
 
-				<section><!-- slide 7 -->
+				<section><!-- slide 10 -->
+					<h4 class="alterconf">Exercise 4. Append a node at the end of the list. Solution</h4>
+					<p class="alterconf-left">Write a function that takes the head node of the list and an integer value, creates a new node with that value, appends it after the last node, and returns the head node of the resulting list.</p>
+<pre><code class="linkedList">
+public ListNode insertAtEnd(ListNode headNode, int value) {
+	if (headNode == null)
+		return null;
+	ListNode node = headNode;
+	while (node.nextNode != null) {
+		node = node.nextNode;
+	}
+	ListNode last = new ListNode(null, value);
+	node.nextNode = last;
+	return headNode;
+}
+</code></pre>
+				</section>
+
+				<section><!-- slide 11 -->
 					<h4 class="alterconf">Exercise 5. Insert a node into linked list at a given position.</h4>
 					<p class="alterconf-left">Write a function that takes the head node of the list, an integer value, and an integer position, creates a new node with that value, inserts it in the list at the given position, and returns the head node of the resulting list. </p>
 <pre><code class="linkedList">
