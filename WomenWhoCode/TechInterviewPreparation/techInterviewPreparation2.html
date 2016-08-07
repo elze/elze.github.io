@@ -94,8 +94,8 @@
 public bool areAnagrams (string word1, string word2) {
 	if (word1.length != word2.length)
 		return false;	
-	Dictionary<char, int> characterCounts1;
-	Dictionary<char, int> characterCounts2;
+	Dictionary<char, int> characterCounts1 = new Dictionary<char, int>();
+	Dictionary<char, int> characterCounts2 = new Dictionary<char, int>();
 	foreach (char c1 in word1) {
 		if (!characterCounts1.ContainsKey(c1)) { characterCounts1[c1] = 1; }
 		else { characterCounts1[c1]++; }
