@@ -164,6 +164,11 @@
  }
 
 
+.reveal blockquote.presentation { 
+  font-size: 80%;
+  font-style: normal;
+}
+
 .reveal .triangle-isosceles {
 	position:relative;
 	padding:15px;
