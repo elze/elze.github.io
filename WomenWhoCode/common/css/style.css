@@ -167,8 +167,14 @@
 .reveal blockquote.presentation { 
   font-size: 60%;
   font-style: normal;
+/*******
   margin-left: 10px;
   margin-right: -10px;
+**/
+
+  padding-left: -10px;
+  padding-right: -10px;
+
 }
 
 .reveal .triangle-isosceles {
