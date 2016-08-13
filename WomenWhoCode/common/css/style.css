@@ -59,8 +59,13 @@
  }
 
 .reveal code.linkedList { 
-  background-color: white;
   font-size:75%;
+ }
+
+.reveal code.presentation { 
+  font-size:75%;
+  background-color: white;
+  color: black;
  }
 
 .reveal table.alterconf { 
