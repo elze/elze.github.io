@@ -76,14 +76,38 @@
 				<section><!-- slide 4 -->
 					<h3>Front end development questions</h3>
 					
-   <table class="alterconf">
-   <tr class="alterconf">
-   <td class="alterconf">
-   <blockquote class="triangle-border left alterconf">In Javascript, what is the difference between null and undefined values?
+   <blockquote>In Javascript, what is the difference between null and undefined values?
    </blockquote>
-   </td>
-   <td class="alterconf">Null is a value, but undefined is a type. Find out about these situations: 1. When a variable is declared (var a;) but is not assigned a value; 2. When you reference an object field that this object doesn't have: e.g. var o = {foo: "foo1", bar: "bar1"}; o.baz ?</td>	
-  </tr>
+   <p class="alterconf">Null is a value, but undefined is a type.</p> 
+   <p class="alterconf">Find out about these situations:</p> 
+	<ul>
+	<li class="alterconf">
+	 <p class="alterconf">When a variable is declared but is not assigned a value:</p> 
+	 <p class="alterconf"><code>var a;</code></p> 
+	 <p class="alterconf">what will <code>console.log(a);</code> print? </p> 
+	</li>
+	<li class="alterconf">
+	 <p class="alterconf">When you reference an object field that this object doesn't have: </p> 
+	 <p class="alterconf"><code>var pet = {name: "Fluffy", breed: "Cat"};</code>  </p> 
+	 <p class="alterconf">what will <code>console.log(pet.age);</code> print? </p> 
+	</li>	
+	<li class="alterconf">
+	 <p class="alterconf">If the <code>pet</code> object is created with this constructor: </p> 
+<pre><code class="linkedList">
+function Pet(name, breed) {
+	this.name = name;
+	this.breed = breed;
+}
+</code></pre>
+	 <p class="alterconf">then you call the constructor as</p> 
+	 <p class="alterconf"><code>var pet = new Pet("Fluffy")</code>  </p> 
+	 <p class="alterconf">what will <code>console.log(pet.breed);</code> print? </p> 
+	</li>	
+       </ul>
+</section>
+
+				<section><!-- slide 5 -->
+
   <tr class="alterconf">
    <td class="alterconf"><blockquote class="triangle-border left alterconf">What is CSS box model?</blockquote></td>	
    <td class="alterconf">

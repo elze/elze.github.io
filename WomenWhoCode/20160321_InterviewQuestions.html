@@ -1,0 +1,487 @@
+<h3>Architecture, design patterns</h3>
+
+
+<p>What is dependency injection?</p>
+
+<p>What are the advantages and disadvantages of dependency injection via constructor versus the setter injection?</p> 
+
+<blockquote><p>Possible answers</p>
+
+<p>There could be a situation where you are injecting class A in the constructor of class B, but, unbeknownst to yourself, you are expecting class B already to be fully constructed and all the members in it to be available; but that might not be the case, because this is the constructor, so not all the members might have been constructed at the given time. This would thrown an error.</p>
+
+</blockquote>
+
+<p>Explain what MVC is.</p>
+
+<p>Describe control flow through an MVC application.</p>
+
+<p>What design patterns do you know? What is the decorator pattern?</p>
+
+<p>What is n-tiered architecture?</p>
+
+<p>Is MVC an example of n-tiered architecture?</p>
+
+<blockquote>No.</blockquote>
+
+<p>What parts of the n-tiered architecture Model, View, and Controller correspond to?</p>
+
+<blockquote>One might say that View roughly corresponds to the presentation layer, Controller to the business layer, as this is where the business logic is. Model interacts with the database or some other backend, but you can't actually call it the backend or data layer. Model is still part of the application code.</blockquote>
+
+<p>What is the DTO pattern? How do DTOs relate to Models?</p>
+
+<blockquote><p>That was a tricky question for me at the time. I wasn't sure how to answer that. The interviewer asked: what if the DTO selects many fields from the database, and we don't want the Model to contain all those fields -- maybe we don't want to expose all those fields to the user. What do we do? </p>
+
+<p>I encountered that situation since then. Some people use the so-called BOs, or business objects, in addition to DTOs. The BO contains the fields that are displayed to the user in a View, and they may not be the same fields that are stored in the database. E.g. the business object may have fields that are computed from the fields that are stored in the database. For example, the datetime might be stored as UTC in the database, but displayed to the user as a local time based on the user's time zone.</p>
+
+<p>Sometimes the BO can be the Model. Some applications are big and complex enough to make a distinction between DTOs, BOs, and Models, and others are simple enough that such distinction is not necessary. </p>
+
+<p>MVVM -- Model-View-ViewModel -- architecture is also relevant here. In MVVM, Model represents a database record (though there also may be a distinction between Model and DTO, where DTO represents a database record, but a Model represents a subset or a superset of those fields, or transforms of some fields), and ViewModel contains the fields that are shown in the UI.</p>
+
+<p>For example, maybe one of the fields in the UI represents a range of values of some field -- for example, all zipcodes that start with 787; but when we are saving the records to the database, we want to save a separate record for each zipcode: 78727, 78728, 78729, etc. So, the application layer would convert one ViewModel to many Models, each of which would have a different zipcode.
+
+
+<h3>ORMs (Object-Relational Mapping)</h3>
+
+
+<p>In Entity Framework, Hibernate, and many other ORMs there is a concept of lazy loading and eager loading. What do they mean?</p>
+
+<p>What does Code First mean in Entity Framework? What are other ways of writing code in Entity Framework?</p>.
+
+<blockquote>Possible answers: Database First, Schema First.</blockquote>
+
+<h3>Frontend development</h3>
+
+<p>In Javascript, what is the difference between null and undefined values?</p>
+
+<p>What is CSS box model? (Padding, margin, border)</p>
+
+<p>What can you do so that a web page would appear to load faster?</p> 
+
+<blockquote><p>Possible answers</p>
+
+<p>Put Javascript includes at the bottom of the page. </p>
+
+<p>Minify the Javascript and the CSS: smaller files take less time to transfer over the net.</p>
+
+<p>Aggregate all the images into one image and show only parts of it on the page where needed: it this minimizes the number of network calls necessary to load the page. </p>
+
+<p>Do what you can to make the HTML elements be rendered before the scripts are run. At first those elements might not be functional, but when the scripts finish executing, they will be functional. This will at least give an <i>impression</i> that the page is loading relatively fast.</p>
+
+</blockquote>
+
+<p>Does Javascript have classes?</p>
+
+<blockquote>ES6 has classes, but the earlier version of Javascript didn't have them.</blockquote>
+
+<p>Can you "simulate" classes in Javascript?</p>
+
+<blockquote>
+
+<p>Yes, you can. http://stackoverflow.com/questions/8242697/javascript-functions-to-simulate-classes-best-practices</i></p>
+
+</blockquote>
+
+<p>What are Javascript global variables? What's the disadvatage of global variables?</p> 
+
+<blockquote>If a variable is not declared with a var, its scope is the window in which the script is running. The downside of that is confusion between variables with the same names in different scopes.</blockquote>
+
+<p>How do you prevent that confusion?</p>
+
+<blockquote>If you declare a variable with a "var" keyword, it will be local to the scope in which you declared it. That way you won't accidentally modify it from another scope.</blockquote>
+
+
+<h3>.NET-specific questions</h3>
+
+<p>What's better to use for REST services: WCF or WebAPI?</p>
+
+<blockquote>According to the interviewer who asked this question, it's better to use WebAPI, because WebAPI can only have HTTP endpoints, where WCF can have "everything", so it's a heavy all-purpose tool. </blockquote>
+
+<p>How would you restrict access to a method in WebAPI?</p>
+
+<blockquote>With an annotation.</blockquote>
+
+<p>Can you have a view in WebAPI?</p> 
+
+<blockquote>No, because WebAPI does not generate web pages, it only returns data (usually in JSON format) as responses to requests.</blockquote>
+
+<p>Can you give an example of the decorator pattern implemented in the .NET framework classes?</p>
+
+<blockquote>Various classes that inherit from <code>StreamReader</code> implement the decorator pattern.</blockquote>
+
+<p>When would you want to implement your own generic type?</p>
+
+<blockquote>
+
+<p>Overall you would do it for code reuse, but can you come up with specific scenarios where you would need it? Again, this question was asked in the C# / .NET context, but other languages have generic types too, so it may be relevant.</p>
+
+<p>As a specific example, maybe your CRUD architecture requires all the controllers and services to be written in a certain way. For example, each controller might have a service injected to it, which it calls. And every CRUD service also has certain methods it should have. For example, it should have a method <code>Save()</code>, which saves the model, and also <code>BeforeSave()</code> and <code>AfterSave()</code> hooks. To ensure that the services and controllers have the methods they are supposed to have, you could autogenerate every service and controller. (To [be specific | go into the nitty-gritty], the generator would generate a partial class, and then you would customize it by putting your custom code in the second part of the partial class in a different file. That way it wouldn't get overwritten by the code generator when you run it again.) Or actually no. This has nothing to do with autogeneration of the code. You would write a generic service class that every CRUD service you write next will have to inherit from. That's it. Why does it have to be generic? Probably because the type of the object that it will be saving to or retrieving from the database can be anything.</p>
+
+</blockquote>
+
+<h3>Exception handling</h3>
+
+<p>What are the best practices in exception handling? If you wanted to advice a junior developer how to handle exceptions, what would you say?</p>
+
+<p>More specifically: suppose in the <code>catch</code> block you call the database to log the exception -- is that a good idea? If not, why not? What should you do instead?</p>
+
+<blockquote>
+
+<p>This question makes the most sense in the .NET context, because it hints at managed and unmanaged resources, and the need to dispose of unmanaged resources when handling exceptions, but it is relevant to all programming languages.</p>
+
+<p>Many languages have something similar to the <code>finally</code> block that gets executed always, whether or not the <code>catch</code> block was executed. If your <code>catch</code> throws exception (which can happen if in the <code>catch</code> block you are logging the error to the database, and say the database connection cannot be opened), then this new exception won't be caught. In that case, will the code in the <code>finally</code> block be executed? It may depend on the programming language you use. You need to know what your language of choice does in that case. If the <code>finally</code> block does not get executed, and you are relying on it to clean up some resources or do any kind of work, then don't do anything in the <code>catch</code> block that might throw an exception. </p>
+
+<p>I was asked this or similar question in interviews more than once, so that's definitely an area worth knowing.</p>
+
+</blockquote>
+
+<h3>Unit testing</h3>
+
+<p>What is your unit-testing philosophy / approach / thought process? </p>
+
+<blockquote><p>Some things to consider:</p>
+
+<p>Unit tests are supposed to test just the application code, and for that they need to be completely self-contained, i.e. independent from other resources, such as databases or the network. A frontend unit test should not call the server-side code or a third-party API. Server-side unit test should not call the database or third-party API, etc. </p>
+
+<p>Then how do you test the code that <i>does</i> use external resources?</p>
+
+<p>You mock or stub the external resources. For that you use mock/stub frameworks, the examples of which would be Rhinomocks, FakeItEasy, and many others. A mock or a stub is an object that has "fake" methods with the same signatures as those that your method-under-test calls. So, for example, say your method is passed an argument of type <code>IRepository</code> (which is an interface that defines a repository -- which, in other words, encapsulates your application's interactions with the database; note: read up on Repository pattern), and calls <code>GetList()</code> method off of it, which in turn returns a list of objects of type A. To simulate this, your unit test will have to mock an <code>IRepository</code> object -- in other words, create a fake <code>IRepository</code>. The mock <code>IRepository</code> will have a "fake" method <code>GetList()</code> that will take the same arguments as the real <code>GetList()</code>, but, instead of calling the database, it will return a hardcoded list of objects A:</p>
+
+<code>
+
+[
+{"type": "cat", "name": "Fluffy"},
+{"type": "cat", "name": "Bast"},
+{"type": "dog", "name": "Woofy"}
+]
+
+</code>
+
+<p>How would you make your code more unit-testable? </p>
+
+<blockquote>
+
+<p>Dependency Injection! As with the <code>IRepository</code> example above, you need to inject your dependencies -- such as the <code>IRepository</code> object above -- into your class or the method under test. That way, when unit-testing the method, you'll be able to inject a fake repository into it, instead of one that connects to the actual database. So your method should look like this:</p>
+
+
+<code>
+
+public List<int> doubleListElements(IRepository repository) {
+	var origList = repository.GetList();
+	List<int> listOfDoubles = new List<int>(myList.length());
+
+	foreach (int elem in origList) 
+		listOfDoubles.Add(elem * 2);
+	return listOfDoubles;
+}
+
+</code>
+
+<p>The important part in it is the fact that you passing an <code>IRepository</code> object into this method, as opposed to initializing it like this:</p>
+
+<code>
+public myMethod() {
+	IRepository repository= new Repository();	
+	var myList = repository.GetList();
+}
+</code>
+
+(I am still providing the entire code to this (very simple) method for the context sake.) To make this method unit-testable it is necessary that the <code>IRepository</code> interface declared a method <code>GetList()</code>:
+
+<code>
+interface IRepository {
+	List<int> GetList();
+}
+
+<code>
+
+<p>The <code>Repository</code> class should implement the <code>IRepository</code> interface, which requires to implement its <code>GetList()</code> method:</p>
+
+<code>
+class Repository: IRepository {
+	List<int> GetList() {
+	.... // some code here
+	}
+}
+
+<code>
+
+class FakeRepository: IRepository { // The FakeRepository class implements IRepository interface
+
+	/*******
+	public List<Animal> GetList() {
+		return [
+		new Animal {name = "Fluffy", age=4},
+		new Animal {name = "Bast", age = 15},
+		new Animal {name = "Woofy", age = 9}
+	];
+	********/
+
+	public List<int> GetList() {
+		return [3, 5, 8];
+	];
+}
+</code>
+
+(This is C# code, but you get the idea of how to write it in your language.)
+
+
+So now when you call <code>myMethod()</code> from your test, it will call the FakeRepository's GetList() instead. The reasons why this happens are three (at least): (1): both Repository and FakeRepository implement the interface <code>IRepository</code>, (2) myMethod() takes IRepository as an argument, instead of instantiating a Repository object, and (3) the argument it takes is of IRepository, not Repository type. If it was of Repository type type, you could pass FakeRepository to it.
+
+
+(A small, but relevant aside: the (2) illustrates Dependency Injection principle (the IRepository object is injected, as opposed to creating a Repository objecgt in the method itself), and (3) illustrates the "program to the interface, not to the implementation" principle. That covers the "D" and "I" letters in the SOLID principles. So when an employer asks you to illustrate the use of SOLID principles, or to explain why they are useful, this could be one possible answer.)
+
+
+Finally, you can write your test method like this: 
+
+<code>
+public doubleListElements_should_return_a_list_of_doubled_values() {
+
+	IRepository repository = FakeRepository();
+	// doubleListElements will call GetList() off of the FakeRepository
+	var doubledList = doubleListElements(repository); 
+	Assert.IsEqual(6, doubledList[0]);
+	Assert.IsEqual(10, doubledList[1]);
+	Assert.IsEqual(16, doubledList[2]);
+}
+</code>
+
+So you have just tested that the <code>doubleListElements</code> method correctly does what it claims: it doubles each element of the list that it gets off of an IRepository object. You verified it by passing it a fake IRepository object that has a GetList() method that returns known values. So your test is not dependent on the database, network, any third-party library, etc. All it tests is your code.
+
+<p>
+
+<h3>Database and SQL questions</h3>
+
+<p>What are the main things that affect the performance of a SQL query?</p>
+
+<blockquote>Some of the low-hanging fruit: 
+
+<ul>
+
+<li>Is an index of the table(s) you are querying? (Need to find out if you are searching by a column that's not a primary key / on which there is no index, does having an index still help?) </li>
+
+<li>Does the query include subqueries? Subqueries are less efficient than joins -- in the worst case, subqueries can make a query run in O(n^2) time. In some cases, subqueries can be replaced by joins. On the other hand, modern databases optimize a lot of those things for you, so I'm not sure if it is always a concern.</li>
+
+</ul>
+
+</blockquote>
+
+<p>What types of table indexes are there? What is a clustered index?</p>
+
+<p>What is the different between <code>DELETE FROM &lt;table&gt;<code> and <code>TRUNCATE &lt;table&gt;<code> statements?</p> 
+
+<p><b>(An exercise.)</b> How would you select from the table SALES the count of blue bicycles sold by a salesperson A in the month of June? Assume the table SALES has columns <code>salesperson</code>, <code>date</code>, <code>item</code>, <code>color</code>. Each record represents a sale, on a certain date, by a certain salesperson of a certain item of a certain color.</p>
+
+<h3>Behavioral questions</h3>
+
+<p>Tell me about a time you made a technical decision you regretted.</p>
+
+<blockquote>The interviewer meant any kind of technical decision -- even on a micro scale, such as implementing something one way, spending days on it, and realizing that it doesn't work.</blockquote>
+
+
+
+
+---------
+
+
+
+-- 
+
+
+From phone interview with DHI Mortgage
+
+What are the best practices in exception handling? If you wanted to advice someone, a junior developer, about exceptions, what would you say? More specifically -- suppose in the catch block you call the database to log the exception -- is that a good idea, or what should be considered? I think he was getting at unmanaged resources, etc. but I'm not sure exactly what he meant.
+
+When would you want to implement your own generic type? He said, for code reuse, which is obvious, but I could not come up with a scenario for that.
+
+If the method is virtual in the base class, but in the derived class you override the same method without the "virtual" keyword, what will happen?
+
+Since we have delegates, and we can make them public, why do we need "event" type? I didn't know, so he answered that event encapsulates delegate so that we would not accidentally change it.
+
+What are the main things that affect the performance of an SQL query?
+
+=========
+
+
+From interview with Sonic Healthcare: 
+
+How would you select from the table SALES the count of blue bicycles sold by a salesperson A in the month of June?
+
+========
+
+From phone interview with Aquilan:
+
+
+What is your unit-testing philosophy / approach / thought process? 
+
+
+What is your integration testing philosophy / approach / thought process? 
+
+How do you prevent SQL injection? I answered that we need to parametrize a query, instead of concatenating parameter values into it. He then asked if we used straightforward SQL, and I figured he wanted me to mention ORMs. So I said that while we don't use ORMs at my current job, I used them before. But it is worth investigating how ORMs prevent SQL injection.
+
+
+
+Tell me about a time you solved an analytically difficult problem.
+
+-- Maybe I could tell about Charles Schwab, how I finally determined that the reason the Splunk Powershell scripts were failing was that the Powershell version installed on production servers was 1, and we were using features that were only present in version 2?
+
+
+
+Interview question that Dave at Paypal mentioned that he got at an Amazon interview: how would you implement the Boggle board game?
+
+===========
+
+
+Gravitant interview questions
+
+How would you compare Tomcat web server and Node? (Maybe he didn't say specifically Tomcat web server, but Java web server? Apache web server?)
+
+Dovetail interview questions
+
+I think it was probably behavioral questions that tripped me. And questions about my opinions about technology.
+
+What technology stack would I use to implement a website for a small business, such as a dentist? I said that if they need nothing more than a website, it may be enough to use Wordpress. They then clarified that it would have to be a web application, not just a website. I said, then maybe Ruby on Rails. They asked why. I said that it implements many features right out of the box. Maybe they wanted a more sophisticated answer.
+
+They asked what technology stacks I have worked with. I said Windows / Microsoft technologies, and some open source stacks like LAMP; or, for example, Ruby on Rails. They asked which of them I liked the most. Again I said Rails, because out-of-the-box application generation, etc.
+
+They asked what I would install on my machine the first day on the job as a developer. I said that (of course) at their company I would install Visual Studio, because they work on Windows. Or maybe the question they asked was more broad, something like what kind of technology stack I would want to have on my machine? I said Windows (of course), because they write their applications in C#. They said, not necessarily -- about half of them have Macs, and they run a virtual machine to run Visual Studio. I think they also asked me what non-Windows technologies I would use. I don't know what else I said (I mentioned Git, assuming that they use Git for version control, and they confirmed), but I definitely mentioned emacs. I also gave emacs as an answer to what tool I can't live without.
+
+They asked me what databases besides SQL Server have I used. I said MySQL and Oracle. They asked how I liked Oracle, and I said I liked it well enough. One of the developers who interviewed me said he didn't like Oracle and called it Obstacle.
+
+Then there was the behavioral question that I think tripped me up. If a manager wants you to implement something a certain way, but you think it's the wrong way, how would you resist? How would you explain to them that it's wrong? The development manager emphasized to me that he doesn't want pushovers on his team; if a developer thinks some idea is wrong, they have to push back, and push back aggressively. For example, let's say I noticed there is a place in a code that so far hasn't caused major crashes or outages, but I think it's a ticking time bomb, and it can cause an outage any time. What would I suggest? I said I would suggest putting it on a list of things to work on in the next sprint. He said, but suppose the management has already scheduled the whole next sprint to work on features. They don't want to hear that they need to put those features aside to fix something to prevent emergencies. How would you go about convincing them? (Short of threatening to quit.) I said that I thought all I could do was to state my case and present evidence; it was for the management to decide. I also said that I would try to get consensus of the team: if most people on the team think it's bad and need to be fixed soon, the management might be more convinced.
+
+The feedback they gave me was that they didn't think I was at a senior developer level, and that I wasn't opinionated enough or have strong enough convictions / opinions about technology to be on their team.
+
+
+GM interview questions
+
+
+Talk about an opportunity or occasion when you used your technical skills at work to make a difference.
+
+-- This was a very puzzling question, because I use my technical skills at work every day -- I hardly use anything else.
+
+Follow-up questions:
+
+Why did you pick that approach?
+
+What difference did it make? 
+
+What lessons did you learn from it?
+
+How did you use those lessons in another situation?
+
+Talk about a time when you delivered bad news poorly.
+
+-- I talked about having to constantly deliver bad news about the Splunk project at Charles Schwab, though I didn't think I delivered them all that poorly. I just was simply straightforward about the news.
+
+What impact did it have?
+
+-- I said I didn't think there was big significance to the face that the project fell behind. It was only for our internal use, and it eventually did what it was supposed to do, just not as fast.
+
+Why did you pick that approach (to deliver news)?
+
+-- I said it was because I wanted to keep my manager informed about where things stand, because, well, a manager needs to be informed so as to make the best decisions.
+
+What would you differently?
+
+-- Regarding the whole Splunk project, I would keep a consultant on hand, or at least not wait until we are deeply into the problem to consult him; he might have told us early on why we were having those problems.
+
+How did you apply lessons from it at your other jobs / subsequently? 
+
+-- I communicate possible problems (or being stuck) to coworkers and managers earlier.
+
+Tell me about a time you rescued or fixed a project [that a lot depended on].
+
+-- I told him about the time at First Data when one of our imaging clients needed a special application to communicate with their system (Coxsackie bank), and another developer (Andrew) was tasked with writing it; but he tried to make it too general (because we thought we might be getting other customers who might use the same technology) and got stuck, and the bank was getting unhappy. Then my manager asked me to write some quick solution for them, which I did. I did not take into account the generalities, and wrote a quick, short program just for that bank, and that turned out to be the right decision, because that bank converted away from that technology after a while, and started using something more common.
+
+What lessons did you take away from it?
+
+-- A lesson that overly generic design isn't always what you want or need, and sometimes quick-and-dirty serves the customer's needs best.
+
+Tell me how you used lessons from it.
+
+-- I decided that it is always best to start by writing a small prototype, a minimal viable product, and then to add features to it. But it is important, when designing the MVP, not to simplify it so much that you can't later extend it, because you painted yourself into a corner with your assumptions.
+
+Technical questions:
+
+How are <span> and <div> tags different? 
+
+Name 3 position attributes.
+
+What are global variables in Javascript ? 
+
+What problems can global variables potentially cause? 
+
+-- I answered that you can have a variable with the same name in a different scope, such as in a function, and that might cause confusion, because would think you're modifying one variable, while actually you're modifying the other. The interviewer seemed to agree.
+
+What is Javascript event bubbling model?
+
+What are closures in Javascript?
+
+In your previous .NET projects, how did you do logging? I said we used log4net. He asked, how does log4net work? Based on what principles? (I think he meant that it works by dependency injection.)
+
+
+===========
+
+From BlackBaud phone interview
+
+Databases: what are the disadvantages of using an index on the table?
+
+What is the one thing I would change about the department I am in?
+
+What design patterns have I used in Java? In .NET?
+
+
+Design questions from BlackBaud:
+
+If you are writing a program for checkers game (I assume he meant a program where a human would play checkers against a computer), how would you design it? What classes would it have?
+
+If you are writing a program to simulate / model your commute to work, what classes would it have?
+
+
+=========
+
+Taulia phone interview questions
+
+What are advantages of frameworks (such as Javascript frameworks)?
+
+How big was the biggest dataset you've worked with?
+
+
+Their in-person interview questions:
+
+How would you secure REST services? How would you make sure that only an authorized user is calling them? That they are not calling any services they're not supposed to? That they are not passing bad data, or rather, malicious data that could hack your database?
+
+
+In a GET request to a web service how would you ensure that the user that's calling it is the authenticated user (and the user who has permissions to call this service)?
+
+
+If an object's representation in a database (and the entity that underlies it) has changed, but you don't want to expose those changes to a service, what would you do? I said (and I think it was the right answer) that we need to have a separate class that copies the entity to an object returned to the service.)
+
+
+How did you manage session in Hibernate? I didn't know how to answer it, or what did that even mean; so he started asking about the structure of our program, and I mentioned entities and DAO objects; I said the queries were performed by the / in the DAO objects. He asked if DAO also had Save() functions. I said yes, though I'm not really sure. Apparently there is another way for DAOs to persist data into the database -- how?
+
+
+
+What did you use Spring for? MVC or dependency injection? (I used it for both, but apparently I really need to be able to explain how we used it for both purposes. Especially for MVC.)
+
+
+A problem: how would you write a function that takes an array of numbers and only returns numbers that are duplicates? Or maybe only returns unique numbers? Or maybe returns the number of times each number occurs? When I described a solution using hashtable, they asked, what if the array of numbers is bigger than can fit in the machine's memory? I said, use some kind of streamreader that would read the numbers in chunks. They said then (I think) what if the hashtable is also too big to fit in the memory? I didn't know the answer, but they suggested you could use a datastore, such as a NoSQL database.
+
+
+Maybe what they actually asked is to return the words in their increasing order of frequency -- first the words that are unique, then the words that occur twice, the words that occur three times, etc.
+
+
+=========
+
+In Hibernate, what is lazy loading? Non-lazy loading (the opposite of lazy loading -- what is it called)? What are the disadvantages of the latter? Dave told a story when it turned out that Hibernate, when non-lazy-loading, didn't just ???, but instead created a counter (?) that did ???. When doing a full join of a table, it took a very long time.
+
+Popular architectural design patterns (MVC, Repository, ETL)
+
+What are bindings in WCF? What kinds of bindings do you know?
+
+In WCF services, how do you declare a contract?
+
+What kinds of hosting mechanisms exist in WCF? Which ones have you used?
+
+What are partial classes?
+
