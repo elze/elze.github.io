@@ -17,6 +17,15 @@
   word-wrap: break-word; 
 }
 
+.reveal .card-title .presentation { 
+  font-size:75%;
+ }
+
+.reveal .card-text .presentation { 
+  font-size:75%;
+ }
+
+
 .reveal pre.compact {
 	display: block;
 	position: relative;
