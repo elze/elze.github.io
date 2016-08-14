@@ -26,11 +26,11 @@
  }
 
 
-.card-title .presentation { 
+.card-title h4.presentation { 
   font-size:75%;
  }
 
-.card-text .presentation { 
+.card-text p.presentation { 
   font-size:75%;
  }
 
