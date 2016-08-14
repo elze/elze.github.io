@@ -17,7 +17,7 @@
   word-wrap: break-word; 
 }
 
-div.card-block  .presentation { 
+.card-block  div.presentation { 
 	border: 1px solid rgba(0,0,0,.125);
  }
 
