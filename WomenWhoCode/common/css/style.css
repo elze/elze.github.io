@@ -89,6 +89,13 @@ h4.card-title.presentation {
   color: black;
  }
 
+.reveal code.presentation-bigger { 
+  font-size:90%;
+  background-color: white;
+  color: black;
+ }
+
+
 .reveal table.alterconf { 
   border: 0;
   border-collapse: collapse;
