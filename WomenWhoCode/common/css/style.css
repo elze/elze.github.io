@@ -17,15 +17,15 @@
   word-wrap: break-word; 
 }
 
-.reveal div.card-block  .presentation { 
+div.card-block  .presentation { 
 	border: 1px solid rgba(0,0,0,.125);
  }
 
-.reveal .card-title .presentation { 
+.card-title .presentation { 
   font-size:75%;
  }
 
-.reveal .card-text .presentation { 
+.card-text .presentation { 
   font-size:75%;
  }
 
