@@ -17,13 +17,15 @@
   word-wrap: break-word; 
 }
 
-.card-block  div.presentation { 
+div.card.card-block.presentation { 
 	border: 1px solid rgba(0,0,0,.125);
  }
 
+/****
 .card div.presentation { 
 	border: 1px solid rgba(0,0,0,.125);
  }
+*****/
 
 
 h4.card-title.presentation { 
