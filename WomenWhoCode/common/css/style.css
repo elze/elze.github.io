@@ -18,6 +18,7 @@
 }
 
 div.card-columns.presentation {
+    column-count: 2;
     -moz-column-count: 2;
 }
 
@@ -34,7 +35,7 @@ div.card.card-block.presentation {
 
 
 h4.card-title.presentation { 
-  font-size:50%;
+  font-size:60%;
  }
 
 .reveal p.card-text.presentation { 
