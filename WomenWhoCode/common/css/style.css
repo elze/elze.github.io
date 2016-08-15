@@ -20,6 +20,7 @@
 div.card-columns.presentation {
     column-count: 2;
     -moz-column-count: 2;
+    -webkit-column-count: 2;
 }
 
 div.card.card-block.presentation { 

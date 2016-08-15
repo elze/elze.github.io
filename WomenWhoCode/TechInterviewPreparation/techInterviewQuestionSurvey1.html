@@ -75,7 +75,7 @@
 				</section>
 
 				<section><!-- slide 4 -->
-					<h4 class="alterconf">Javascript development questions</h4>
+					<h4 class="alterconf">Javascript development questions 1.</h4>
 					
    <blockquote class="presentation">Difference between null and undefined values?
    </blockquote>
@@ -117,7 +117,7 @@ function Pet(name, breed) {
 
 				<section><!-- slide 5 -->
 
-					<h4 class="alterconf">Javascript variable scopes</h4>
+					<h4 class="alterconf">Javascript development questions 2. Variable scopes</h4>
 
    <blockquote class="presentation">What is a global variable in Javascript?</blockquote>
 
@@ -131,13 +131,83 @@ function Pet(name, breed) {
 
    <p class="alterconf">A variable declared with a <code>var</code> keyword is local to the scope it is declared in, such as a function.</p> 
 
-				</section>
+   <blockquote class="presentation">Are global variables good? Why or why not?</blockquote>
 
+   <p class="alterconf">They should be avoided. A global variable is easy to modify accidentally. Always declare the variables in the scope you need them in.</p> 
+
+				</section>
 
 
 				<section><!-- slide 6 -->
 
-					<h4 class="alterconf">More Javascript development questions</h4>
+					<h4 class="alterconf">Javascript development questions 3.</h4>
+
+   <blockquote class="presentation">What is the difference between == and === operators?</blockquote>
+
+   <p class="alterconf">== operator only checks the values of the operands, but === also checks types.</p> 
+
+	<pre><code class="presentation-bigger">
+	var a1 = 5;
+	var a2 = "5";
+	var areDoubleEqual = a1 == a2;
+	var areTripleEqual = a1 === a2;
+	console.log(areDoubleEqual); // true;
+	console.log(areTripleEqual); // false;
+	</code></pre>
+
+   <blockquote class="presentation">What does <code>this</code> keyword mean? </blockquote>
+
+   <p class="alterconf"><code>this</code> refers to an object that can be different things depending on the context. </p> 
+
+<div class="card-columns presentation">
+    <div class="card card-block presentation">
+      <h4 class="card-title presentation"><code>this</code> as the global object (window)</h4>
+      <p class="card-text presentation"><code>console.log(this === window); // true</code></p>
+      <p class="card-text presentation">console.log(this.document === document); // true</p>
+    </div>
+    <div class="card card-block presentation">
+      <h4 class="card-title presentation">Reference a field object doesn't have:</h4>
+	 <p class="card-text presentation">
+	<pre><code class="presentation-bigger">
+var pet = {
+  name: "Fluffy", 
+  breed: "Cat"
+};
+</code></pre>
+	 <p class="card-text presentation">What will <code>console.log(pet.age);</code> print? </p> 
+    </div>
+    <div class="card card-block presentation">
+      <h4 class="card-title presentation">If the <code>pet</code> object is created with this constructor:</h4>
+	 <p class="card-text presentation">
+	<pre><code class="presentation-bigger">
+function Pet(name, breed) {
+	this.name = name;
+	this.breed = breed;
+};
+</code></pre>
+	 <p class="card-text presentation">then you call the constructor as </p> 
+	 <p class="card-text presentation"><code>var pet = new Pet("Fluffy")</code> </p> 
+	 <p class="card-text presentation">What will <code>console.log(pet.breed);</code> print? </p> 
+    </div>
+</div>
+
+
+				</section>
+
+
+				<section><!-- slide 7 -->
+
+
+
+					<h4 class="alterconf">Javascript development questions 4. More Javascript development questions</h4>
+
+   				<blockquote class="presentation">What kind of inheritance model Javascript uses?</blockquote>
+
+   				<p class="alterconf">Prototypal / prototype-based inheritance.</p> 
+
+   				<blockquote class="presentation">How is it different from class-based inheritance?</blockquote>
+
+		   		<blockquote class="presentation">Does Javascript have private variables (like many class-based languages)?</blockquote>
 
 				</section>
 
