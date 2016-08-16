@@ -159,7 +159,7 @@ function Pet(name, breed) {
 
       <p class="alterconf"><code>this</code> as the global object (window)</p>
       <p class="alterconf"><code>console.log(this === window); // true</code></p>
-      <p class="alterconf">console.log(this.document === document); // true</p>
+      <p class="alterconf"><code>console.log(this.document === document); // true</code></p>
 
 
 				</section>
@@ -170,7 +170,7 @@ function Pet(name, breed) {
 	<h4 class="alterconf">Javascript questions 4. <code>this</code> inside a function</h4>
 
 	 <p class="alterconf">Constructor for <code>Employee</code> object: </p> 
-	<pre><code class="presentation">
+	<pre><code class="presentation-bigger">
 function Employee(empName, empDept, empjobTitle) {
  this.name = empName;
  this.department = empDept,
@@ -182,9 +182,13 @@ function Employee(empName, empDept, empjobTitle) {
 	 <p class="alterconf"><code>var emp1 = Employee("Foo", "Engineering", "Developer")</code> </p> 
 	 <p class="alterconf">It will print <code>"Foo, Engineering, Developer"</code> </p> 
 	 <p class="alterconf">What if we call the same <code>console.log</code> statement outside the function? </p> 
-	 <p class="alterconf">console.log(this.name + ", " + this.department + " " + this.jobTitle); </p> 
+	 <p class="alterconf"><code>console.log(this.name + ", " + this.department + " " + this.jobTitle);</code> </p> 
 	 <p class="alterconf">It prints the same: <code>"Foo, Engineering, Developer"</code> </p> 
 	 <p class="alterconf">That tells us that <code>this</code> inside <code>Employee()</code> function was the global <code>this</code> (window). </p> 
+
+				</section>
+				<section><!-- slide 8 -->
+
 	 <p class="alterconf">Now let's call <code>Employee()</code> as a constructor: </p> 
 	 <p class="alterconf"><code>var emp2 = new Employee("Bar", "Implementations", "Implementations Engineer")</code> </p> 
 	 <p class="alterconf fragment">The difference is, we are calling it with a <code>new</code> keyword, so it constructs an <code>Employee</code> object. </p> 
