@@ -177,6 +177,8 @@ function Employee(empName, empDept, empjobTitle) {
  this.jobTitle = empjobTitle;
  console.log(this.name + ", " + this.department + " " + this.jobTitle);
 }
+var emp1 = Employee("Foo", "Engineering", "Developer");
+console.log(this.name + ", " + this.department + " " + this.jobTitle);
 </code></pre>
 	 <p class="alterconf">Let's call it as just a function, not a constructor: </p> 
 	 <p class="alterconf"><code>var emp1 = Employee("Foo", "Engineering", "Developer")</code> </p> 
@@ -188,6 +190,18 @@ function Employee(empName, empDept, empjobTitle) {
 
 				</section>
 				<section><!-- slide 8 -->
+
+	 <p class="alterconf">Constructor for <code>Employee</code> object: </p> 
+	<pre><code class="presentation-bigger">
+function Employee(empName, empDept, empjobTitle) {
+ this.name = empName;
+ this.department = empDept,
+ this.jobTitle = empjobTitle;
+ console.log(this.name + ", " + this.department + " " + this.jobTitle);
+}
+var emp2 = Employee("Bar", "Implementations", "Implementations Engineer");
+console.log(this.name + ", " + this.department + " " + this.jobTitle);
+</code></pre>
 
 	 <p class="alterconf">Now let's call <code>Employee()</code> as a constructor: </p> 
 	 <p class="alterconf"><code>var emp2 = new Employee("Bar", "Implementations", "Implementations Engineer")</code> </p> 
