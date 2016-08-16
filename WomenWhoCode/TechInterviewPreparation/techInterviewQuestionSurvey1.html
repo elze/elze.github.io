@@ -242,27 +242,41 @@ console.log(this.name + ", " + this.department + " " + this.jobTitle);
 
 		   		<blockquote class="presentation">Does Javascript have private variables (like many class-based languages)?</blockquote>
 		   		
-   				<p class="alterconf">No, it doesn't.</p> 						   		
+   				<p class="alterconf">No, it doesn't.</p> 	
+   				
+				<blockquote class="presentation">Can you emulate private fields and methods in Javascript?</blockquote>
+				
+				<p class="alterconf">Yes, you can. One way to do it would be with Module Pattern: https://toddmotto.com/mastering-the-module-pattern using IIFE (immediately-invoked function expression) and closures. Study this article to understand uses of closures and IIFE. </p>
+				
+				<blockquote class="presentation">How do you create namespaces in Javascript?</blockquote>
+				
+				<p class="alterconf">To keep the variable names from colliding (especially if your Javascript code has to coexist with third-party Javascript libraries) you can create a namespace for your code. Many ways of creating namespaces use IIFE. You can read about namespacing patterns here: https://addyosmani.com/blog/essential-js-namespacing </p>
 
 				</section>
 
-				<section><!-- slide 7 -->
+				<section><!-- slide 11 -->
 
-   <blockquote class="presentation">What is CSS box model?
-   </blockquote>
-   <p class="alterconf">Padding, margin, border</p> 
+				<h4 class="alterconf">Javascript questions 7. Events. </h4>
+
+   				<blockquote class="presentation">What are events? What events do you know?</blockquote>
+
+   				<blockquote class="presentation">What is event bubbling? How do you prevent it?</blockquote>
+				</section>
+
+				
+				<section><!-- slide 12 -->
+
+   <p class="alterconf">More study resources for Javascript and frontend development interviews</p> 
+   <p class="alterconf">A Baseline for Front-End [JS] Developers, 2015 by Rebecca Murphy: http://rmurphey.com/blog/2015/03/23/a-baseline-for-front-end-developers-2015 </p>
+   <p class="alterconf">Test-driven JS assessment by Rebecca Murphy: https://github.com/rmurphey/js-assessment . It's a set of unit tests, all of which initially fail. You assess your knowledge of Javascript by writing code to make the tests pass.</p> 
 
 					
-					<p class="alterconf">In Javascript, what is the difference between null and undefined values?</p>
-					<p class="alterconf">What is CSS box model? </p>
-					<p class="alterconf">Two words are anagrams if they have the same set of letters, and every letter in both words occurs the same number of times. </p>
-					<p class="alterconf">The naive way to implement a test if two words are anagrams of each other?</p>
 				</section>
 
-				<section><!-- slide 5 -->
-					<h3 class="alterconf">Anagrams: the hashtable way</h4>
-					<p class="alterconf-left">Hint: the keys in a hashtable could be letters, and values could be the number of times each letter occurs in the word. </p>
-					<p class="alterconf-left">You will need two hashtables, one for each word. </p>
+				<section><!-- slide 13 -->
+					<h3 class="alterconf">Design patterns</h4>
+					<p class="alterconf-left">"In software engineering, a design pattern is a general repeatable solution to a commonly occurring problem in software design."</p>
+					<p class="alterconf-left">Generally, it's a way of designing the code, or organizing it into classes, or modules, defining what methods, it will have, etc. It can range from small, e.g. you are doing something with one class, to big: MVC, MVP, MVVM, etc., can also be thought of as design patterns. </p>
 				</section>
 
 				<section><!-- slide 6 -->
