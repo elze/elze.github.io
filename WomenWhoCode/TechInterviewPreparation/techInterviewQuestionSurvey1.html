@@ -274,20 +274,41 @@ console.log(this.name + ", " + this.department + " " + this.jobTitle);
 				</section>
 
 				<section><!-- slide 13 -->
-					<h3 class="alterconf">Design patterns</h4>
-					<p class="alterconf-left">"In software engineering, a design pattern is a general repeatable solution to a commonly occurring problem in software design."</p>
-					<p class="alterconf-left">Some design patterns are specific to programming languages, but many can be implemented in many languages. </p>
+					<h3 class="alterconf">Design patterns</h3>
+					<blockquote class="presentation">"In software engineering, a design pattern is a general repeatable solution to a commonly occurring problem in software design."</blockquote>
+					<p class="alterconf">Some design patterns are specific to programming languages, but many can be implemented in many languages. </p>
 					<h4 class="alterconf-left">Common Design patterns in object-oriented languages </h4>
 					<ul>
-						<li class="alterconf">Factory: the constructor of the class is private; to get an object of a class, you have to call a public static function that calls the constructor and returns the object;</li>
-						<li class="alterconf">Singleton: similar to Factory, but only one instance of the class is allowed to exist. The public static function always returns the same existing object. </li>
-						<li class="alterconf">Decorator: a method in the derived class "decorates" the method of the same name in the base class with new behavior. </li>
-						<li class="alterconf">Observer: an object (observable) calls its observers -- other objects that have subscribed to its notifications -- to notify them of the changes in itself. </li>
+						<li class="alterconf"><b>Factory</b>: the constructor of the class is private; to get an object of a class, you have to call a public static function that calls the constructor and returns the object;</li>
+						<li class="alterconf"><b>Singleton</b>: similar to Factory, but only one instance of the class is allowed to exist. The public static function always returns the same existing object. </li>
+						<li class="alterconf"><b>Decorator</b>: a method in the derived class "decorates" the method of the same name in the base class with new behavior. </li>
+						<li class="alterconf"><b>Observer</b>: an object (observable) calls its observers -- other objects that have subscribed to its notifications -- to notify them of the changes in itself. </li>
 						<li class="alterconf">... and many more. </li>
 					</ul>
 
+				</section>
+
+
+				<section><!-- slide 14 -->
+					<h3 class="alterconf">Design patterns in your chosen language(s) and framework(s)</h3>
+					<p class="alterconf">A good way to understand design patterns is to learn how they are implemented in the classes of frameworks used in your chosen language. </p>
+					<p>Here are just a couple of patterns the .NET framework implements:</p>
+					<ul>
+ 			<li class="alterconf"><code>Stream</code> class and its derived classes implement the <b>Decorator</b> pattern </li>
+ 			<li class="alterconf"><code>System.Net.WebRequest</code> class and its derived classes implement the <b>Factory</b> pattern </li>
+
+
+
+					<ul>
+						<li class="alterconf"><b>Factory</b>: the constructor of the class is private; to get an object of a class, you have to call a public static function that calls the constructor and returns the object;</li>
+						<li class="alterconf"><b>Singleton</b>: similar to Factory, but only one instance of the class is allowed to exist. The public static function always returns the same existing object. </li>
+						<li class="alterconf"><b>Decorator</b>: a method in the derived class "decorates" the method of the same name in the base class with new behavior. </li>
+						<li class="alterconf"><b>Observer</b>: an object (observable) calls its observers -- other objects that have subscribed to its notifications -- to notify them of the changes in itself. </li>
+						<li class="alterconf">... and many more. </li>
+					</ul>
 
 				</section>
+
 
 				<section><!-- slide 6 -->
 <pre><code class="linkedList"><div style="float: left">
