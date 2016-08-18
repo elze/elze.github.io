@@ -295,9 +295,18 @@ console.log(this.name + ", " + this.department + " " + this.jobTitle);
 					<p>Here are just a couple of patterns the .NET framework implements:</p>
 					<ul>
  			<li class="alterconf"><code>Stream</code> class and its derived classes implement the <b>Decorator</b> pattern </li>
- 			 			<li class="alterconf"><code>System.Net.WebRequest</code> class and its derived classes implement the <b>Factory</b> pattern. To create a request, call the <code>Create</code> method and pass in a URI. The <code>Create</code> method itself determines the appropriate protocol, such as FTP or HTTP, based on the URI and returns the appropriate subclass of <code>WebRequest</code>: <code>HttpWebRequest</code>, <code>FtpWebRequest</code>, or <code>FileWebRequest</code>. The caller doesn't need to know the specifics of each protocol, only how to invoke the factory and work with the <code>WebRequest</code> that gets returned.</li>
-
-
+ 			<li class="alterconf"><p class="alterconf"><code>System.Net.WebRequest</code> class and its derived classes implement the <b>Factory</b> pattern. To create a request, call the <code>Create</code> method and pass in a URI. The <code>Create</code> method itself determines the appropriate protocol, such as FTP or HTTP, based on the URI and returns the appropriate subclass of <code>WebRequest</code>: <code>HttpWebRequest</code>, <code>FtpWebRequest</code>, or <code>FileWebRequest</code>. The caller doesn't need to know the specifics of each protocol, only how to invoke the factory and work with the <code>WebRequest</code> that gets returned.</p>
+			
+<pre><code class="presentation">
+WebRequest httpRequest = WebRequest.Create("http://foo.com");
+WebRequest ftpRequest = WebRequest.Create("ftp://foo.com");
+</code></pre>			
+			<p class="alterconf">The actual type of <code>httpRequest</code> is <code>HttpWebRequest</code>, and the actual type of <code>ftpRequest</code> is <code>FtpWebRequest</code>, but because the constructors for those classes are private or protected, you can't instantiate them like this:</p>
+<pre><code class="presentation">
+HttpWebRequest httpRequest = new HttpWebRequest("http://foo.com");
+FtpWebRequest ftpRequest = new FtpWebRequest("ftp://foo.com");
+</code></pre>						
+			</li>
 
 					<ul>
 						<li class="alterconf"><b>Factory</b>: the constructor of the class is private; to get an object of a class, you have to call a public static function that calls the constructor and returns the object;</li>
