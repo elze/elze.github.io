@@ -318,36 +318,33 @@ FtpWebRequest ftpRequest = new FtpWebRequest("ftp://foo.com");
 
 		</section>
 
-		<section><!-- slide 7 -->
 
-<pre><code class="linkedList"><div style="float: left">
-public areAnagrams (string word1, string word2) {
-	if (word1.length != word2.length)
-		return false;	
-	Dictionary<char, int> characterCounts1;
-	Dictionary<char, int> characterCounts2;
-	for (char c1 in word1) {
-		if (!characterCounts1[c1].exists) { characterCounts1[c1] = 1; }
-		else { characterCounts1[c1]++; }
-	}		
-	for (char c2 in word2) {
-		if (!characterCounts2[c2].exists) { characterCounts2[c2] = 1; }
-		else { characterCounts2[c2]++; }
-	}		
-</div>
-</code></pre>				
-<pre><code class="linkedList"><div style="float: right">
-	if (characterCounts1.Keys.length != characterCounts2.Keys.length)
-		return false;
-	for (char c in characterCounts1.Keys) {
-		// if the count of character c in word1 is not equal to the count of the same character in word2
-		if (characterCounts1[c] != characterCounts2[c]) 
-			return false;
-	}
-	return true;
+		<section><!-- slide 16 -->
+		<h4 class="alterconf">DAO (Data Access Object) pattern</h4>
+
+<p class="alterconf">Data Access Object is a class that "wraps" a SQL table in code. Sometimes it's not just a SQL table, but a join of severa tables, or generally results of some query.</p>
+
+<p class="alterconf">It provides a lot of the same operations that you can do with a database table -- select from it, insert, update, etc. -- only it provides them in code. So instead of calling the database directly, you can call the corresponding methods off of the object.</p>
+
+<pre><code class="presentation-bigger">
+public interface StudentDao {
+   public List<Student> getAllStudents();
+   public Student getStudent(int rollNo);
+   public void updateStudent(Student student);
+   public void deleteStudent(Student student);
 }
-</div>
 </code></pre>
+
+</section>
+
+
+		<section><!-- slide 16 -->
+		<h4 class="alterconf">DAO (Data Access Object) pattern; object-relational mapping frameworks</h4>
+
+<p class="alterconf">Object-relational mapping frameworks (ORMs) are libraries that let you "wrap" calls to the database in code, or mimic SQL in code. They let you use </p>
+
+<p class="alterconf">Data Access Object pattern is important, because it is often used in object-relational mapping frameworks.</p>
+
 
 </section>
 
