@@ -292,10 +292,10 @@ console.log(this.name + ", " + this.department + " " + this.jobTitle);
 				<section><!-- slide 14 -->
 					<h3 class="alterconf">Design patterns in your chosen language(s) and framework(s)</h3>
 					<p class="alterconf">A good way to understand design patterns is to learn how they are implemented in the classes of frameworks used in your chosen language. </p>
-					<p>Here are just a couple of patterns the .NET framework implements:</p>
+					<p class="alterconf">Here are just a couple of patterns the .NET framework implements:</p>
 					<ul>
  			<li class="alterconf"><code>Stream</code> class and its derived classes implement the <b>Decorator</b> pattern </li>
- 			<li class="alterconf"><p class="alterconf"><code>System.Net.WebRequest</code> class and its derived classes implement the <b>Factory</b> pattern. To create a request, call the <code>Create</code> method and pass in a URI. The <code>Create</code> method itself determines the appropriate protocol, such as FTP or HTTP, based on the URI and returns the appropriate subclass of <code>WebRequest</code>: <code>HttpWebRequest</code>, <code>FtpWebRequest</code>, or <code>FileWebRequest</code>. The caller doesn't need to know the specifics of each protocol, only how to invoke the factory and work with the <code>WebRequest</code> that gets returned.</p>
+ 			<li class="alterconf"><p><code>System.Net.WebRequest</code> class and its derived classes implement the <b>Factory</b> pattern. To create a request, call the <code>Create</code> method and pass in a URI. The <code>Create</code> method itself determines the appropriate protocol, such as FTP or HTTP, based on the URI and returns the appropriate subclass of <code>WebRequest</code>: <code>HttpWebRequest</code>, <code>FtpWebRequest</code>, or <code>FileWebRequest</code>. The caller doesn't need to know the specifics of each protocol, only how to invoke the factory and work with the <code>WebRequest</code> that gets returned.</p>
 			
 <pre><code class="presentation">
 WebRequest httpRequest = WebRequest.Create("http://foo.com");
