@@ -335,6 +335,16 @@ public interface StudentDao {
 }
 </code></pre>
 
+<p class="alterconf">The methods in the <code>StudentDao</code> are CRUD operations that roughly correspond to the SQL statements. </p>
+
+<ul>
+	<li class="alterconf"><code>getAllStudents</code> and <code>getStudent()</code> correspond to <code>SELECT</code></li>
+	<li class="alterconf"><code>updateStudent</code> and <code>getStudent()</code> correspond to <code>UPDATE</code></li>
+	<li class="alterconf"><code>deleteStudent</code> and <code>getStudent()</code> correspond to <code>DELETE</code></li>
+</ul>
+
+<p class="alterconf"><code>getAllStudents</code> should probably be overloaded to also take a SQL query as an argument. We rarely want to select all students. We usually want to select some subset of students based on the criteria in the WHERE clause. </p>
+
 </section>
 
 
