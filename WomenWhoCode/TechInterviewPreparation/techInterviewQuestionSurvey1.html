@@ -294,24 +294,33 @@ console.log(this.name + ", " + this.department + " " + this.jobTitle);
 					<p class="alterconf">A good way to understand design patterns is to learn how they are implemented in the classes of frameworks used in your chosen language. </p>
 					<p class="alterconf">Here are just a couple of patterns the .NET framework implements:</p>
 					<ul>
- 			<li class="alterconf"><code>Stream</code> class and its derived classes implement the <b>Decorator</b> pattern </li>
- 			<li class="alterconf"><p><code>System.Net.WebRequest</code> class and its derived classes implement the <b>Factory</b> pattern. To create a request, call the <code>Create</code> method and pass in a URI. The <code>Create</code> method itself determines the appropriate protocol, such as FTP or HTTP, based on the URI and returns the appropriate subclass of <code>WebRequest</code>: <code>HttpWebRequest</code>, <code>FtpWebRequest</code>, or <code>FileWebRequest</code>. The caller doesn't need to know the specifics of each protocol, only how to invoke the factory and work with the <code>WebRequest</code> that gets returned.</p>
+ 			<li class="alterconf"><code>Stream</code> class and its derived classes implement the <b>Decorator</b> pattern; </li>
+ 			<li class="alterconf">
+<li class="alterconf">Angular.js uses the <b>Singleton</b> pattern to create the services that it injects. The injector creates each service only once.</li>
+					</ul>
+				</section>
+
+
+				<section><!-- slide 15 -->
+				<h4 class="alterconf">More design patterns "in the wild"</h4>
+<p><code>System.Net.WebRequest</code> class and its derived classes implement the <b>Factory</b> pattern. To create a request, call the <code>Create</code> method and pass in a URI. The <code>Create</code> method itself determines the appropriate protocol, such as FTP or HTTP, based on the URI and returns the appropriate subclass of <code>WebRequest</code>: <code>HttpWebRequest</code>, <code>FtpWebRequest</code>, or <code>FileWebRequest</code>. The caller doesn't need to know the specifics of each protocol, only how to invoke the factory and work with the <code>WebRequest</code> that gets returned.</p>
 			
 <pre><code class="presentation-bigger">
 WebRequest httpRequest = WebRequest.Create("http://foo.com");
 WebRequest ftpRequest = WebRequest.Create("ftp://foo.com");
 </code></pre>			
-			<p class="alterconf">The actual type of <code>httpRequest</code> is <code>HttpWebRequest</code>, and the actual type of <code>ftpRequest</code> is <code>FtpWebRequest</code>, but because the constructors for those classes are private or protected, you can't instantiate them like this:</p>
+			<p>The actual type of <code>httpRequest</code> is <code>HttpWebRequest</code>, and the actual type of <code>ftpRequest</code> is <code>FtpWebRequest</code>, but because the constructors for those classes are private or protected, you can't instantiate them like this:</p>
 <pre><code class="presentation-bigger">
 HttpWebRequest httpRequest = new HttpWebRequest("http://foo.com");
 FtpWebRequest ftpRequest = new FtpWebRequest("ftp://foo.com");
 </code></pre>						
 			</li>
-					</ul>
-				</section>
+				<ul>
 
+		</section>
 
-				<section><!-- slide 6 -->
+		<section><!-- slide 7 -->
+
 <pre><code class="linkedList"><div style="float: left">
 public areAnagrams (string word1, string word2) {
 	if (word1.length != word2.length)
