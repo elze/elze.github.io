@@ -508,7 +508,7 @@ public interface StudentDao {
       <p class="card-text presentation">Table <code>shipments</code></p>
 <table class="presentation-with-border">
 <tr>
- <th>shipment_id</th>
+ <th>id</th>
  <th>product_id</th>
  <th>store_id</th>
  <th>qt</th>
@@ -593,9 +593,9 @@ public interface StudentDao {
       <p class="card-text presentation">Table <code>stores</code></p>
 <table class="presentation-with-border">
 <tr>
- <th>store_id</th>
- <th>store_name</th>
- <th>store_address</th>
+ <th>id</th>
+ <th>name</th>
+ <th>address</th>
 </tr>
 <tr>
 <td>29812</td>
@@ -636,11 +636,11 @@ public interface StudentDao {
 
 				<section><!-- slide 22 -->
 					<h4>Primary and foreign keys</h4>
-					<p class="fifty-percent-left">What should be the primary keys in these tables? What should be the foreign keys? </p>
-					<p class="fifty-percent-left fragment">Primary key on the <code><b>O(n<sup>2</sup>)</b></code> . </p>
-					<p class="alterconf-left">Why? </p>
-					<p class="alterconf-left">The outer loop iterates through the first word. </p>
-					<p class="alterconf-left">For each iteration of the outer loop, the inner loop traverses the whole second word. </p>
+					<p class="sixty-percent-left">What should be the primary keys in these tables? What should be the foreign keys? </p>
+					<p class="sixty-percent-left fragment">Primary key should uniquely identify every row. On all three tables it should be <code>id</code>. </p>
+					<p class="sixty-percent-left fragment">Foreign keys assure that a field appears in table A only if there is a row with it as the primary key in table B. </p>
+					<p class="sixty-percent-left fragment"><code>id</code> in <code>products</code> table should be the foreign key <code>product_id</code> in the <code>shipments</code> table. </p>
+					<p class="sixty-percent-left fragment"><code>id</code> in <code>stores</code> table should be the foreign key <code>store_id</code> in the <code>shipments</code> table. </p>
 				</section>
 				
 				<section><!-- slide 10 -->
