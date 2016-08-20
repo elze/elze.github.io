@@ -368,7 +368,22 @@ public interface StudentDao {
 					<h3>Databases and SQL</h3>
 					<p class="alterconf">SQL databases are still very much in use at most software companies. Predictions of NoSQL databases replacing SQL have not come true, and are unlikely to come true in the forseeable future. Most software companies require some knowledge of SQL, at least for full stack or server-side development positions.</p>
 					<h4>Common SQL questions</h4>
-					
+<ul>
+	<li class="fifty-percent">Queries: SELECT, INSERT, UPDATE, DELETE. WHERE clauses.</li>
+	<li class="fifty-percent">Most commonly used aggregate functions: MIN, MAX, SUM, COUNT</li>
+	<li class="fifty-percent">Clauses used with aggregate functions: GROUP BY and HAVING</li>
+	<li class="fifty-percent">Inner and outer joins. Be able to explain what they are. Be able to solve problems requiring outer joins.</li>
+	<li class="fifty-percent">Subqueries, e.g. SELECT x ... WHERE x IN (SELECT y FROM ...)</li>
+</ul>					
+					<p class="alterconf">The best way to develop SQL knowledge, like any programming knowledge, is to solve exercises.</p>
+					<p class="alterconf">A good source for SQL exercises is <b>http://sqlzoo.net</b>. The exercises start simple and increase in difficulty. The only drawback is that while they show you the correct result, they won't show the correct solution.</p>
+
+					<p class="alterconf">Another good source is <b>https://en.wikibooks.org/wiki/SQL_Exercises</b>. It has fewer exercises, but provides solutions.</p>
+
+</section>
+
+				<section><!-- slide 19 -->
+
 					<h4>SQL security</h4>
 					<p class="sixty-percent-left">What happens when either argument to the function is null? What happens when you call <code><b>length</b></code> off of a null argument? </p>
 					<p class="sixty-percent-left">The very first thing the function should do is check if either argument is null.</p>
