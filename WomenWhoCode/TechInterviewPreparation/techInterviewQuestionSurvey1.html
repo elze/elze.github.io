@@ -397,6 +397,9 @@ public interface StudentDao {
 
 
 				<section><!-- slide 20 -->
+<h4>Database problems, continued</h4>
+
+<p class="alterconf">This is a database, consisting of just one table, that represents shipments of products to some stores.</p>
 
 <table class="presentation-with-border">
 <tr>
@@ -487,18 +490,97 @@ public interface StudentDao {
 </tr>
 </table>
 
+<p class="alterconf">Can you identify what's wrong with it?</p>
+
 				</section>
 
 
-				<section><!-- slide 8 -->
-					<h4>Time complexity of the anagrams-via-hashtables algorithm</h4>
-					<p>It is O(n) </p>
-					<p class="alterconf-left">Why? </p>
-					<p class="alterconf-left">The first two loops iterate through the whole word, so the time taken to execute the loop grows as the lengh of the word (n) </p>
-					<p class="alterconf-left">What is the time complexity of the third loop? </p>
-					<p class="alterconf-left">Does it grow as the length of the input words grow?</p>
-					<p class="alterconf-left">The third loop will be executed at most as many times as there are letters in the English alphabet (26). It does not grow with the input.</p>
-					<p class="alterconf-left">The complexity of the third loop is fixed, O(1).</p>
+				<section><!-- slide 21 -->
+<h4>Database problems, continued</h4>
+					<blockquote class="presentation">What's wrong with the database in the previous page?</blockquote>
+					<p class="alterconf-left">Lots of redundant data: product descriptions, store names and addresses are stored redundantly. </p>
+
+					<blockquote class="presentation">How would you fix it?</blockquote>
+
+					<p class="alterconf-left">Normalize this database. Break up this table into three. </p>
+
+<table class="presentation-with-border">
+<tr>
+ <th>shipment_id</th>
+ <th>product_id</th>
+ <th>store_id</th>
+</tr>
+<tr>
+<td>48250972</td>
+<td>392948</td>
+<td>29812</td>
+</tr>
+<tr>
+<td>9271732</td>
+<td>392948</td>
+<td>74982</td>
+</tr>
+<tr>
+<td>29420982</td>
+<td>392948</td>
+<td>66885</td>
+</tr>
+
+<tr>
+<td>18927187</td>
+<td>58748</td>
+<td>378761</td>
+</tr>
+
+<tr>
+<td>8219842</td>
+<td>58748</td>
+<td>66885</td>
+</tr>
+
+<tr>
+<td>7198311</td>
+<td>58748</td>
+<td>1987013</td>
+</tr>
+
+<tr>
+<td>2862817</td>
+<td>438738</td>
+<td>378761</td>
+</tr>
+
+<tr>
+<td>9010162</td>
+<td>438738</td>
+<td>1987013</td></tr>
+</table>
+
+
+<table class="presentation-with-border">
+<tr>
+ <th>product_id</th>
+ <th>product_description</th>
+</tr>
+<tr>
+<td>392948</td>
+<td>Hard drive, 1 TB</td>
+</tr>
+<tr>
+<td>58748</td>
+<td>Hard drive, 500 GB</td>
+</tr>
+
+<tr>
+<td>438738</td>
+<td>SD Card, 16 GB</td>
+</tr>
+
+</table>
+
+
+
+
 				</section>
 
 				<section><!-- slide 9 -->
