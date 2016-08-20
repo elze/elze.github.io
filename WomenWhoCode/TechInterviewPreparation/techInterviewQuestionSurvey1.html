@@ -400,7 +400,7 @@ public interface StudentDao {
 <h4>Database problems, continued</h4>
 
 <p class="alterconf">This is a database, consisting of just one table, that represents shipments of products to some stores.</p>
-
+<p class="alterconf">Table: shipments</p>
 <table class="presentation-with-border">
 <tr>
  <th>shipment_id</th>
@@ -504,59 +504,69 @@ public interface StudentDao {
 
 					<p class="alterconf-left">Normalize this database. Break up this table into three. </p>
 
+<p class="alterconf">Table: shipments</p>
 <table class="presentation-with-border">
 <tr>
  <th>shipment_id</th>
  <th>product_id</th>
  <th>store_id</th>
+ <th>quantity</th>
 </tr>
 <tr>
 <td>48250972</td>
 <td>392948</td>
 <td>29812</td>
+<td>50</td>
 </tr>
 <tr>
 <td>9271732</td>
 <td>392948</td>
 <td>74982</td>
+<td>40</td>
 </tr>
 <tr>
 <td>29420982</td>
 <td>392948</td>
 <td>66885</td>
+<td>30</td>
 </tr>
 
 <tr>
 <td>18927187</td>
 <td>58748</td>
 <td>378761</td>
+<td>45</td>
 </tr>
 
 <tr>
 <td>8219842</td>
 <td>58748</td>
 <td>66885</td>
+<td>35</td>
 </tr>
 
 <tr>
 <td>7198311</td>
 <td>58748</td>
 <td>1987013</td>
+<td>25</td>
 </tr>
 
 <tr>
 <td>2862817</td>
 <td>438738</td>
 <td>378761</td>
+<td>40</td>
 </tr>
 
 <tr>
 <td>9010162</td>
 <td>438738</td>
 <td>1987013</td></tr>
+<td>30</td>
 </table>
 
-
+<p class="alterconf">Table: products</p>
 <table class="presentation-with-border">
 <tr>
  <th>product_id</th>
@@ -575,10 +585,44 @@ public interface StudentDao {
 <td>438738</td>
 <td>SD Card, 16 GB</td>
 </tr>
-
 </table>
 
+<p class="alterconf">Table: stores</p>
+<table class="presentation-with-border">
+<tr>
+ <th>store_id</th>
+ <th>store_name</th>
+ <th>store_address</th>
+</tr>
+<tr>
+<td>29812</td>
+<td>Best Buy at Gateway</td>
+<td>9607 Research Blvd #500</td>
+</tr>
+<tr>
+<td>74982</td>
+<td>Best Buy at Mueller</td>
+<td>1201 Barbara Jordan Blvd</td>
+</tr>
+<tr>
+<td>66885</td>
+<td>Target at Arboretum</td>
+<td>8601 Research Blvd</td>
+</tr>
 
+<tr>
+<td>378761</td>
+<td>Best Buy at Lakeline</td>
+<td>11066 Pecan Park Blvd</td>
+</tr>
+
+<tr>
+<td>1987013</td>
+<td>Target at Round Rock</td>
+<td>121 Louis Henna Blvd</td>
+</tr>
+
+</table>
 
 
 				</section>
