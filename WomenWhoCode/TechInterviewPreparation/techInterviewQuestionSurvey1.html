@@ -365,7 +365,7 @@ public interface StudentDao {
 </section>
 
 				<section><!-- slide 18 -->
-					<h3>Databases and SQL</h3>
+					<h4>Databases and SQL</h4>
 					<p class="alterconf">SQL databases are still very much in use at most software companies. Predictions of NoSQL databases replacing SQL have not come true, and are unlikely to come true in the forseeable future. Most software companies require some knowledge of SQL, at least for full stack or server-side development positions.</p>
 					<h4>Common SQL questions</h4>
 <ul>
@@ -384,18 +384,104 @@ public interface StudentDao {
 
 				<section><!-- slide 19 -->
 
-					<h4>SQL security</h4>
-					<p class="sixty-percent-left">What happens when either argument to the function is null? What happens when you call <code><b>length</b></code> off of a null argument? </p>
-					<p class="sixty-percent-left">The very first thing the function should do is check if either argument is null.</p>
-					<p class="sixty-percent-left">If both <code><b>word1</b></code> and <code><b>word2</b></code> are null, what should the function do? You need to decide if two null strings are anagrams of each other or not.</p>
-					<p class="sixty-percent-left">The interviewer may not care so much if you decide that they are or are not. S/he wants to see you have thought about handling edge cases.</p>
-					<p class="sixty-percent-left">In any coding problem ALWAYS think of error conditions. Interviewers want to see that. </p>
-					<p class="sixty-percent-left">The bare minimum of error conditions / edge cases to check for:</p>
-					<ul>
-						<li class="alterconf">How should the code behave if any of the arguments is null?</li>
-						<li class="alterconf">How should the code behave if any of the arguments, such as a string, list, dictionary, etc., is empty? (That's distinct from null.)</li>
-					</ul>
-			<p class="sixty-percent-left">You can write the "meat" of the function first and add error checking last. (Leave enough spaces between lines on the whiteboard.)</p>
+					<h4>General database questions</h4>
+
+					<p class="sixty-percent-left">What are primary keys? Foreign keys? What are foreign key constraints? </p>
+					<p class="sixty-percent-left">What is an index? What is it useful for? What kinds of indices are there? </p>
+					<p class="sixty-percent-left">How is <code>DELETE FROM <table></code> different from <code>TRUNCATE <table></code>? If you wanted to delete all the data in a table, which one should you use and why? </p>
+
+					<p class="sixty-percent-left">How would you prevent SQL injection, a.k.a. BOBBY TABLES roblem? </p>
+					<p class="fifty-percent-left"><b>Answer</b>: parametrize the query. Know how to write a call a parametrized SQL query from your preferred programming language. </p>
+
+<table>
+<tr>
+ <th>shipment_id</th>
+ <th>product_id</th>
+ <th>product_description</th>
+ <th>product_quantity</th>
+ <th>store_id</th>
+ <th>store_name</th>
+ <th>store_address</th>
+</tr>
+<tr>
+<td>48250972</td>
+<td>392948</td>
+<td>Hard drive, 1 TB</td>
+<td>50</td>
+<td>29812</td>
+<td>Best Buy at Gateway</td>
+<td>9607 Research Blvd #500, Austin, TX</td>
+</tr>
+<tr>
+<td>9271732</td>
+<td>392948</td>
+<td>Hard drive, 1 TB</td>
+<td>40</td>
+<td>74982</td>
+<td>Best Buy at Mueller</td>
+<td>1201 Barbara Jordan Blvd, Austin, TX</td>
+</tr>
+<tr>
+<td>29420982</td>
+<td>392948</td>
+<td>Hard drive, 1 TB</td>
+<td>30</td>
+<td>66885</td>
+<td>Target at Arboretum</td>
+<td>8601 Research Blvd, Austin, TX</td>
+</tr>
+
+<tr>
+<td>18927187</td>
+<td>58748</td>
+<td>Hard drive, 500 GB</td>
+<td>45</td>
+<td>378761</td>
+<td>Best Buy at Lakeline</td>
+<td>11066 Pecan Park Blvd, Cedar Park, TX</td>
+</tr>
+
+<tr>
+<td>8219842</td>
+<td>58748</td>
+<td>Hard drive, 500 GB</td>
+<td>35</td>
+<td>66885</td>
+<td>Target at Arboretum</td>
+<td>8601 Research Blvd, Austin, TX</td>
+</tr>
+
+<tr>
+<td>7198311</td>
+<td>58748</td>
+<td>Hard drive, 500 GB</td>
+<td>25</td>
+<td>1987013</td>
+<td>Target at Round Rock</td>
+<td>121 Louis Henna Blvd, Round Rock</td>
+</tr>
+
+<tr>
+<td>2862817</td>
+<td>438738</td>
+<td>SD Card, 16 GB</td>
+<td>40</td>
+<td>378761</td>
+<td>Best Buy at Lakeline</td>
+<td>11066 Pecan Park Blvd, Cedar Park, TX</td>
+</tr>
+
+<tr>
+<td>9010162</td>
+<td>438738</td>
+<td>SD Card, 16 GB</td>
+<td>30</td>
+<td>1987013</td>
+<td>Target at Round Rock</td>
+<td>121 Louis Henna Blvd, Round Rock</td>
+</tr>
+</table>
+
 				</section>
 
 
