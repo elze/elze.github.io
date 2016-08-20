@@ -204,6 +204,7 @@ h4.card-title.presentation {
  }
 
 .reveal table.presentation-with-border { 
+  border-collapse: separate;
   font-size: 50%;
  }
 
