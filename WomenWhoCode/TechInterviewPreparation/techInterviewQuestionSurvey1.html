@@ -399,8 +399,7 @@ public interface StudentDao {
 				<section><!-- slide 20 -->
 <h4>Database problems, continued</h4>
 
-<p class="alterconf">This is a database, consisting of just one table, that represents shipments of products to some stores.</p>
-<p class="alterconf">Table: shipments</p>
+<p class="alterconf">This is a database, consisting of just one table, <b>shipments</b>, that represents shipments of products to some stores.</p>
 <table class="presentation-with-border">
 <tr>
  <th>shipment_id</th>
@@ -490,7 +489,7 @@ public interface StudentDao {
 </tr>
 </table>
 
-<p class="alterconf">Can you identify what's wrong with it?</p>
+<p class="fifty-percent-left">Can you identify what's wrong with it?</p>
 
 				</section>
 
@@ -498,13 +497,12 @@ public interface StudentDao {
 				<section><!-- slide 21 -->
 <h4>Database problems, continued</h4>
 					<blockquote class="presentation">What's wrong with the database in the previous page?</blockquote>
-					<p class="alterconf-left">Lots of redundant data: product descriptions, store names and addresses are stored redundantly. </p>
+					<p class="fifty-percent-left">Lots of redundant data: product descriptions, store names and addresses are stored redundantly. </p>
 
 					<blockquote class="presentation">How would you fix it?</blockquote>
 
-					<p class="alterconf-left">Normalize this database. Break up this table into three. </p>
+					<p class="fifty-percent-left">Normalize this database. Break up this table into three. </p>
 
-<p class="alterconf">Table: shipments</p>
 <table class="presentation-with-border">
 <tr>
  <th>shipment_id</th>
@@ -562,11 +560,11 @@ public interface StudentDao {
 <tr>
 <td>9010162</td>
 <td>438738</td>
-<td>1987013</td></tr>
+<td>1987013</td>
 <td>30</td>
+</tr>
 </table>
 
-<p class="alterconf">Table: products</p>
 <table class="presentation-with-border">
 <tr>
  <th>product_id</th>
@@ -587,7 +585,6 @@ public interface StudentDao {
 </tr>
 </table>
 
-<p class="alterconf">Table: stores</p>
 <table class="presentation-with-border">
 <tr>
  <th>store_id</th>
