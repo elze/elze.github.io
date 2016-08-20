@@ -35,6 +35,11 @@ div.card.card-block.presentation-narrower {
   width: 80%;
  }
 
+div.card.card-block.presentation-wider { 
+  border: 1px solid rgba(0,0,0,.125);
+  margin: 3px;
+  width: 120%;
+ }
 
 
 h4.card-title.presentation { 
