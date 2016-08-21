@@ -274,6 +274,75 @@ console.log(this.name + ", " + this.department + " " + this.jobTitle);
 				</section>
 
 				<section><!-- slide 13 -->
+
+<h4>Programming language-specific questions</h4>
+
+<p class="fifty-percent-left">You need to know well the features of your chosen programming language, or the language required for the position.</p>
+<p class="fifty-percent-left">Language-specific questions vary too much, and we can't cover them here, because this session is not language-specific.</p>
+<p class="fifty-percent-left">However, there are a few questions that are frequently asked about languages like Java and C#:</p>
+<ul>
+	<li class="fifty-percent">How is an interface different from an abstract class?</li>
+	<li class="fifty-percent">Can an abstract class have methods that are implement?</li>
+	<li class="fifty-percent">Can you instantiate an abstract class?</li>
+</ul>
+
+				</section>
+
+				<section><!-- slide 13 -->
+
+<p class="fifty-percent-left">Questions that test knowledge of object-oriented programming and design concepts</p>
+<ul>
+	<li class="fifty-percent">What is inheritance?</li>
+	<li class="fifty-percent">What is polymorphism?</li>
+	<li class="fifty-percent">What are access modifiers in &lt;your chosen language&gt;? E.g. <code>public</code>, <code>protected</code>, <code>private</code>, what else? What is the default access level if you don't specify any, for the class? For the class methods? </li>
+	<li class="fifty-percent">What are SOLID principles? </li>
+</ul>
+				</section>
+
+
+				<section><!-- slide 13 -->
+
+<h4>Exception handling</h4>
+
+<p class="fifty-percent-left">All the commonly used programming languages have exceptions. Best practices on handling exceptions are common interview questions.</p>
+
+<p class="fifty-percent-left">Usually exception-handling constructs are something like that:</p>
+
+<pre><code class="presentation">
+try {
+	... some code that can possibly throw an exception
+}
+catch (ExceptionType e) {
+	... do something with the exception
+}
+catch (AnotherExceptionType e) {
+	... do something with the exception
+}
+...
+catch (YetAnotherExceptionType e) {
+	... do something with the exception
+}
+finally {
+	... some code that gets executed whether or not exception was thrown
+}
+</code></pre>
+
+<p class="fifty-percent-left">The keywords may be different in different languages. For example, Python has <code>try ... except ... else </code>, Ruby has <code>rescue</code> instead of <code>catch</code>, etc.</p>
+
+<blockquote class="presentation">A common interview question: if the code in the <code>catch</code> block throws an exception, will the <code>finally</code> block be executed?</blockquote>
+
+<p class="fifty-percent-left">The way to find out is to write a piece of code for this scenario in your language.</p>
+<p class="fifty-percent-left">This scenario describes a common situation: if an exception occurs in the <code>try</code> block, the <code>catch</code> block often logs it to a file or a database. What if it can't open the database connection, or the log file doesn't exist? Then an exception will be thrown in the <code>catch</code> block.  </p>
+<ul>
+<p class="fifty-percent-left">Other exception handling principles:</p>
+<p class="fifty-percent-left">Exceptions should be treated as rare, because their handling is computationally costly. Don't use exceptions to handle commonly-occuring scenarios. For example, if a function often returns <code>null</code>, don't make the <code>null</code> value throw an exception. Rather, design your code so that <code>null</code> would be an acceptable value.</p>
+<p class="fifty-percent-left">Another example. Your regularly-running script deletes files. Some files' have permissions don't let your script delete them. This happens often, and you don't want your script to throw an exception when this occurs. You want it to move on to the next file. However, if your script discovers that the whole directory is missing, that's definitely an exception, because it can't work with a nonexistent directory. </p>
+
+
+				</section>
+
+
+				<section><!-- slide 13 -->
 					<h3 class="alterconf">Design patterns</h3>
 					<blockquote class="presentation">"In software engineering, a design pattern is a general repeatable solution to a commonly occurring problem in software design."</blockquote>
 					<p class="alterconf">Some design patterns are specific to programming languages, but many can be implemented in many languages. </p>
@@ -505,7 +574,7 @@ public interface StudentDao {
 
 <div class="card-columns presentation">
     <div class="card card-block presentation-narrower">
-      <p class="card-text presentation">Table <code>shipments</code></p>
+      <p class="card-text presentation"><code>shipments</code></p>
 <table class="presentation-with-border">
 <tr>
  <th>id</th>
@@ -569,7 +638,7 @@ public interface StudentDao {
 </table>
     </div>
     <div class="card card-block presentation-narrower">
-      <p class="card-text presentation">Table <code>products</code></p>
+      <p class="card-text presentation"><code>products</code></p>
 <table class="presentation-with-border">
 <tr>
  <th>id</th>
@@ -590,7 +659,7 @@ public interface StudentDao {
 </table>
     </div>
     <div class="card card-block presentation-wider">
-      <p class="card-text presentation">Table <code>stores</code></p>
+      <p class="card-text presentation"><code>stores</code></p>
 <table class="presentation-with-border">
 <tr>
  <th>id</th>
@@ -643,7 +712,7 @@ public interface StudentDao {
 					<p class="sixty-percent-left fragment"><code>id</code> in <code>stores</code> table should be the foreign key <code>store_id</code> in the <code>shipments</code> table. </p>
 				</section>
 				
-				<section><!-- slide 10 -->
+				<section><!-- slide 23 -->
 					<h4>Always think of the time complexity of the solution</h4>
 					<p class="sixty-percent-left">Interviewers will probably ask about it.</p>
 					<p class="sixty-percent-left">Easy shortcuts to estimate time complexity:</p>
