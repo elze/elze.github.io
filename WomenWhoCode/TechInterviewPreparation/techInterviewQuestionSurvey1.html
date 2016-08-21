@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Survey of programming interview questions</title>
+		<title>Survey of programming interview questions: Javascript and object-oriented languages</title>
 
-		<meta name="description" content="Women Who Code technical interview preparation: survey of programming questions">
+		<meta name="description" content="Women Who Code technical interview preparation: survey of programming questions: Javascript and object-oriented languages">
 		<meta name="author" content="Elze Hamilton">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -38,7 +38,7 @@
 
 			<div class="slides">			
 				<section>
-					<h2>Basic data structures, algorithms, and recursion</h2>
+					<h2>Survey of programming interview questions: Javascript and object-oriented languages</h2>
 					<p>
 						<small>By <a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</a></small>
 					</p>
@@ -48,31 +48,21 @@
 				</section>
 
 				<section><!-- slide 2 -->
-					<h3>Hashtables</h3>
-					<p class="alterconf">also known as: <b>associative arrays, dictionaries, hashmaps, key-value maps, lookup tables, maps</b></p>
-					<p class="alterconf">It's a collection of key-value pairs. Some keys may not have any values.</b></p>
-					<table class="presentation">
-					 <tr><td>Key</td><td>Value</td></tr>
-					 <tr><td>Dog</td><td>Woof</td></tr>
-					 <tr><td>Cat</td><td>Meow</td></tr>
-					 <tr><td>Fox</td><td></td></tr>
-					 <tr><td>Bird</td><td>Chirp</td></tr>
-					</table>
-
-					<p class="alterconf">In C#: IDictionary&lt;type1, type2&gt;, Hashtable (older)</p>
-					<p class="alterconf">In Java: HashTable, HashMap</p>
-					<p class="alterconf">In Python: Dictionary</p>
-					<p class="alterconf">In PHP: array (the kind with keys and values)</p>
-					<p class="alterconf">In Javascript: object (the object's fields are keys, field values are values)</p>
+					<h3>Intoduction</h3>
+					<p class="alterconf">This is a sample of interview questions that you might get about Javascript and some object-oriented languages, if you are looking for an application developer or a web developer position. </b></p>
+					<p class="alterconf">If you work in a specialized field of computing, such as systems programming, firmware, drivers, scientific computing, data science, or other specialization, these questions might not reflect what you can expect an an interview.</p>
+					<p class="alterconf">More and more development positions are full-stack, and they require some knowledge of Javascript. If the position you are applying to is for developing an application that has a web front, chances are the employer will expect you to know at least some Javascript.</p>
+					<p class="alterconf">So unless you are applying for positions that are strictly server-side development (there aren't many of those), it's good to know Javascript.</p>
 
 				</section>
 
-				<section><!-- slide 3 -->
-					<h3>Important things to know about dictionaries:</h3>
-					<p class="alterconf">The key-value pairs are NOT sorted by key or by value. If you iterate through the keys, keep in mind that they'll be in any random order. If you want them to be in order, sort them first.</p>
-					<p class="alterconf">Lookup time for an element is O(1): constant-time independent of dictionary size.</p>
-					<p class="alterconf">This is made possible by the <b>hash function</b>. For every key it computes some value, e.g. hash("foo") = 3. That way the dictionary knows to always look for "foo" in slot 3. (It's an oversimplifation.)</p>
-				</section>
+				<section><!-- slide 2 -->
+					<h3>The purpose of this presentation</h3>
+   <blockquote class="presentation">All of the questions here are only starting points for your study. The answers provided here are by no means complete or exhaustive. Rather, they point you in the direction you should look into for understanding the given topic.
+   </blockquote>
+
+   <blockquote class="presentation">It will be useful to work through the code examples provided here, and in the websites that are linked to in this presentation. In addition to that, try to come up with your own code samples that illustrate these problems.
+   </blockquote>
 
 				<section><!-- slide 4 -->
 				<h4 class="alterconf">Javascript questions 1. <code>null</code> vs <code>undefined</code></h4>
@@ -342,8 +332,8 @@ finally {
 <p class="fifty-percent-left">This scenario describes a common situation: if an exception occurs in the <code>try</code> block, the <code>catch</code> block often logs it to a file or a database. What if it can't open the database connection, or the log file doesn't exist? Then an exception will be thrown in the <code>catch</code> block.  </p>
 <ul>
 <p class="fifty-percent-left">Other exception handling principles:</p>
-<p class="fifty-percent-left">Exceptions should be treated as rare, because their handling is computationally costly. Don't use exceptions to handle commonly-occuring scenarios. For example, if a function often returns <code>null</code>, don't make the <code>null</code> value throw an exception. Rather, design your code so that <code>null</code> would be an acceptable value.</p>
-<p class="fifty-percent-left">Another example. Your regularly-running script deletes files. Some files' permissions don't let your script delete them. This happens often, and you don't want your script to throw an exception when this occurs. You want it to move on to the next file. However, if your script discovers that the whole directory is missing, that's definitely an exception, because it can't work with a nonexistent directory. </p>
+<p class="fifty-percent-left">Exceptions should be treated as rare, because handling them is computationally costly. Don't use exceptions to handle commonly-occuring scenarios. For example, if a function often returns <code>null</code>, don't make the <code>null</code> value throw an exception. Rather, design your code so that <code>null</code> would be an acceptable value.</p>
+<p class="fifty-percent-left">Another example. Your regularly-running script deletes files. Some files' permissions don't let your script delete them. This happens often, and you don't want your script to throw an exception when this occurs. You want it to check if the file's permissions allow deletion, and if not, move on to the next file. However, if your script discovers that the whole directory is missing, it should definitely throw an exception, because it can't work with a nonexistent directory. </p>
 
 
 				</section>
@@ -355,17 +345,17 @@ finally {
 					<p class="alterconf">Some design patterns are specific to programming languages, but many can be implemented in many languages. </p>
 					<h4 class="alterconf-left">Common Design patterns in object-oriented languages </h4>
 					<ul>
-						<li class="alterconf"><b>Factory</b>: the constructor of the class is private; to get an object of a class, you have to call a public static function that calls the constructor and returns the object;</li>
-						<li class="alterconf"><b>Singleton</b>: similar to Factory, but only one instance of the class is allowed to exist. The public static function always returns the same existing object. </li>
+						<li class="alterconf"><b>Factory</b>: the constructor of the class is private; to get an object of a class, you have to call a public static method that calls the constructor and returns the object;</li>
+						<li class="alterconf"><b>Singleton</b>: similar to Factory, but only one instance of the class is allowed to exist. The public static method always returns the same existing object. </li>
 						<li class="alterconf"><b>Decorator</b>: a method in the derived class "decorates" the method of the same name in the base class with new behavior. </li>
-						<li class="alterconf"><b>Observer</b>: an object (observable) calls its observers -- other objects that have subscribed to its notifications -- to notify them of the changes in itself. </li>
+						<li class="alterconf"><b>Observer</b>: an object (observable) calls its observers -- other objects that have subscribed to its notifications -- to notify them of the changes in itself. You can think of event handlers in Javascript (onclick, onmouseover, etc.) as observers, because the observable (e.g. a link, a button) "calls" them to notify that its state has changed, although that's an oversimplification. </li>
 						<li class="alterconf">... and many more. </li>
 					</ul>
-
 				</section>
 
 
 				<section><!-- slide 14 -->
+		<p class="fifty-percent-left">You should be able to explain a few design patterns and write code snippets illustrating them, e.g. coffee drink example for the Decorator pattern (can be found by googling).</p>
 					<h3 class="alterconf">Design patterns in your chosen language(s) and framework(s)</h3>
 					<p class="alterconf">A good way to understand design patterns is to learn how they are implemented in the classes of frameworks used in your chosen language. </p>
 					<ul>
@@ -423,6 +413,22 @@ public interface StudentDao {
 
 </section>
 
+ 		<section><!-- slide 17 -->
+		<h4 class="alterconf">Object-relational mapping frameworks</h4>
+
+<p class="alterconf">Another way to access and manipulate data in the code are Object-Relational Mapping frameworks (ORMs). They also "wrap" calls to the database in code, but in a different way. </p>
+
+<p class="alterconf">Find out what ORMs are commonly used in your preferred language. E.g. C#: Entity Framework, NHibernate; Java: Hibernate; Ruby: ActiveRecord; Python: SQLAlchemy. Study that ORM and write a sample application that uses it.</p>
+
+<p class="alterconf">Common ORM questions</p> 
+<ul>
+	<li class="fifty-percent">What is lazy loading?</li>
+	<li class="fifty-percent">What is the opposite of lazy loading? </li>
+	<li class="fifty-percent">What are the advantages and gotchas of lazy loading?</li>
+</ul>
+
+</section>
+
 
 		<section><!-- slide 17 -->
 		<h4 class="alterconf">Web architecture</h4>
@@ -465,21 +471,6 @@ public interface StudentDao {
 
 </section>
 
-		<section><!-- slide 17 -->
-		<h4 class="alterconf">Object-relational mapping frameworks</h4>
-
-<p class="alterconf">Another way to access and manipulate data in the code are Object-Relational Mapping frameworks (ORMs). They also "wrap" calls to the database in code, but in a different way. </p>
-
-<p class="alterconf">Find out what ORMs are commonly used in your preferred language. E.g. C#: Entity Framework, NHibernate; Java: Hibernate; Ruby: ActiveRecord; Python: SQLAlchemy. Study that ORM and write a sample application that uses it.</p>
-
-<p class="alterconf">Common ORM questions</p> 
-<ul>
-	<li class="fifty-percent">What is lazy loading?</li>
-	<li class="fifty-percent">What is the opposite of lazy loading? </li>
-	<li class="fifty-percent">What are the advantages and gotchas of lazy loading?</li>
-</ul>
-
-</section>
 
 				<section><!-- slide 18 -->
 					<h4>Databases and SQL</h4>
@@ -759,21 +750,7 @@ public interface StudentDao {
 					<p class="sixty-percent-left fragment"><code>id</code> in <code>products</code> table should be the foreign key <code>product_id</code> in the <code>shipments</code> table. </p>
 					<p class="sixty-percent-left fragment"><code>id</code> in <code>stores</code> table should be the foreign key <code>store_id</code> in the <code>shipments</code> table. </p>
 				</section>
-				
-				<section><!-- slide 23 -->
-					<h4>Always think of the time complexity of the solution</h4>
-					<p class="sixty-percent-left">Interviewers will probably ask about it.</p>
-					<p class="sixty-percent-left">Easy shortcuts to estimate time complexity:</p>
-					<ul>
-						<li class="alterconf">Searching for an element in an ordered list or binary tree is <code><b>O(log(n))</b></code></li>
-						<li class="alterconf">Sorting a list of elements in most general case (if nothing special is known about the elements) is <code><b>O(n log(n))</b></code></li>
-					</ul>									
-					<p class="sixty-percent-left">Identify operations in your algorithm that are executed independently of each other. Take a maximum of their time complexity.</p>
-					<p class="sixty-percent-left">E.g. in the anagrams solution there are 3 standalone loops of complexities O(n), O(n), and O(1) => total is O(n).</p>
-					<p class="sixty-percent-left">If an operation involves a suboperation (e.g. doing something in each iteration of the loop), multiply complexity of the "outer" operation by the complexity of the "inner" operation. </p>
-					<p class="sixty-percent-left">E.g. in the "naive anagrams" algorithm, the outer loop is O(n) and the inner loop is O(n) => total is O(n<sup>2</sup>)</p>
-				</section>
-				
+								
 			<section><!-- slide 12 -->
 					<h3>THE END</h3>
 					<p>&nbsp;</p>
