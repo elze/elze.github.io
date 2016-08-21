@@ -443,13 +443,13 @@ public interface StudentDao {
 		<blockquote class="presentation">What HTTP requests are used in REST? How are they different from one another? </blockquote>
 		<blockquote class="presentation">What is a structure of a RESTful route? </blockquote>
 
-<p class="sixty-percent">RESTful routes should have nouns, not verbs, in them. The noun should be the model this route is operating on. For example, a route to retrieve a list of all users should be <code>http://&lt;your_applicaton_url&gt;/users</code>, not <code>http://&lt;your_applicaton_url&gt;/get_all</code>. </p>
+<p class="sixty-percent-left">RESTful routes should have nouns, not verbs, in them. The noun should be the model this route is operating on. For example, a route to retrieve a list of all users should be <code>http://&lt;your_applicaton_url&gt;/users</code>, not <code>http://&lt;your_applicaton_url&gt;/get_all</code>. </p>
 		<blockquote class="presentation">What should be a RESTful route to get a user by ID? </blockquote>
-<p class="sixty-percent"><code>http://&lt;your_applicaton_url&gt;/user/:id</code> </p>
+<p class="sixty-percent-left"><code>http://&lt;your_applicaton_url&gt;/user/:id</code> </p>
 		<blockquote class="presentation">What should be a RESTful route to modify a user by ID? Delete a user by ID? </blockquote>
-<p class="sixty-percent">They both should still be <code>http://&lt;your_applicaton_url&gt;/user/:id</code>. The rest of the information, such as the new values of the user's fields, should be passed in the body of the request. </p>
+<p class="sixty-percent-left">They both should still be <code>http://&lt;your_applicaton_url&gt;/user/:id</code>. The rest of the information, such as the new values of the user's fields, should be passed in the body of the request. </p>
 
-<p class="sixty-percent">Exercise to the reader: what should be the route to create a new user? </p>
+<p class="sixty-percent-left">Exercise to the reader: what should be the route to create a new user? </p>
 
 </section>
 
