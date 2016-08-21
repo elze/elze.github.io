@@ -172,7 +172,7 @@ function Pet(name, breed) {
 	<pre><code class="presentation-bigger">
 function Employee(empName, empDept, empjobTitle) {
  this.name = empName;
- this.department = empDept,
+ this.department = empDept;
  this.jobTitle = empjobTitle;
  console.log(this.name + ", " + this.department + " " + this.jobTitle);
 }
@@ -196,14 +196,14 @@ function Employee(empName, empDept, empjobTitle) {
  this.jobTitle = empjobTitle;
  console.log(this.name + ", " + this.department + " " + this.jobTitle);
 }
-var emp2 = Employee("Bar", "Implementations", "Implementations Engineer");
+var emp2 = Employee("Baz", "Implementations", "Implementations Engineer");
 console.log(this.name + ", " + this.department + " " + this.jobTitle);
 </code></pre>
 
 	 <p class="alterconf">Now let's call <code>Employee()</code> as a constructor: </p> 
-	 <p class="alterconf"><code>var emp2 = new Employee("Bar", "Implementations", "Implementations Engineer")</code> </p> 
+	 <p class="alterconf"><code>var emp2 = new Employee("Baz", "Implementations", "Implementations Engineer")</code> </p> 
 	 <p class="alterconf">The difference is, we are calling it with a <code>new</code> keyword, so it constructs an <code>Employee</code> object. </p> 
-	 <p class="alterconf">It will print <code>"Bar, Implementations, Implementations Engineer"</code> </p> 
+	 <p class="alterconf">It will print <code>"Baz, Implementations, Implementations Engineer"</code> </p> 
 	 <p class="alterconf">What if we call the same <code>console.log</code> statement outside the function? </p> 
 	 <p class="alterconf"><code>console.log(this.name + ", " + this.department + " " + this.jobTitle);</code> </p> 
 	 <p class="alterconf">It prints, as before <code>"Foo, Engineering, Developer"</code> </p> 
