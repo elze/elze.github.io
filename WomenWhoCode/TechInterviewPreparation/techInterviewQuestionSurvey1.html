@@ -343,7 +343,7 @@ finally {
 <ul>
 <p class="fifty-percent-left">Other exception handling principles:</p>
 <p class="fifty-percent-left">Exceptions should be treated as rare, because their handling is computationally costly. Don't use exceptions to handle commonly-occuring scenarios. For example, if a function often returns <code>null</code>, don't make the <code>null</code> value throw an exception. Rather, design your code so that <code>null</code> would be an acceptable value.</p>
-<p class="fifty-percent-left">Another example. Your regularly-running script deletes files. Some files' have permissions don't let your script delete them. This happens often, and you don't want your script to throw an exception when this occurs. You want it to move on to the next file. However, if your script discovers that the whole directory is missing, that's definitely an exception, because it can't work with a nonexistent directory. </p>
+<p class="fifty-percent-left">Another example. Your regularly-running script deletes files. Some files' permissions don't let your script delete them. This happens often, and you don't want your script to throw an exception when this occurs. You want it to move on to the next file. However, if your script discovers that the whole directory is missing, that's definitely an exception, because it can't work with a nonexistent directory. </p>
 
 
 				</section>
@@ -423,6 +423,47 @@ public interface StudentDao {
 
 </section>
 
+
+		<section><!-- slide 17 -->
+		<h4 class="alterconf">Web architecture</h4>
+
+		<blockquote class="presentation">What is MVC? What do Model, View, and Controller do?</blockquote>
+
+		<blockquote class="presentation">Given a web framework (that you know, or that's most relevant to this position), such as .NET MVC or Ruby on Rails, describe what happens when a user's request hits the web server. What gets executed and in what order? </blockquote>
+
+<p class="sixty-percent">E.g. some function is invoked first, and determines which route matches the user request. Then, based on the route, the right method off of a right controller is called, etc., and in the end the right View function is called that creates the HTML of the resulting web page, and the page is sent to the user's browser. </p>
+
+</section>
+
+		<section><!-- slide 17 -->
+		<h4 class="alterconf">REST</h4>
+
+		<blockquote class="presentation">What does REST architecture mean?</blockquote>
+
+		<blockquote class="presentation">What HTTP requests are used in REST? How are they different from one another? </blockquote>
+		<blockquote class="presentation">What is a structure of a RESTful route? </blockquote>
+
+<p class="sixty-percent">RESTful routes should have nouns, not verbs, in them. The noun should be the model this route is operating on. For example, a route to retrieve a list of all users should be <code>http://&lt;your_applicaton_url&gt;/users</code>, not <code>http://&lt;your_applicaton_url&gt;/get_all</code>. </p>
+		<blockquote class="presentation">What should be a RESTful route to get a user by ID? </blockquote>
+<p class="sixty-percent"><code>http://&lt;your_applicaton_url&gt;/user/:id</code> </p>
+		<blockquote class="presentation">What should be a RESTful route to modify a user by ID? Delete a user by ID? </blockquote>
+<p class="sixty-percent">They both should still be <code>http://&lt;your_applicaton_url&gt;/user/:id</code>. The rest of the information, such as the new values of the user's fields, should be passed in the body of the request. </p>
+
+<p class="sixty-percent">Exercise to the reader: what should be the route to create a new user? </p>
+
+</section>
+
+
+		<section><!-- slide 17 -->
+		<h4 class="alterconf">Web security</h4>
+
+		<blockquote class="presentation">What are common front-end security threats? (List just two.)</blockquote>
+
+<p class="alterconf">Cross-site scripting (XSS), and cross-site request forgery. Be able to explain what they are, and what are common methods of protection against them. </p>
+
+<p class="alterconf">Find out about various currently used ways of authenticating a user to web services. A call to a web service is just an HTTP request, so without proper protection anyone from anywhere on the internet could call them. How do you make it so your web services are restricted only to the authenticated users? </p>
+
+</section>
 
 		<section><!-- slide 17 -->
 		<h4 class="alterconf">Object-relational mapping frameworks</h4>
