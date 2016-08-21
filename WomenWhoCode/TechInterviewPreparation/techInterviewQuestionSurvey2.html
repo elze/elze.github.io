@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Survey of programming interview questions: Design patterns, web architecture, databases</title>
+
+		<meta name="description" content="Women Who Code technical interview preparation: survey of programming questions: Design patterns, web architecture, databases">
+		<meta name="author" content="Elze Hamilton">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+		<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/sky.css" id="theme">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css">
+
+		<link rel="stylesheet" href="../common/css/style.css">
+
+		<!--[if lt IE 9]>
+		<script src="//cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<p style="text-align: center; font-size: 15px"><small>Programming interview question survey | <a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</a> | Women Who Code tech interview preparation | Press Esc to see thumbnails of all slides.</small></p>
+			<!-- Any section element inside of this container is displayed as a slide -->
+
+			<div class="slides">			
+				<section>
+					<h2>Survey of programming interview questions: design patterns, web architecture, databases</h2>
+					<p>
+						<small>By <a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</a></small>
+					</p>
+					<p>
+						<small>Women Who Code technical interview preparation series</small>
+					</p>
+				</section>
+
+				<section><!-- slide 2 -->
+					<h3>Introduction</h3>
+					<p class="sixty-percent-left">This is a sample of interview questions that you might get about software design patterns, software architecture, and databases, if you are looking for an application developer or a web developer position. </b></p>
+					<p class="sixty-percent-left">If you work in a specialized field of computing, such as systems programming, firmware, drivers, scientific computing, data science, or other specialization, these questions might not reflect what you can expect an an interview.</p>
+
+					<p class="sixty-percent-left">In many programming interviews, writing code to solve a problem (on a whiteboard or a computer) is only a small part of the interview. Algorithms are often only a small part. The bulk of the interview will probably be answering questions about specific features of the programming language requiring for the job, writing code that demonstrates your knowlege of that language, also answering questions about software engineering, architecture, design, and best practices.</p>
+
+				</section>
+
+				<section><!-- slide 2 -->
+					<h3>The purpose of this presentation</h3>
+   <blockquote class="presentation">All of the questions here are only starting points for your study. The answers provided here are by no means complete or exhaustive. Rather, they point you in the direction you should look into for understanding the given topic.
+   </blockquote>
+
+   <blockquote class="presentation">It will be useful to work through the code examples provided here, and in the websites that are linked to in this presentation. In addition to that, try to come up with your own code samples that illustrate these problems.
+   </blockquote>
+
+				</section>
+
+
+				<section><!-- slide 13 -->
+					<h3 class="alterconf">Design patterns</h3>
+					<blockquote class="presentation">"In software engineering, a design pattern is a general repeatable solution to a commonly occurring problem in software design."</blockquote>
+					<p class="alterconf">Some design patterns are specific to programming languages, but many can be implemented in many languages. </p>
+					<h4 class="alterconf-left">Common Design patterns in object-oriented languages </h4>
+					<ul>
+						<li class="alterconf"><b>Factory</b>: the constructor of the class is private; to get an object of a class, you have to call a public static method that calls the constructor and returns the object;</li>
+						<li class="alterconf"><b>Singleton</b>: similar to Factory, but only one instance of the class is allowed to exist. The public static method always returns the same existing object. </li>
+						<li class="alterconf"><b>Decorator</b>: a method in the derived class "decorates" the method of the same name in the base class with new behavior. </li>
+						<li class="alterconf"><b>Observer</b>: an object (observable) calls its observers -- other objects that have subscribed to its notifications -- to notify them of the changes in itself. You can think of event handlers in Javascript (onclick, onmouseover, etc.) as observers, because the observable (e.g. a link, a button) "calls" them to notify that its state has changed, although that's an oversimplification. </li>
+						<li class="alterconf">... and many more. </li>
+					</ul>
+				</section>
+
+
+				<section><!-- slide 14 -->
+		<p class="fifty-percent-left">You should be able to explain a few design patterns and write code snippets illustrating them, e.g. coffee drink example for the Decorator pattern (can be found by googling).</p>
+					<h3 class="alterconf">Design patterns in your chosen language(s) and framework(s)</h3>
+					<p class="alterconf">A good way to understand design patterns is to learn how they are implemented in the classes of frameworks used in your chosen language. </p>
+					<ul>
+ 			<li class="alterconf">In .NET framework <code>Stream</code> class and its derived classes implement the <b>Decorator</b> pattern; </li>
+ 			<li class="alterconf">
+<li class="alterconf">Angular.js uses the <b>Singleton</b> pattern to create the services that it injects. The injector creates each service only once.</li>
+					</ul>
+				</section>
+
+
+				<section><!-- slide 15 -->
+				<h4 class="alterconf">More design patterns "in the wild"</h4>
+<p class="alterconf"><code>System.Net.WebRequest</code> class and its derived classes implement the <b>Factory</b> pattern. To create a request, call the <code>Create</code> method and pass in a URI. The <code>Create</code> method itself determines the appropriate protocol, such as FTP or HTTP, based on the URI and returns the appropriate subclass of <code>WebRequest</code>: <code>HttpWebRequest</code>, <code>FtpWebRequest</code>, or <code>FileWebRequest</code>. The caller doesn't need to know the specifics of each protocol, only how to invoke the factory and work with the <code>WebRequest</code> that gets returned.</p>
+			
+<pre><code class="presentation-bigger">
+WebRequest httpRequest = WebRequest.Create("http://foo.com");
+WebRequest ftpRequest = WebRequest.Create("ftp://foo.com");
+</code></pre>			
+			<p class="alterconf">The actual type of <code>httpRequest</code> is <code>HttpWebRequest</code>, and the actual type of <code>ftpRequest</code> is <code>FtpWebRequest</code>, but because the constructors for those classes are private or protected, you can't instantiate them like this:</p>
+<pre><code class="presentation-bigger">
+HttpWebRequest httpRequest = new HttpWebRequest("http://foo.com");
+FtpWebRequest ftpRequest = new FtpWebRequest("ftp://foo.com");
+</code></pre>						
+			</li>
+				<ul>
+
+		</section>
+
+
+		<section><!-- slide 16 -->
+		<h4 class="alterconf">DAO (Data Access Object) pattern</h4>
+
+<p class="fifty-percent-left">Data Access Object is a class that "wraps" a SQL table in code. Sometimes it's not just a SQL table, but a join of severa tables, or generally results of some query.</p>
+
+<p class="fifty-percent-left">It provides a lot of the same operations that you can do with a database table -- select from it, insert, update, etc. -- only it provides them in code. So instead of calling the database directly, you can call the corresponding methods off of the object.</p>
+
+<pre><code class="presentation-bigger">
+public interface StudentDao {
+   public List<Student> getAllStudents();
+   public Student getStudent(int rollNo);
+   public void updateStudent(Student student);
+   public void deleteStudent(Student student);
+}
+</code></pre>
+
+<p class="alterconf">The methods in the <code>StudentDao</code> are CRUD operations that roughly correspond to the SQL statements. </p>
+
+<ul>
+	<li class="fifty-percent"><code>getAllStudents</code> and <code>getStudent()</code> correspond to <code>SELECT</code></li>
+	<li class="fifty-percent"><code>updateStudent</code> and <code>getStudent()</code> correspond to <code>UPDATE</code></li>
+	<li class="fifty-percent"><code>deleteStudent</code> and <code>getStudent()</code> correspond to <code>DELETE</code></li>
+</ul>
+
+<p class="alterconf"><code>getAllStudents</code> should probably be overloaded to also take a SQL query as an argument. We rarely want to select all students. We usually want to select some subset of students based on the criteria in the WHERE clause. </p>
+
+</section>
+
+ 		<section><!-- slide 17 -->
+		<h4 class="alterconf">Object-relational mapping frameworks</h4>
+
+<p class="alterconf">Another way to access and manipulate data in the code are Object-Relational Mapping frameworks (ORMs). They also "wrap" calls to the database in code, but in a different way. </p>
+
+<p class="alterconf">Find out what ORMs are commonly used in your preferred language. E.g. C#: Entity Framework, NHibernate; Java: Hibernate; Ruby: ActiveRecord; Python: SQLAlchemy. Study that ORM and write a sample application that uses it.</p>
+
+<p class="alterconf">Common ORM questions</p> 
+<ul>
+	<li class="fifty-percent">What is lazy loading?</li>
+	<li class="fifty-percent">What is the opposite of lazy loading? </li>
+	<li class="fifty-percent">What are the advantages and gotchas of lazy loading?</li>
+</ul>
+
+</section>
+
+
+		<section><!-- slide 17 -->
+		<h4 class="alterconf">Web architecture</h4>
+
+		<blockquote class="presentation">What is MVC? What do Model, View, and Controller do?</blockquote>
+
+		<blockquote class="presentation">Given a web framework (that you know, or that's most relevant to this position), such as .NET MVC or Ruby on Rails, describe what happens when a user's request hits the web server. What gets executed and in what order? </blockquote>
+
+<p class="sixty-percent-left">E.g. some function is invoked first, and determines which route matches the user request. Then, based on the route, the right method off of a right controller is called, etc., and in the end the right View function is called that creates the HTML of the resulting web page, and the page is sent to the user's browser. </p>
+
+</section>
+
+		<section><!-- slide 17 -->
+		<h4 class="alterconf">REST</h4>
+
+		<blockquote class="presentation">What does REST architecture mean?</blockquote>
+
+		<blockquote class="presentation">What HTTP requests are used in REST? How are they different from one another? </blockquote>
+		<blockquote class="presentation">What is a structure of a RESTful route? </blockquote>
+
+<p class="sixty-percent-left">RESTful routes should have nouns, not verbs, in them. The noun should be the model this route is operating on. For example, a route to retrieve a list of all users should be <code>http://&lt;app_url&gt;/users</code>, not <code>http://&lt;app_url&gt;/get_all</code>. </p>
+		<blockquote class="presentation">What should be a RESTful route to get a user by ID? </blockquote>
+<p class="sixty-percent-left"><code>http://&lt;app_url&gt;/user/:id</code> </p>
+		<blockquote class="presentation">What should be a RESTful route to modify a user by ID? Delete a user by ID? </blockquote>
+<p class="sixty-percent-left">They both should still be <code>http://&lt;app_url&gt;/user/:id</code>. The data, such as the new values of the user's fields, should be passed in the body of the request. </p>
+
+<p class="sixty-percent-left">Exercise to the reader: what should be the route to create a new user? </p>
+
+</section>
+
+
+		<section><!-- slide 17 -->
+		<h4 class="alterconf">Web security</h4>
+
+		<blockquote class="presentation">Name two common front-end security threats.</blockquote>
+
+<p class="sixty-percent-left">Cross-site scripting (XSS), and cross-site request forgery. Be able to explain what they are, and what are common methods of protection against them. </p>
+
+<p class="sixty-percent-left">Find out about various currently used ways of authenticating a user to web services. A call to a web service is just an HTTP request, so without proper protection anyone from anywhere on the internet could call them. How do you make it so your web services are restricted only to the authenticated users? </p>
+
+</section>
+
+
+				<section><!-- slide 18 -->
+					<h4>Databases and SQL</h4>
+					<p class="alterconf">SQL databases are still very much in use at most software companies. Predictions of NoSQL databases replacing SQL have not come true, and are unlikely to come true in the forseeable future. Most software companies require some knowledge of SQL, at least for full stack or server-side development positions.</p>
+					<h4>Common SQL questions</h4>
+<ul>
+	<li class="fifty-percent">Queries: SELECT, INSERT, UPDATE, DELETE. WHERE clauses.</li>
+	<li class="fifty-percent">Most commonly used aggregate functions: MIN, MAX, SUM, COUNT</li>
+	<li class="fifty-percent">Clauses used with aggregate functions: GROUP BY and HAVING</li>
+	<li class="fifty-percent">Inner and outer joins. Be able to explain what they are. Be able to solve problems requiring outer joins.</li>
+	<li class="fifty-percent">Subqueries, e.g. SELECT x ... WHERE x IN (SELECT y FROM ...)</li>
+</ul>					
+					<p class="alterconf">The best way to develop SQL knowledge, like any programming knowledge, is to solve exercises.</p>
+					<p class="alterconf">A good source for SQL exercises is <b>http://sqlzoo.net</b>. The exercises start simple and increase in difficulty. The only drawback is that while they show you the correct result, they won't show the correct solution.</p>
+
+					<p class="alterconf">Another good source is <b>https://en.wikibooks.org/wiki/SQL_Exercises</b>. It has fewer exercises, but provides solutions.</p>
+
+</section>
+
+				<section><!-- slide 19 -->
+
+					<h4>General database questions</h4>
+
+					<p class="sixty-percent-left">What are primary keys? Foreign keys? What are foreign key constraints? </p>
+					<p class="sixty-percent-left">What is an index? What is it useful for? What kinds of indices are there? </p>
+					<p class="sixty-percent-left">How is <code>DELETE FROM &lt;table&gt;</code> different from <code>TRUNCATE &lt;table&gt;</code>? If you wanted to delete all the data in a table, which one should you use and why? </p>
+
+					<p class="sixty-percent-left">How would you prevent SQL injection, a.k.a. BOBBY TABLES roblem? </p>
+					<p class="fifty-percent-left"><b>Answer</b>: parametrize the query. Know how to write a call a parametrized SQL query from your preferred programming language. </p>
+
+				</section>
+
+
+				<section><!-- slide 20 -->
+<h4>Database problems, continued</h4>
+
+<p class="alterconf">This is a database, consisting of just one table, <b>shipments</b>, that represents shipments of products to some stores.</p>
+<table class="presentation-with-border">
+<tr>
+ <th>shipment_id</th>
+ <th>product_id</th>
+ <th>product_description</th>
+ <th>quantity</th>
+ <th>store_id</th>
+ <th>store_name</th>
+ <th>store_address</th>
+</tr>
+<tr>
+<td>48250972</td>
+<td>392948</td>
+<td>Hard drive, 1 TB</td>
+<td>50</td>
+<td>29812</td>
+<td>Best Buy at Gateway</td>
+<td>9607 Research Blvd #500</td>
+</tr>
+<tr>
+<td>9271732</td>
+<td>392948</td>
+<td>Hard drive, 1 TB</td>
+<td>40</td>
+<td>74982</td>
+<td>Best Buy at Mueller</td>
+<td>1201 Barbara Jordan Blvd</td>
+</tr>
+<tr>
+<td>29420982</td>
+<td>392948</td>
+<td>Hard drive, 1 TB</td>
+<td>30</td>
+<td>66885</td>
+<td>Target at Arboretum</td>
+<td>8601 Research Blvd</td>
+</tr>
+
+<tr>
+<td>18927187</td>
+<td>58748</td>
+<td>Hard drive, 500 GB</td>
+<td>45</td>
+<td>378761</td>
+<td>Best Buy at Lakeline</td>
+<td>11066 Pecan Park Blvd</td>
+</tr>
+
+<tr>
+<td>8219842</td>
+<td>58748</td>
+<td>Hard drive, 500 GB</td>
+<td>35</td>
+<td>66885</td>
+<td>Target at Arboretum</td>
+<td>8601 Research Blvd</td>
+</tr>
+
+<tr>
+<td>7198311</td>
+<td>58748</td>
+<td>Hard drive, 500 GB</td>
+<td>25</td>
+<td>1987013</td>
+<td>Target at Round Rock</td>
+<td>121 Louis Henna Blvd</td>
+</tr>
+
+<tr>
+<td>2862817</td>
+<td>438738</td>
+<td>SD Card, 16 GB</td>
+<td>40</td>
+<td>378761</td>
+<td>Best Buy at Lakeline</td>
+<td>11066 Pecan Park Blvd</td>
+</tr>
+
+<tr>
+<td>9010162</td>
+<td>438738</td>
+<td>SD Card, 16 GB</td>
+<td>30</td>
+<td>1987013</td>
+<td>Target at Round Rock</td>
+<td>121 Louis Henna Blvd</td>
+</tr>
+</table>
+
+<p class="fifty-percent-left">Can you identify what's wrong with it?</p>
+
+				</section>
+
+
+				<section><!-- slide 21 -->
+<h4>Database problems, continued</h4>
+					<blockquote class="presentation">What's wrong with the database in the previous page?</blockquote>
+					<p class="fifty-percent-left">Lots of redundant data: product descriptions, store names and addresses are stored redundantly. </p>
+
+					<blockquote class="presentation">How would you fix it?</blockquote>
+
+					<p class="fifty-percent-left">Normalize this database. Break up this table into three. </p>
+
+<div class="card-columns presentation">
+    <div class="card card-block presentation-narrower">
+      <p class="card-text presentation"><code>shipments</code></p>
+<table class="presentation-with-border">
+<tr>
+ <th>id</th>
+ <th>product_id</th>
+ <th>store_id</th>
+ <th>qt</th>
+</tr>
+<tr>
+<td>48250972</td>
+<td>392948</td>
+<td>29812</td>
+<td>50</td>
+</tr>
+<tr>
+<td>9271732</td>
+<td>392948</td>
+<td>74982</td>
+<td>40</td>
+</tr>
+<tr>
+<td>29420982</td>
+<td>392948</td>
+<td>66885</td>
+<td>30</td>
+</tr>
+
+<tr>
+<td>18927187</td>
+<td>58748</td>
+<td>378761</td>
+<td>45</td>
+</tr>
+
+<tr>
+<td>8219842</td>
+<td>58748</td>
+<td>66885</td>
+<td>35</td>
+</tr>
+
+<tr>
+<td>7198311</td>
+<td>58748</td>
+<td>1987013</td>
+<td>25</td>
+</tr>
+
+<tr>
+<td>2862817</td>
+<td>438738</td>
+<td>378761</td>
+<td>40</td>
+</tr>
+
+<tr>
+<td>9010162</td>
+<td>438738</td>
+<td>1987013</td>
+<td>30</td>
+</tr>
+</table>
+    </div>
+    <div class="card card-block presentation-narrower">
+      <p class="card-text presentation"><code>products</code></p>
+<table class="presentation-with-border">
+<tr>
+ <th>id</th>
+ <th>description</th>
+</tr>
+<tr>
+<td>392948</td>
+<td>Hard drive, 1 TB</td>
+</tr>
+<tr>
+<td>58748</td>
+<td>Hard drive, 500 GB</td>
+</tr>
+<tr>
+<td>438738</td>
+<td>SD Card, 16 GB</td>
+</tr>
+</table>
+    </div>
+    <div class="card card-block presentation-wider">
+      <p class="card-text presentation"><code>stores</code></p>
+<table class="presentation-with-border">
+<tr>
+ <th>id</th>
+ <th>name</th>
+ <th>address</th>
+</tr>
+<tr>
+<td>29812</td>
+<td>Best Buy at Gateway</td>
+<td>9607 Research Blvd #500</td>
+</tr>
+<tr>
+<td>74982</td>
+<td>Best Buy at Mueller</td>
+<td>1201 Barbara Jordan Blvd</td>
+</tr>
+<tr>
+<td>66885</td>
+<td>Target at Arboretum</td>
+<td>8601 Research Blvd</td>
+</tr>
+<tr>
+<td>378761</td>
+<td>Best Buy at Lakeline</td>
+<td>11066 Pecan Park Blvd</td>
+</tr>
+<tr>
+<td>1987013</td>
+<td>Target at Round Rock</td>
+<td>121 Louis Henna Blvd</td>
+</tr>
+</table>
+    </div>
+</div>
+
+
+
+
+
+
+
+				</section>
+
+				<section><!-- slide 22 -->
+					<h4>Primary and foreign keys</h4>
+					<p class="sixty-percent-left">What should be the primary keys in these tables? What should be the foreign keys? </p>
+					<p class="sixty-percent-left fragment">Primary key should uniquely identify every row. On all three tables it should be <code>id</code>. </p>
+					<p class="sixty-percent-left fragment">Foreign keys assure that a field appears in table A only if there is a row with it as the primary key in table B. </p>
+					<p class="sixty-percent-left fragment"><code>id</code> in <code>products</code> table should be the foreign key <code>product_id</code> in the <code>shipments</code> table. </p>
+					<p class="sixty-percent-left fragment"><code>id</code> in <code>stores</code> table should be the foreign key <code>store_id</code> in the <code>shipments</code> table. </p>
+				</section>
+								
+			<section><!-- slide 12 -->
+					<h3>THE END</h3>
+					<p>&nbsp;</p>
+					<p><a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</p>
+			</section>
+
+			</div>
+		</div>
+
+		<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+		<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '//cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: '//cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+<script type="text/javascript">
+sc_project=2721969;
+sc_invisible=0;
+sc_security="5cfe5782";
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="site stats"
+href="http://www.statcounter.com/free-web-stats/"
+target="_blank"><img class="statcounter"
+src="http://c29.statcounter.com/2721969/0/5cfe5782/0/"
+alt="free hit counter" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+
+	</body>
+</html>
