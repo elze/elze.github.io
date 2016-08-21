@@ -52,7 +52,7 @@
 					<p class="sixty-percent-left">This is a sample of interview questions that you might get about software design patterns, software architecture, and databases, if you are looking for an application developer or a web developer position. </b></p>
 					<p class="sixty-percent-left">If you work in a specialized field of computing, such as systems programming, firmware, drivers, scientific computing, data science, or other specialization, these questions might not reflect what you can expect an an interview.</p>
 
-					<p class="sixty-percent-left">In many programming interviews, writing code to solve a problem (on a whiteboard or a computer) is only a small part of the interview. Algorithms are often only a small part. The bulk of the interview will probably be answering questions about specific features of the programming language requiring for the job, writing code that demonstrates your knowlege of that language, also answering questions about software engineering, architecture, design, and best practices.</p>
+					<p class="sixty-percent-left">In many programming interviews, writing code to solve a problem (on a whiteboard or a computer) is only a small part of the interview. Algorithms are often only a small part. The bulk of the interview will probably be answering questions about specific features of the programming language requiring for the job, writing code that demonstrates your knowledge of that language, also answering questions about software engineering, architecture, design, and best practices.</p>
 
 				</section>
 
@@ -88,7 +88,6 @@
 					<p class="alterconf">A good way to understand design patterns is to learn how they are implemented in the classes of frameworks used in your chosen language. </p>
 					<ul>
  			<li class="alterconf">In .NET framework <code>Stream</code> class and its derived classes implement the <b>Decorator</b> pattern; </li>
- 			<li class="alterconf">
 <li class="alterconf">Angular.js uses the <b>Singleton</b> pattern to create the services that it injects. The injector creates each service only once.</li>
 					</ul>
 				</section>
@@ -116,7 +115,7 @@ FtpWebRequest ftpRequest = new FtpWebRequest("ftp://foo.com");
 		<section><!-- slide 16 -->
 		<h4 class="alterconf">DAO (Data Access Object) pattern</h4>
 
-<p class="fifty-percent-left">Data Access Object is a class that "wraps" a SQL table in code. Sometimes it's not just a SQL table, but a join of severa tables, or generally results of some query.</p>
+<p class="fifty-percent-left">Data Access Object is a class that "wraps" a SQL table in code. Sometimes it's not just a SQL table, but a join of several tables, or generally results of some query.</p>
 
 <p class="fifty-percent-left">It provides a lot of the same operations that you can do with a database table -- select from it, insert, update, etc. -- only it provides them in code. So instead of calling the database directly, you can call the corresponding methods off of the object.</p>
 
@@ -133,8 +132,8 @@ public interface StudentDao {
 
 <ul>
 	<li class="fifty-percent"><code>getAllStudents</code> and <code>getStudent()</code> correspond to <code>SELECT</code></li>
-	<li class="fifty-percent"><code>updateStudent</code> and <code>getStudent()</code> correspond to <code>UPDATE</code></li>
-	<li class="fifty-percent"><code>deleteStudent</code> and <code>getStudent()</code> correspond to <code>DELETE</code></li>
+	<li class="fifty-percent"><code>updateStudent</code> corresponds to <code>UPDATE</code></li>
+	<li class="fifty-percent"><code>deleteStudent</code> corresponds to <code>DELETE</code></li>
 </ul>
 
 <p class="alterconf"><code>getAllStudents</code> should probably be overloaded to also take a SQL query as an argument. We rarely want to select all students. We usually want to select some subset of students based on the criteria in the WHERE clause. </p>
@@ -193,9 +192,11 @@ public interface StudentDao {
 
 		<blockquote class="presentation">Name two common front-end security threats.</blockquote>
 
-<p class="sixty-percent-left">Cross-site scripting (XSS), and cross-site request forgery. Be able to explain what they are, and what are common methods of protection against them. </p>
+<p class="sixty-percent-left">Cross-site scripting (XSS), and cross-site request forgery (CSRF or XSRF). Be able to explain what they are, and what are common methods of protection against them. </p>
 
-<p class="sixty-percent-left">Find out about various currently used ways of authenticating a user to web services. A call to a web service is just an HTTP request, so without proper protection anyone from anywhere on the internet could call them. How do you make it so your web services are restricted only to the authenticated users? </p>
+		<blockquote class="presentation">A call to a web service is just an HTTP request, so without proper protection anyone from anywhere on the internet could call them. How do you make it so your web services are restricted only to the authenticated users?</blockquote>
+
+<p class="sixty-percent-left">Find out about various currently used ways of authenticating a user to web services. For example, the server could send a certain token to the frontend; frontend then would put an XAuth header with that token in every request it sends to the server. The webservice would expect that token to be present and to match the token it has, otherwise it would not process the request. </p>
 
 </section>
 
