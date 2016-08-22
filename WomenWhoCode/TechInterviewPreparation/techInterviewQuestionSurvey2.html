@@ -227,8 +227,11 @@ public interface StudentDao {
 					<p class="sixty-percent-left">What is an index? What is it useful for? What kinds of indices are there? </p>
 					<p class="sixty-percent-left">How is <code>DELETE FROM &lt;table&gt;</code> different from <code>TRUNCATE &lt;table&gt;</code>? If you wanted to delete all the data in a table, which one should you use and why? </p>
 
-					<p class="sixty-percent-left">How would you prevent SQL injection, a.k.a. BOBBY TABLES roblem? </p>
+					<p class="sixty-percent-left">How would you prevent SQL injection, a.k.a. BOBBY TABLES problem? https://xkcd.com/327 </p>
 					<p class="fifty-percent-left"><b>Answer</b>: parametrize the query. Know how to write a call a parametrized SQL query from your preferred programming language. </p>
+				</section>
+				<section><!-- slide 20 -->
+					<h4>Parametrizing a SQL query</h4>
 					<p class="fifty-percent-left">Let's say you have to construct a SQL query and pass these dates to its WHERE clause: </p>
 
 <pre><code class="presentation-bigger">
