@@ -56,7 +56,7 @@
 
 				</section>
 
-				<section><!-- slide 2 -->
+				<section><!-- slide 3 -->
 					<h3>The purpose of this presentation</h3>
    <blockquote class="presentation">All of the questions here are only starting points for your study. The answers provided here are by no means complete or exhaustive. Rather, they point you in the direction you should look into for understanding the given topic.
    </blockquote>
@@ -67,7 +67,7 @@
 				</section>
 
 
-				<section><!-- slide 13 -->
+				<section><!-- slide 4 -->
 					<h3 class="alterconf">Design patterns</h3>
 					<blockquote class="presentation">"In software engineering, a design pattern is a general repeatable solution to a commonly occurring problem in software design."</blockquote>
 					<p class="alterconf">Some design patterns are specific to programming languages, but many can be implemented in many languages. </p>
@@ -82,7 +82,7 @@
 				</section>
 
 
-				<section><!-- slide 14 -->
+				<section><!-- slide 5 -->
 		<p class="fifty-percent-left">You should be able to explain a few design patterns and write code snippets illustrating them, e.g. coffee drink example for the Decorator pattern (can be found by googling).</p>
 					<h3 class="alterconf">Design patterns in your chosen language(s) and framework(s)</h3>
 					<p class="alterconf">A good way to understand design patterns is to learn how they are implemented in the classes of frameworks used in your chosen language. </p>
@@ -93,7 +93,7 @@
 				</section>
 
 
-				<section><!-- slide 15 -->
+				<section><!-- slide 6 -->
 				<h4 class="alterconf">More design patterns "in the wild": Factory pattern</h4>
 <p class="alterconf"><code>System.Net.WebRequest</code> class and its derived classes implement the <b>Factory</b> pattern. To create a request, call the <code>Create</code> method and pass in a URI. The <code>Create</code> method itself determines the appropriate protocol, such as FTP or HTTP, based on the URI and returns the appropriate subclass of <code>WebRequest</code>: <code>HttpWebRequest</code>, <code>FtpWebRequest</code>, or <code>FileWebRequest</code>. The caller doesn't need to know the specifics of each protocol, only how to invoke the factory and work with the <code>WebRequest</code> that gets returned.</p>
 			
@@ -112,7 +112,7 @@ FtpWebRequest ftpRequest = new FtpWebRequest("ftp://foo.com");
 		</section>
 
 
-				<section><!-- slide 15 -->
+				<section><!-- slide 7 -->
 				<h4 class="alterconf">Factory pattern, continued</h4>
 <p class="sixty-percent-left">We don't really know why .NET chose not to make <code>HttpWebRequest</code>, <code>FtpWebRequest</code>, or <code>FileWebRequest</code> constructors public, but to call <code>WebRequest.Create</code> method to instantiate those classes. But it can be useful to you as a developer. Suppose your application has to access URIs through both HTTP and FTP, and you don't know in advance which one will it be; it is determined at runtime. And suppose you have to do the same things with both types of requests: open the URI, call <code>GetReponse()</code>, and close it. All of those methods are available in the base class <code>WebRequest</code> Then its good that you don't have to know which derived class you are dealing it. You don't have to examine the URI and determine which derived class to instantiate, the <code>WebRequest.Create</code> does it for you.</p>
 
@@ -122,7 +122,7 @@ FtpWebRequest ftpRequest = new FtpWebRequest("ftp://foo.com");
 		</section>
 
 
-		<section><!-- slide 16 -->
+		<section><!-- slide 8 -->
 		<h4 class="alterconf">DAO (Data Access Object) pattern</h4>
 
 <p class="fifty-percent-left">Data Access Object is a class that "wraps" a SQL table in code. Sometimes it's not just a SQL table, but a join of several tables, or generally results of some query.</p>
@@ -150,7 +150,7 @@ public interface StudentDao {
 
 </section>
 
- 		<section><!-- slide 17 -->
+ 		<section><!-- slide 9 -->
 		<h4 class="alterconf">Object-relational mapping frameworks</h4>
 
 <p class="alterconf">Another way to access and manipulate data in the code are Object-Relational Mapping frameworks (ORMs). They also "wrap" calls to the database in code, but in a different way. </p>
@@ -167,7 +167,7 @@ public interface StudentDao {
 </section>
 
 
-		<section><!-- slide 17 -->
+		<section><!-- slide 10 -->
 		<h4 class="alterconf">Web architecture</h4>
 
 		<blockquote class="presentation">What is MVC? What do Model, View, and Controller do?</blockquote>
@@ -178,7 +178,7 @@ public interface StudentDao {
 
 </section>
 
-		<section><!-- slide 17 -->
+		<section><!-- slide 11 -->
 		<h4 class="alterconf">REST</h4>
 
 		<blockquote class="presentation">What does REST architecture mean?</blockquote>
@@ -197,7 +197,7 @@ public interface StudentDao {
 </section>
 
 
-		<section><!-- slide 17 -->
+		<section><!-- slide 12 -->
 		<h4 class="alterconf">Web security</h4>
 
 		<blockquote class="presentation">Name two common front-end security threats.</blockquote>
@@ -211,7 +211,7 @@ public interface StudentDao {
 </section>
 
 
-				<section><!-- slide 18 -->
+				<section><!-- slide 13 -->
 					<h4>Databases and SQL</h4>
 					<p class="alterconf">SQL databases are still very much in use at most software companies. Predictions of NoSQL databases replacing SQL have not come true, and are unlikely to come true in the forseeable future. Most software companies require some knowledge of SQL, at least for full stack or server-side development positions.</p>
 					<h4>Common SQL questions</h4>
@@ -229,7 +229,7 @@ public interface StudentDao {
 
 </section>
 
-				<section><!-- slide 19 -->
+				<section><!-- slide 14 -->
 
 					<h4>General database questions</h4>
 
@@ -242,7 +242,7 @@ public interface StudentDao {
 					<p class="fifty-percent-left">In fact, there is an entire website that tells you how to do it in many programming languages: http://bobby-tables.com </p>
 					<p class="fifty-percent-left">In the next slide there is my own example. </p>
 				</section>
-				<section><!-- slide 20 -->
+				<section><!-- slide 15 -->
 					<h4>Parametrizing a SQL query</h4>
 					<p class="fifty-percent-left">Let's say you have to construct a SQL query and pass these dates to its WHERE clause: </p>
 
@@ -271,7 +271,7 @@ dbCommand.Parameters.Add(endDate);
 				</section>
 
 
-				<section><!-- slide 20 -->
+				<section><!-- slide 16 -->
 <h4>Database problems, continued</h4>
 
 <p class="alterconf">This is a database, consisting of just one table, <b>shipments</b>, that represents shipments of products to some stores.</p>
@@ -369,7 +369,7 @@ dbCommand.Parameters.Add(endDate);
 				</section>
 
 
-				<section><!-- slide 21 -->
+				<section><!-- slide 17 -->
 <h4>Database problems, continued</h4>
 					<blockquote class="presentation">What's wrong with the database in the previous page?</blockquote>
 					<p class="fifty-percent-left">Lots of redundant data: product descriptions, store names and addresses are stored redundantly. </p>
@@ -509,7 +509,7 @@ dbCommand.Parameters.Add(endDate);
 
 				</section>
 
-				<section><!-- slide 22 -->
+				<section><!-- slide 18 -->
 					<h4>Primary and foreign keys</h4>
 					<p class="sixty-percent-left">What should be the primary keys in these tables? What should be the foreign keys? </p>
 					<p class="sixty-percent-left fragment">Primary key should uniquely identify every row. On all three tables it should be <code>id</code>. </p>
@@ -518,7 +518,7 @@ dbCommand.Parameters.Add(endDate);
 					<p class="sixty-percent-left fragment"><code>id</code> in <code>stores</code> table should be the foreign key <code>store_id</code> in the <code>shipments</code> table. </p>
 				</section>
 								
-			<section><!-- slide 12 -->
+			<section><!-- slide 19 -->
 					<h3>End of part 2 of 2</h3>
 					<p>&nbsp;</p>
 					<p><a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</p>
