@@ -132,7 +132,7 @@ function Pet(name, breed) {
 
    <blockquote class="presentation">Are global variables good? Why or why not?</blockquote>
 
-   <p class="alterconf">They should be avoided. A global variable is easy to modify accidentally. Always declare the variables in the scope you need them in.</p> 
+   <p class="alterconf">They should be avoided. A global variable is easy to modify accidentally. When all parts of your code are modifying the same variable, it becomes difficult to reason about what its value should be at a given point. Always declare the variables in the scope you need them in.</p> 
 
 				</section>
 
@@ -217,7 +217,7 @@ console.log(this.name + ", " + this.department + " " + this.jobTitle);
 
 				<h4 class="alterconf">Javascript questions 5. <code>bind, call, apply</code> </h4>
 
-   				<p class="alterconf">There are many more nuances in the use of <code>this</code>. Be sure to study them all. A good reference is https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this. </p> 
+   				<p class="alterconf">A general rule is that <code>this</code> in the context of an object (e.g. if a function is called off of an object) will refer to the object itself, while outside of any object it will be the "global" <code>this</code> (usually the browser window). But there are many more nuances in the use of <code>this</code>. Be sure to study them all. A good reference is https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this. </p> 
 
    				<p class="alterconf">As we see, <code>this</code> can refer to different objects, and it can be confusing. </p> 
 
