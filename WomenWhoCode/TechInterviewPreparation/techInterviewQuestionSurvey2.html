@@ -229,6 +229,29 @@ public interface StudentDao {
 
 					<p class="sixty-percent-left">How would you prevent SQL injection, a.k.a. BOBBY TABLES roblem? </p>
 					<p class="fifty-percent-left"><b>Answer</b>: parametrize the query. Know how to write a call a parametrized SQL query from your preferred programming language. </p>
+					<p class="fifty-percent-left">Let's say you have to construct a SQL query and pass these dates to its WHERE clause: </p>
+
+<pre><code class="presentation-bigger">
+string beginDateStr = "1998-08-01";
+string endDateStr = "1996-07-31";
+</code></pre>
+
+					<p class="fifty-percent-left">Don't do this -- don't concatenate arguments into the query:</p>
+<pre><code class="presentation-bigger">
+var dbCommand = connection.CreateCommand();
+dbCommand.CommandText = "SELECT name, department FROM students WHERE birthdate > " + beginDateStr + " AND birthdate <= " + endDateStr ;
+</code></pre>
+<p class="fifty-percent-left">Do this instead -- parametrize the query. (This is C#, but your preferred server-side programming language has something like that too.)</p>
+<pre><code class="presentation-bigger">
+var dbCommand = connection.CreateCommand();
+dbCommand.CommandText = "SELECT name, department FROM students WHERE birthdate > @beginDate AND birthdate <= @endDate" ;
+SqlParameter beginDate = new SqlParameter("@beginDate", SqlDbType.DateTime);
+beginDate.Value = DateTime.Parse(beginDateStr);
+dbCommand.Parameters.Add(beginDate);
+SqlParameter endDate = new SqlParameter("@endDate", SqlDbType.DateTime);
+endDate.Value = DateTime.Parse(endDateStr);
+dbCommand.Parameters.Add(endDate);
+</code></pre>
 
 				</section>
 
