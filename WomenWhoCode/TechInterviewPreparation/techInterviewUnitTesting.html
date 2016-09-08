@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>The basics of linked lists</title>
+
+		<meta name="description" content="Women Who Code technical interview preparation: basic data structures">
+		<meta name="author" content="Elze Hamilton">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+		<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/sky.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css">
+
+		<link rel="stylesheet" href="../common/css/style.css">
+
+		<!--[if lt IE 9]>
+		<script src="//cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<p style="text-align: center; font-size: 25px"><small>Unit testing | <a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</a> | Women Who Code tech interview preparation</small></p>
+			<p style="text-align: center; font-size: 12px">Press Esc to see thumbnails of all slides.</p>
+			<!-- Any section element inside of this container is displayed as a slide -->
+
+			<div class="slides">			
+				<section>
+					<h2>Unit testing</h2>
+					<p>
+						<small>By <a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</a></small>
+					</p>
+					<p>
+						<small>Women Who Code technical interview preparation series</small>
+					</p>
+				</section>
+
+				<section><!-- slide 2 -->
+					<h3>Basic things to know about unit testing</h3>
+					<p class="alterconf">Unit tests are supposed to test just the application code.</b></p>
+					<p class="alterconf">That means they need to be completely self-contained, i.e. independent from other resources, such as databases or the network.</p>
+					<p class="alterconf">That means they need to be completely self-contained, i.e. independent from other resources, such as databases or the network.</b></p>
+					<table class="presentation">
+					 <tr><td>Key</td><td>Value</td></tr>
+					 <tr><td>Dog</td><td>Woof</td></tr>
+					 <tr><td>Cat</td><td>Meow</td></tr>
+					 <tr><td>Fox</td><td></td></tr>
+					 <tr><td>Bird</td><td>Chirp</td></tr>
+					</table>
+
+					<p class="alterconf">In C#: IDictionary&lt;type1, type2&gt;, Hashtable (older)</p>
+					<p class="alterconf">In Java: HashTable, HashMap</p>
+					<p class="alterconf">In Python: Dictionary</p>
+					<p class="alterconf">In PHP: array (the kind with keys and values)</p>
+					<p class="alterconf">In Javascript: object (the object's fields are keys, field values are values)</p>
+
+				</section>
+
+				<section><!-- slide 3 -->
+					<h3>Important things to know about dictionaries:</h3>
+					<p class="alterconf">The key-value pairs are NOT sorted by key or by value. If you iterate through the keys, keep in mind that they'll be in any random order. If you want them to be in order, sort them first.</p>
+					<p class="alterconf">Lookup time for an element is O(1): constant-time independent of dictionary size.</p>
+					<p class="alterconf">This is made possible by the <b>hash function</b>. For every key it computes some value, e.g. hash("foo") = 3. That way the dictionary knows to always look for "foo" in slot 3. (It's an oversimplifation.)</p>
+				</section>
+
+				<section><!-- slide 4 -->
+					<h3>Front end development questions</h3>
+					
+   <table class="alterconf">
+   <tr class="alterconf">
+   <td class="alterconf">
+   <blockquote class="triangle-border left alterconf">In Javascript, what is the difference between null and undefined values?
+   </blockquote>
+   </td>
+   <td class="alterconf">Null is a value, but undefined is a type. Find out about these situations: 1. When a variable is declared (var a;) but is not assigned a value; 2. When you reference an object field that this object doesn't have: e.g. var o = {foo: "foo1", bar: "bar1"}; o.baz ?</td>	
+  </tr>
+  <tr class="alterconf">
+   <td class="alterconf"><blockquote class="triangle-border left alterconf">What is CSS box model?</blockquote></td>	
+   <td class="alterconf">
+   <blockquote class="triangle-border right alterconf">padding, margin, border</blockquote>
+   </td>
+  </tr>
+  <tr class="alterconf">
+   <td class="alterconf"></td>	
+   <td class="alterconf">
+   <blockquote class="triangle-border right alterconf">Contract with third-party vendor not signed</blockquote>
+   </td>
+  </tr>
+  <tr class="alterconf">
+   <td class="alterconf"></td>	
+   <td class="alterconf">
+   <blockquote class="triangle-border right alterconf">These projects need to be done fast, you are too new for that</blockquote>	
+   </td>
+  </tr>
+ </table>					
+					
+					<p class="alterconf">In Javascript, what is the difference between null and undefined values?</p>
+					<p class="alterconf">What is CSS box model? </p>
+					<p class="alterconf">Two words are anagrams if they have the same set of letters, and every letter in both words occurs the same number of times. </p>
+					<p class="alterconf">The naive way to implement a test if two words are anagrams of each other?</p>
+				</section>
+
+				<section><!-- slide 5 -->
+					<h3 class="alterconf">Anagrams: the hashtable way</h4>
+					<p class="alterconf-left">Hint: the keys in a hashtable could be letters, and values could be the number of times each letter occurs in the word. </p>
+					<p class="alterconf-left">You will need two hashtables, one for each word. </p>
+				</section>
+
+				<section><!-- slide 6 -->
+<pre><code class="linkedList"><div style="float: left">
+public areAnagrams (string word1, string word2) {
+	if (word1.length != word2.length)
+		return false;	
+	Dictionary<char, int> characterCounts1;
+	Dictionary<char, int> characterCounts2;
+	for (char c1 in word1) {
+		if (!characterCounts1[c1].exists) { characterCounts1[c1] = 1; }
+		else { characterCounts1[c1]++; }
+	}		
+	for (char c2 in word2) {
+		if (!characterCounts2[c2].exists) { characterCounts2[c2] = 1; }
+		else { characterCounts2[c2]++; }
+	}		
+</div>
+</code></pre>				
+<pre><code class="linkedList"><div style="float: right">
+	if (characterCounts1.Keys.length != characterCounts2.Keys.length)
+		return false;
+	for (char c in characterCounts1.Keys) {
+		// if the count of character c in word1 is not equal to the count of the same character in word2
+		if (characterCounts1[c] != characterCounts2[c]) 
+			return false;
+	}
+	return true;
+}
+</div>
+</code></pre>
+
+</section>
+
+				<section><!-- slide 7 -->
+					<h3>Anticipating error conditions</h3>
+					<p class="sixty-percent-left"><b>What possible error conditions should you check for in this function?</b></p>
+					<p class="sixty-percent-left">What happens when either argument to the function is null? What happens when you call <code><b>length</b></code> off of a null argument? </p>
+					<p class="sixty-percent-left">The very first thing the function should do is check if either argument is null.</p>
+					<p class="sixty-percent-left">If both <code><b>word1</b></code> and <code><b>word2</b></code> are null, what should the function do? You need to decide if two null strings are anagrams of each other or not.</p>
+					<p class="sixty-percent-left">The interviewer may not care so much if you decide that they are or are not. S/he wants to see you have thought about handling edge cases.</p>
+					<p class="sixty-percent-left">In any coding problem ALWAYS think of error conditions. Interviewers want to see that. </p>
+					<p class="sixty-percent-left">The bare minimum of error conditions / edge cases to check for:</p>
+					<ul>
+						<li class="alterconf">How should the code behave if any of the arguments is null?</li>
+						<li class="alterconf">How should the code behave if any of the arguments, such as a string, list, dictionary, etc., is empty? (That's distinct from null.)</li>
+					</ul>
+			<p class="sixty-percent-left">You can write the "meat" of the function first and add error checking last. (Leave enough spaces between lines on the whiteboard.)</p>
+				</section>
+
+
+				<section><!-- slide 8 -->
+					<h4>Time complexity of the anagrams-via-hashtables algorithm</h4>
+					<p>It is O(n) </p>
+					<p class="alterconf-left">Why? </p>
+					<p class="alterconf-left">The first two loops iterate through the whole word, so the time taken to execute the loop grows as the lengh of the word (n) </p>
+					<p class="alterconf-left">What is the time complexity of the third loop? </p>
+					<p class="alterconf-left">Does it grow as the length of the input words grow?</p>
+					<p class="alterconf-left">The third loop will be executed at most as many times as there are letters in the English alphabet (26). It does not grow with the input.</p>
+					<p class="alterconf-left">The complexity of the third loop is fixed, O(1).</p>
+				</section>
+
+				<section><!-- slide 9 -->
+					<h4>Time complexity of the anagrams-the-naive-way algorithm</h4>
+					<p>It is <code><b>O(n<sup>2</sup>)</b></code> . </p>
+					<p class="alterconf-left">Why? </p>
+					<p class="alterconf-left">The outer loop iterates through the first word. </p>
+					<p class="alterconf-left">For each iteration of the outer loop, the inner loop traverses the whole second word. </p>
+				</section>
+				
+				<section><!-- slide 10 -->
+					<h4>Always think of the time complexity of the solution</h4>
+					<p class="sixty-percent-left">Interviewers will probably ask about it.</p>
+					<p class="sixty-percent-left">Easy shortcuts to estimate time complexity:</p>
+					<ul>
+						<li class="alterconf">Searching for an element in an ordered list or binary tree is <code><b>O(log(n))</b></code></li>
+						<li class="alterconf">Sorting a list of elements in most general case (if nothing special is known about the elements) is <code><b>O(n log(n))</b></code></li>
+					</ul>									
+					<p class="sixty-percent-left">Identify operations in your algorithm that are executed independently of each other. Take a maximum of their time complexity.</p>
+					<p class="sixty-percent-left">E.g. in the anagrams solution there are 3 standalone loops of complexities O(n), O(n), and O(1) => total is O(n).</p>
+					<p class="sixty-percent-left">If an operation involves a suboperation (e.g. doing something in each iteration of the loop), multiply complexity of the "outer" operation by the complexity of the "inner" operation. </p>
+					<p class="sixty-percent-left">E.g. in the "naive anagrams" algorithm, the outer loop is O(n) and the inner loop is O(n) => total is O(n<sup>2</sup>)</p>
+				</section>
+				
+			<section><!-- slide 12 -->
+					<h3>THE END</h3>
+					<p>&nbsp;</p>
+					<p><a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</p>
+			</section>
+
+			</div>
+		</div>
+
+		<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+		<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '//cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: '//cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+
+	</body>
+</html>
