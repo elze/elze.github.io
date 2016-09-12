@@ -50,7 +50,8 @@
 					<h3>Basic things to know about unit testing</h3>
 					<p class="alterconf">Unit tests are supposed to test just the application code.</b></p>
 					<p class="alterconf">That means they need to be completely self-contained, i.e. independent from other resources, such as databases or the network.</p>
-					<p class="alterconf">That means they need to be completely self-contained, i.e. independent from other resources, such as databases or the network.</b></p>
+					<p class="alterconf">A unit test of server-side code should not call the database or third-party API.</p>
+					<p class="alterconf">A unit test of frontend code should not call the database, third-party API, or server-side code.</p>
 					<table class="presentation">
 					 <tr><td>Key</td><td>Value</td></tr>
 					 <tr><td>Dog</td><td>Woof</td></tr>
