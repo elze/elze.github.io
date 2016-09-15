@@ -48,7 +48,7 @@
 
 				<section><!-- slide 2 -->
 					<h3>Basic things to know about unit testing</h3>
-					<p class="alterconf">Unit tests are supposed to test just the application code.</b></p>
+					<p class="alterconf">Each unit test (ideally) tests one method of one class.</b></p>
 					<p class="alterconf">That means they need to be completely self-contained, i.e. independent from other resources, such as databases or the network.</p>
 					<p class="alterconf">A unit test of server-side code should not call the database or third-party API.</p>
 					<p class="alterconf">A unit test of frontend code should not call the database, third-party API, or server-side code.</p>
@@ -70,9 +70,10 @@
 
 				<section><!-- slide 3 -->
 					<h3>Important things to know about dictionaries:</h3>
-					<p class="alterconf">The key-value pairs are NOT sorted by key or by value. If you iterate through the keys, keep in mind that they'll be in any random order. If you want them to be in order, sort them first.</p>
-					<p class="alterconf">Lookup time for an element is O(1): constant-time independent of dictionary size.</p>
-					<p class="alterconf">This is made possible by the <b>hash function</b>. For every key it computes some value, e.g. hash("foo") = 3. That way the dictionary knows to always look for "foo" in slot 3. (It's an oversimplifation.)</p>
+					<p class="alterconf">Unit tests are supposed to test just the application code.</b></p>
+					<p class="alterconf">That means they need to be completely self-contained, i.e. independent from other resources, such as databases or the network.</p>
+					<p class="alterconf">A unit test of server-side code should not call the database or third-party API.</p>
+					<p class="alterconf">A unit test of frontend code should not call the database, third-party API, or server-side code.</p>
 				</section>
 
 				<section><!-- slide 4 -->
