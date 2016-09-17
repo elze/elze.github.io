@@ -49,23 +49,25 @@
 				<section><!-- slide 2 -->
 					<h3>Basic things to know about unit testing</h3>
 					<p class="alterconf">Each unit test (ideally) tests one method of one class.</b></p>
-					<p class="alterconf">That means they need to be completely self-contained, i.e. independent from other resources, such as databases or the network.</p>
-					<p class="alterconf">A unit test of server-side code should not call the database or third-party API.</p>
-					<p class="alterconf">A unit test of frontend code should not call the database, third-party API, or server-side code.</p>
-					<table class="presentation">
-					 <tr><td>Key</td><td>Value</td></tr>
-					 <tr><td>Dog</td><td>Woof</td></tr>
-					 <tr><td>Cat</td><td>Meow</td></tr>
-					 <tr><td>Fox</td><td></td></tr>
-					 <tr><td>Bird</td><td>Chirp</td></tr>
-					</table>
+<pre><code class="linkedList">
+public List<int> doubleListElements(IRepository repository) {
+	var origList = repository.GetList();
+	List<int> listOfDoubles = new List<int>(myList.length());
+	foreach (int elem in origList) 
+		listOfDoubles.Add(elem * 2);
+	return listOfDoubles;
+}
+</code></pre>
 
-					<p class="alterconf">In C#: IDictionary&lt;type1, type2&gt;, Hashtable (older)</p>
-					<p class="alterconf">In Java: HashTable, HashMap</p>
-					<p class="alterconf">In Python: Dictionary</p>
-					<p class="alterconf">In PHP: array (the kind with keys and values)</p>
-					<p class="alterconf">In Javascript: object (the object's fields are keys, field values are values)</p>
-
+<pre><code class="linkedList">
+public List<int> doubleListElements(IRepository repository) {
+	var origList = repository.GetList();
+	List<int> listOfDoubles = new List<int>(myList.length());
+	foreach (int elem in origList) 
+		listOfDoubles.Add(elem * 2);
+	return listOfDoubles;
+}
+</code></pre>
 				</section>
 
 				<section><!-- slide 3 -->
