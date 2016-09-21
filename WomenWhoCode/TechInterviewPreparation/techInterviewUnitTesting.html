@@ -48,7 +48,8 @@
 
 				<section><!-- slide 2 -->
 					<h3>Basic things to know about unit testing</h3>
-					<p class="alterconf">Each unit test (ideally) tests one method of one class.</b></p>
+					<p class="alterconf">Unit tests are automated. They are code.</p>
+					<p class="alterconf">Each unit test (ideally) tests one method of one class: thus, "unit".</p>
 <pre><code class="linkedList">
 public List<int> doubleListElements(IRepository repository) {
 	var origList = repository.GetList();
@@ -93,6 +94,7 @@ public List<int> doubleListElements(IRepository repository) {
 
 				<section><!-- slide 5 -->
 					<h4 class="alterconf-left">Simple example: hand-written stub class and how to use it</h4>
+					<p class="alterconf">Method under test:</p>					
 <pre><code class="linkedList">
 public List<int> doubleListElements(IRepository repository) {
 	var origList = repository.GetList();
