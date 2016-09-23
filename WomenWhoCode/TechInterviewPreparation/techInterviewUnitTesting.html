@@ -50,10 +50,11 @@
 					<h3>Basic things to know about unit testing</h3>
 					<p class="alterconf">Unit tests are automated. They are code.</p>
 					<p class="alterconf">Each unit test (ideally) tests one method of one class: thus, "unit".</p>
+					<p class="alterconf">Here is an example of a unit test for a very simple method.</p>					
 <pre><code class="linkedList">
-public List<int> doubleListElements(IRepository repository) {
-	var origList = repository.GetList();
-	List<int> listOfDoubles = new List<int>(myList.length());
+public List<int> doubleListElements() {
+	var origList = new List<int>([1, 2, 3]);
+	List<int> listOfDoubles = new List<int>();
 	foreach (int elem in origList) 
 		listOfDoubles.Add(elem * 2);
 	return listOfDoubles;
@@ -61,12 +62,11 @@ public List<int> doubleListElements(IRepository repository) {
 </code></pre>
 
 <pre><code class="linkedList">
-public List<int> doubleListElements(IRepository repository) {
-	var origList = repository.GetList();
-	List<int> listOfDoubles = new List<int>(myList.length());
-	foreach (int elem in origList) 
-		listOfDoubles.Add(elem * 2);
-	return listOfDoubles;
+public doubleListElements_should_return_a_list_of_doubled_values() {
+	var doubledList = doubleListElements(); 
+	Assert.IsEqual(2, doubledList[0]);
+	Assert.IsEqual(4, doubledList[1]);
+	Assert.IsEqual(6, doubledList[2]);
 }
 </code></pre>
 				</section>
