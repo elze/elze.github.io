@@ -112,8 +112,14 @@ p.card-title.presentation {
   color: black;
  }
 
-div#img_app_architecture, div#img_unit_test_architecture {
+div#img_app_architecture {
     float:left;
+  border: none;
+}
+
+div#img_unit_test_architecture {
+    float:right;
+  border: none;
 }
 
 .reveal table.alterconf { 
