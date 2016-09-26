@@ -115,11 +115,13 @@ p.card-title.presentation {
 #img_app_architecture {
     float:left;
   border: 0;
+  box-shadow: none;
 }
 
 #img_unit_test_architecture {
     float:right;
   border: 0;
+  box-shadow: none;
 }
 
 .reveal table.alterconf { 
