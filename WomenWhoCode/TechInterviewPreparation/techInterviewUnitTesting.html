@@ -105,10 +105,26 @@ public List<int> doubleListElements(IRepository repository) {
 	return listOfDoubles;
 }
 </code></pre>
+					<p class="alterconf">Note that the <code>IRepository</code> type starts with I. In C#, this notation means it is an interface. They play a role in unit testing that we will see soon.</p>
+					<p class="alterconf">Java has interfaces too. Many other languages don't have them, but that's not really important. What is important is that they have inheritance, because it plays a big part in creating mocks, stubs, and fakes.</p>
 					</section>
 
 				<section><!-- slide 5 -->
-					<h3 class="alterconf">Anagrams: the hashtable way</h4>
+					<h4 class="alterconf">Back to the example</h4>
+<pre><code class="linkedList">
+interface IRepository {
+	List<int> GetList();
+}
+
+public List<int> doubleListElements(IRepository repository) {
+	var origList = repository.GetList();
+	List<int> listOfDoubles = new List<int>();
+	foreach (int elem in origList) 
+		listOfDoubles.Add(elem * 2);
+	return listOfDoubles;
+}
+</code></pre>
+
 					<p class="alterconf-left">Hint: the keys in a hashtable could be letters, and values could be the number of times each letter occurs in the word. </p>
 					<p class="alterconf-left">You will need two hashtables, one for each word. </p>
 				</section>
