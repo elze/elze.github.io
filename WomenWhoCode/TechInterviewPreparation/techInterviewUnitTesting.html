@@ -109,7 +109,7 @@ public List<int> doubleListElements(IRepository repository) {
 					<p class="alterconf">Java has interfaces too. Many other languages don't have them, but that's not really important. What is important is that they have inheritance, because it plays a big part in creating mocks, stubs, and fakes.</p>
 					</section>
 
-				<section><!-- slide 5 -->
+				<section><!-- slide 6 -->
 					<h4 class="alterconf">Back to the example</h4>
 					<p class="alterconf">The <code>IRepository</code> is a wrapper for the database (thus, "repository"). A database is an external resource. We can't use them in unit tests, so we need to mock / fake / stub the <code>IRepository</code> </p>
 <pre><code class="linkedList">
@@ -133,7 +133,7 @@ class FakeRepository: IRepository {
 </code></pre>
 				</section>
 
-				<section><!-- slide 6 -->
+				<section><!-- slide 7 -->
 					<h4 class="alterconf">Back to the unit test</h4>
 					<p class="alterconf">Here is the previous unit test, rewritten with a <code>IRepository</code> fake.</p>
 <pre><code class="linkedList">
@@ -146,16 +146,16 @@ public doubleListElements_should_return_a_list_of_doubled_values(IRepository rep
 </code></pre>
 
 </section>
-				<section><!-- slide 7 -->
+				<section><!-- slide 8 -->
 					<h3>Important question</h3>
 					<p class="sixty-percent-left">Can you name the principle or principles that allowed to substitute <code>FakeRepository</code> for <code>IRepository</code> ? </p>
 					<p class="sixty-percent-left fragment">Dependency injection. </p>
 				</section>
-				<section><!-- slide 8 -->
+				<section><!-- slide 9 -->
 					<h4 class="alterconf">Simple explanation of dependency injection</h4>
 
 					<p class="sixty-percent-left"><code>IRepository</code> object is a dependency: the <code>doubleListElements()</code> depends on it. It is being <i>injected</i>, i.e. passed as an argument, to the <code>doubleListElements()</code> method.</p>
-					<p class="sixty-percent-left">The interviewer may not care so much if you decide that they are or are not. S/he wants to see you have thought about handling edge cases.</p>
+					<p class="sixty-percent-left">If it were not passed, </p>
 					<p class="sixty-percent-left">In any coding problem ALWAYS think of error conditions. Interviewers want to see that. </p>
 					<p class="sixty-percent-left">The bare minimum of error conditions / edge cases to check for:</p>
 					<ul>
