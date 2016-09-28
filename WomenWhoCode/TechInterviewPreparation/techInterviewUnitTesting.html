@@ -111,11 +111,12 @@ public List<int> doubleListElements(IRepository repository) {
 
 				<section><!-- slide 5 -->
 					<h4 class="alterconf">Back to the example</h4>
+					<p class="alterconf">The <code>IRepository</code> is a wrapper for the database (thus, "repository"). A database is an external resource. We can't use them in unit tests, so we need to mock / fake / stub the <code>IRepository</code> </p>
 <pre><code class="linkedList">
+// The application code
 interface IRepository {
 	List<int> GetList();
 }
-
 public List<int> doubleListElements(IRepository repository) {
 	var origList = repository.GetList();
 	List<int> listOfDoubles = new List<int>();
@@ -123,50 +124,37 @@ public List<int> doubleListElements(IRepository repository) {
 		listOfDoubles.Add(elem * 2);
 	return listOfDoubles;
 }
+// The mock / stub / fake FakeRepository class implements IRepository interface
+class FakeRepository: IRepository {
+	public List<int> GetList() {
+		return [3, 5, 8];
+	];
+}
 </code></pre>
-
-					<p class="alterconf-left">Hint: the keys in a hashtable could be letters, and values could be the number of times each letter occurs in the word. </p>
-					<p class="alterconf-left">You will need two hashtables, one for each word. </p>
 				</section>
 
 				<section><!-- slide 6 -->
-<pre><code class="linkedList"><div style="float: left">
-public areAnagrams (string word1, string word2) {
-	if (word1.length != word2.length)
-		return false;	
-	Dictionary<char, int> characterCounts1;
-	Dictionary<char, int> characterCounts2;
-	for (char c1 in word1) {
-		if (!characterCounts1[c1].exists) { characterCounts1[c1] = 1; }
-		else { characterCounts1[c1]++; }
-	}		
-	for (char c2 in word2) {
-		if (!characterCounts2[c2].exists) { characterCounts2[c2] = 1; }
-		else { characterCounts2[c2]++; }
-	}		
-</div>
-</code></pre>				
-<pre><code class="linkedList"><div style="float: right">
-	if (characterCounts1.Keys.length != characterCounts2.Keys.length)
-		return false;
-	for (char c in characterCounts1.Keys) {
-		// if the count of character c in word1 is not equal to the count of the same character in word2
-		if (characterCounts1[c] != characterCounts2[c]) 
-			return false;
-	}
-	return true;
+					<h4 class="alterconf">Back to the unit test</h4>
+					<p class="alterconf">Here is the previous unit test, rewritten with a <code>IRepository</code> fake.</p>
+<pre><code class="linkedList">
+public doubleListElements_should_return_a_list_of_doubled_values(IRepository repository) {
+	var doubledList = doubleListElements(repository); 
+	Assert.IsEqual(6, doubledList[0]);
+	Assert.IsEqual(10, doubledList[1]);
+	Assert.IsEqual(16, doubledList[2]);
 }
-</div>
 </code></pre>
 
 </section>
-
 				<section><!-- slide 7 -->
-					<h3>Anticipating error conditions</h3>
-					<p class="sixty-percent-left"><b>What possible error conditions should you check for in this function?</b></p>
-					<p class="sixty-percent-left">What happens when either argument to the function is null? What happens when you call <code><b>length</b></code> off of a null argument? </p>
-					<p class="sixty-percent-left">The very first thing the function should do is check if either argument is null.</p>
-					<p class="sixty-percent-left">If both <code><b>word1</b></code> and <code><b>word2</b></code> are null, what should the function do? You need to decide if two null strings are anagrams of each other or not.</p>
+					<h3>Important question</h3>
+					<p class="sixty-percent-left">Can you name the principle or principles that allowed to substitute <code>FakeRepository</code> for <code>IRepository</code> ? </p>
+					<p class="sixty-percent-left fragment">Dependency injection. </p>
+				</section>
+				<section><!-- slide 8 -->
+					<h4 class="alterconf">Simple explanation of dependency injection</h4>
+
+					<p class="sixty-percent-left"><code>IRepository</code> object is a dependency: the <code>doubleListElements()</code> depends on it. It is being <i>injected</i>, i.e. passed as an argument, to the <code>doubleListElements()</code> method.</p>
 					<p class="sixty-percent-left">The interviewer may not care so much if you decide that they are or are not. S/he wants to see you have thought about handling edge cases.</p>
 					<p class="sixty-percent-left">In any coding problem ALWAYS think of error conditions. Interviewers want to see that. </p>
 					<p class="sixty-percent-left">The bare minimum of error conditions / edge cases to check for:</p>
@@ -248,6 +236,19 @@ public areAnagrams (string word1, string word2) {
 
 		</script>
 
+<script type="text/javascript">
+sc_project=2721969;
+sc_invisible=0;
+sc_security="5cfe5782";
+</script>
 
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="site stats"
+href="http://www.statcounter.com/free-web-stats/"
+target="_blank"><img class="statcounter"
+src="http://c29.statcounter.com/2721969/0/5cfe5782/0/"
+alt="free hit counter" ></a></div></noscript>
+<!-- End of StatCounter Code -->
 	</body>
 </html>
