@@ -51,7 +51,7 @@
 					<p class="alterconf">Unit tests are automated. They are code.</p>
 					<p class="alterconf">Each unit test (ideally) tests one method of one class: thus, "unit".</p>
 					<p class="alterconf">Here is an example of a unit test for a very simple method.</p>					
-<pre><code class="linkedList">
+<pre><code class="presentation">
 public List<int> doubleListElements() {
 	var origList = new List<int>([1, 2, 3]);
 	List<int> listOfDoubles = new List<int>();
@@ -61,7 +61,7 @@ public List<int> doubleListElements() {
 }
 </code></pre>
 
-<pre><code class="linkedList">
+<pre><code class="presentation">
 public doubleListElements_should_return_a_list_of_doubled_values() {
 	var doubledList = doubleListElements(); 
 	Assert.IsEqual(2, doubledList[0]);
