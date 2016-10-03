@@ -96,7 +96,7 @@ public doubleListElements_should_return_a_list_of_doubled_values() {
 				<section><!-- slide 5 -->
 					<h4 class="alterconf-left">Simple example: hand-written stub class and how to use it</h4>
 					<p class="alterconf">Here is the method under test. It is similar to the previous example, except that this one depends on an external resource, <code>repository</code>.</p>			
-<pre><code class="linkedList">
+<pre><code class="presentation">
 public List<int> doubleListElements(IRepository repository) {
 	var origList = repository.GetList();
 	List<int> listOfDoubles = new List<int>();
@@ -112,7 +112,7 @@ public List<int> doubleListElements(IRepository repository) {
 				<section><!-- slide 6 -->
 					<h4 class="alterconf">Back to the example</h4>
 					<p class="alterconf">The <code>IRepository</code> is a wrapper for the database (thus, "repository"). A database is an external resource. We can't use them in unit tests, so we need to mock / fake / stub the <code>IRepository</code> </p>
-<pre><code class="linkedList">
+<pre><code class="presentation">
 // The application code
 interface IRepository {
 	List<int> GetList();
@@ -136,7 +136,7 @@ class FakeRepository: IRepository {
 				<section><!-- slide 7 -->
 					<h4 class="alterconf">Back to the unit test</h4>
 					<p class="alterconf">Here is the previous unit test, rewritten with a <code>IRepository</code> fake.</p>
-<pre><code class="linkedList">
+<pre><code class="presentation">
 public doubleListElements_should_return_a_list_of_doubled_values(IRepository repository) {
 	var doubledList = doubleListElements(repository); 
 	Assert.IsEqual(6, doubledList[0]);
@@ -155,8 +155,20 @@ public doubleListElements_should_return_a_list_of_doubled_values(IRepository rep
 					<h4 class="alterconf">Simple explanation of dependency injection</h4>
 
 					<p class="sixty-percent-left"><code>IRepository</code> object is a dependency: the <code>doubleListElements()</code> depends on it. It is being <i>injected</i>, i.e. passed as an argument, to the <code>doubleListElements()</code> method.</p>
-					<p class="sixty-percent-left">If it were not passed, </p>
-					<p class="sixty-percent-left">In any coding problem ALWAYS think of error conditions. Interviewers want to see that. </p>
+					<p class="sixty-percent-left">If it were not passed, the <code>doubleListElements()</code> method would need to create it on its own: </p>
+<pre><code class="presentation">
+public List<int> doubleListElements() {
+	IRepository repository = new Repository(connectionString);
+	var origList = repository.GetList();
+	List<int> listOfDoubles = new List<int>();
+	foreach (int elem in origList) 
+		listOfDoubles.Add(elem * 2);
+	return listOfDoubles;
+}
+</code></pre>
+
+
+					<p class="sixty-percent-left">Thus, <code>doubleListElements()</code> would need to know how to create an <code>IRepository</code> object. In that case, the <code>IRepository</code> object would be "hardcoded" in the method, and we could not substitute a fake <code>IRepository</code> object for it. </p>
 					<p class="sixty-percent-left">The bare minimum of error conditions / edge cases to check for:</p>
 					<ul>
 						<li class="alterconf">How should the code behave if any of the arguments is null?</li>
