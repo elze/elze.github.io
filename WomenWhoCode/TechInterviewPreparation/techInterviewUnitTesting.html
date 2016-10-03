@@ -106,7 +106,7 @@ public List<int> doubleListElements(IRepository repository) {
 }
 </code></pre>
 					<p class="alterconf">Note that the <code>IRepository</code> type starts with I. In C#, this notation means it is an interface. They play a role in unit testing that we will see soon.</p>
-					<p class="alterconf">Java has interfaces too. Many other languages don't have them, but that's not really important. What is important is that they have inheritance, because it plays a big part in creating mocks, stubs, and fakes.</p>
+					<p class="alterconf">Java and PHP have interfaces too. Many other languages don't have them, but that's not really important. What is important is that they have inheritance, because it plays a big part in creating mocks, stubs, and fakes.</p>
 					</section>
 
 				<section><!-- slide 6 -->
@@ -144,7 +144,14 @@ public doubleListElements_should_return_a_list_of_doubled_values(IRepository rep
 	Assert.IsEqual(16, doubledList[2]);
 }
 </code></pre>
-
+					<p class="alterconf">And this is how we call this test:</p>
+<pre><code class="presentation">
+IRepository repository = new FakeRepository();
+// doubleListElements() will call repository.GetList(),
+// which in this case will be FakeRepository.GetList()
+// The FakeRepository.GetList() will return the hardcoded list [3, 5, 8]
+doubleListElements_should_return_a_list_of_doubled_values(repository);
+</code></pre>
 </section>
 				<section><!-- slide 8 -->
 					<h3>Important question</h3>
@@ -166,30 +173,19 @@ public List<int> doubleListElements() {
 	return listOfDoubles;
 }
 </code></pre>
-
-
 					<p class="sixty-percent-left">Thus, <code>doubleListElements()</code> would need to know how to create an <code>IRepository</code> object. In that case, the <code>IRepository</code> object would be "hardcoded" in the method, and we could not substitute a fake <code>IRepository</code> object for it. </p>
-					<p class="sixty-percent-left">The bare minimum of error conditions / edge cases to check for:</p>
-					<ul>
-						<li class="alterconf">How should the code behave if any of the arguments is null?</li>
-						<li class="alterconf">How should the code behave if any of the arguments, such as a string, list, dictionary, etc., is empty? (That's distinct from null.)</li>
-					</ul>
-			<p class="sixty-percent-left">You can write the "meat" of the function first and add error checking last. (Leave enough spaces between lines on the whiteboard.)</p>
+
 				</section>
 
+				<section><!-- slide 10 -->
+					<h4>Dependency injection for languages without interfaces</h4>
+					<p class="sixty-percent-left">Some programming languages don't have interfaces, but have abstract classes, e.g. Python.</p>
+					<p class="sixty-percent-left">Ruby has neither interfaces nor abstract classes, but dependency injection in it is still possible. You will just need to find out how to do it for yourself, if Ruby is your language of choice.</p>
+					<p class="sixty-percent-left">Javascript does not have classes or object-based inheritance at all, but you can still do dependency injection in it. The important thing is to inject an object that has the same method as the "real" object that encapsulates external dependency. </p>
 
-				<section><!-- slide 8 -->
-					<h4>Time complexity of the anagrams-via-hashtables algorithm</h4>
-					<p>It is O(n) </p>
-					<p class="alterconf-left">Why? </p>
-					<p class="alterconf-left">The first two loops iterate through the whole word, so the time taken to execute the loop grows as the lengh of the word (n) </p>
-					<p class="alterconf-left">What is the time complexity of the third loop? </p>
-					<p class="alterconf-left">Does it grow as the length of the input words grow?</p>
-					<p class="alterconf-left">The third loop will be executed at most as many times as there are letters in the English alphabet (26). It does not grow with the input.</p>
-					<p class="alterconf-left">The complexity of the third loop is fixed, O(1).</p>
 				</section>
 
-				<section><!-- slide 9 -->
+				<section><!-- slide 11 -->
 					<h4>Time complexity of the anagrams-the-naive-way algorithm</h4>
 					<p>It is <code><b>O(n<sup>2</sup>)</b></code> . </p>
 					<p class="alterconf-left">Why? </p>
