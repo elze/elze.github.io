@@ -186,9 +186,18 @@ public List<int> doubleListElements() {
 				</section>
 
 				<section><!-- slide 11 -->
-					<h4>Time complexity of the anagrams-the-naive-way algorithm</h4>
-					<p>It is <code><b>O(n<sup>2</sup>)</b></code> . </p>
-					<p class="alterconf-left">Why? </p>
+					<h4>Exercise: Let's make something unit-testable</h4>
+					<p>Let's say there is this method that calls a third party service: </p>
+<pre><code class="presentation">
+public List<int> doubleListElements() {
+	IRepository repository = new Repository(connectionString);
+	var origList = repository.GetList();
+	List<int> listOfDoubles = new List<int>();
+	foreach (int elem in origList) 
+		listOfDoubles.Add(elem * 2);
+	return listOfDoubles;
+}
+</code></pre>					<p class="alterconf-left">Why? </p>
 					<p class="alterconf-left">The outer loop iterates through the first word. </p>
 					<p class="alterconf-left">For each iteration of the outer loop, the inner loop traverses the whole second word. </p>
 				</section>
