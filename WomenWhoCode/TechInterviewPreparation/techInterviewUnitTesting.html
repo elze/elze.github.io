@@ -189,15 +189,27 @@ public List<int> doubleListElements() {
 					<h4>Exercise: Let's make something unit-testable</h4>
 					<p>Let's say there is this method that calls a third party service: </p>
 <pre><code class="presentation">
-public List<int> doubleListElements() {
-	WebRequest httpRequest = WebRequest.Create("http://foo.com");
+public List<User> doubleListElements() {
+	WebRequest httpRequest = WebRequest.Create("http://foo.com/users");
 	var response = httpRequest.GetReponse();
-	List<int> listOfDoubles = new List<int>();
-	foreach (int elem in origList) 
-		listOfDoubles.Add(elem * 2);
-	return listOfDoubles;
+	Stream responseStream = response.GetResponseStream();	
+	List<User> users = new List<User>();
+	
+    using(StreamReader reader = new StreamReader(responseStream))
+    {
+        string line;
+
+        while((line = reader.ReadLine()) != null)
+        {
+            User user = new User(line);
+            users.Add(user);
+        }
+
+        reader.Close();
+    }	
+	return users;
 }
-</code></pre>					<p class="alterconf-left">Why? </p>
+</code></pre>
 					<p class="alterconf-left">The outer loop iterates through the first word. </p>
 					<p class="alterconf-left">For each iteration of the outer loop, the inner loop traverses the whole second word. </p>
 				</section>
