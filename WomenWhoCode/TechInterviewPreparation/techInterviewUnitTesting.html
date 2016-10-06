@@ -190,8 +190,8 @@ public List<int> doubleListElements() {
 					<p>Let's say there is this method that calls a third party service: </p>
 <pre><code class="presentation">
 public List<int> doubleListElements() {
-	IRepository repository = new Repository(connectionString);
-	var origList = repository.GetList();
+	WebRequest httpRequest = WebRequest.Create("http://foo.com");
+	var response = httpRequest.GetReponse();
 	List<int> listOfDoubles = new List<int>();
 	foreach (int elem in origList) 
 		listOfDoubles.Add(elem * 2);
