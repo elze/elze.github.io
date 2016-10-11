@@ -78,9 +78,9 @@ public doubleListElements_should_return_a_list_of_doubled_values() {
 					<p class="alterconf">A unit test of server-side code should not call the database or third-party API.</p>
 					<p class="alterconf">A unit test of frontend code should not call the database, third-party API, or server-side code.</p>
 
-<img id="img_app_architecture" src="img/codeArchitecture_20160919.png"/>
+<img class="img-left-no-shadow" src="img/codeArchitecture_20160919.png"/>
 
-<img id="img_unit_test_architecture" src="img/codeArchitecture_UnitTests_20160920.png"/>
+<img class="img-right-no-shadow" src="img/codeArchitecture_UnitTests_20160920.png"/>
 
 				</section>
 
@@ -183,13 +183,15 @@ public List<int> doubleListElements() {
 					<p class="sixty-percent-left">Ruby has neither interfaces nor abstract classes, but dependency injection in it is still possible. You will just need to find out how to do it for yourself, if Ruby is your language of choice.</p>
 					<p class="sixty-percent-left">Javascript does not have classes or object-based inheritance at all, but you can still do dependency injection in it. The important thing is to inject an object that has the same method as the "real" object that encapsulates external dependency. </p>
 
-<img src="img/interfaceRepository_20161006.png"/>
+<img class="img-left-no-shadow" src="img/interfaceRepository_20161006_480.png"/>
+
+<img class="img-right-no-shadow" src="img/interfaceRepository_20161006_480.png"/>
 
 				</section>
 
 				<section><!-- slide 11 -->
 					<h4>Exercise: Let's make something unit-testable</h4>
-					<p>Let's say there is this method that calls a third party service: </p>
+					<p class="sixty-percent-left">Let's say there is this method that calls a third party service: </p>
 <pre><code class="presentation">
 public List<User> doubleListElements() {
 	WebRequest httpRequest = WebRequest.Create("http://foo.com/users");
@@ -197,18 +199,13 @@ public List<User> doubleListElements() {
 	Stream responseStream = response.GetResponseStream();	
 	List<User> users = new List<User>();
 	
-    using(StreamReader reader = new StreamReader(responseStream))
-    {
-        string line;
-
-        while((line = reader.ReadLine()) != null)
-        {
-            User user = new User(line);
-            users.Add(user);
-        }
-
-        reader.Close();
-    }	
+    	using(StreamReader reader = new StreamReader(responseStream)) {
+        	while((string line = reader.ReadLine()) != null) {
+            		User user = new User(line);
+            		users.Add(user);
+        	}
+        	reader.Close();
+    	}	
 	return users;
 }
 </code></pre>

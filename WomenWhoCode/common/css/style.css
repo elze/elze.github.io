@@ -112,15 +112,22 @@ p.card-title.presentation {
   color: black;
  }
 
-#img_app_architecture {
+img.img-left-no-shadow {
     float:left;
   border: 0;
   box-shadow: none;
 }
 
-#img_unit_test_architecture {
+img.img-right-no-shadow {
     float:right;
   border: 0;
+  margin: 0;
+  box-shadow: none;
+}
+
+.reveal section img { 
+  border: 0;
+  margin: 0;
   box-shadow: none;
 }
 
