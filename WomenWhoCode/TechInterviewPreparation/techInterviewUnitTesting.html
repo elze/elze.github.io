@@ -193,7 +193,7 @@ public List<int> doubleListElements() {
 					<h4>Exercise: Let's make something unit-testable</h4>
 					<p class="sixty-percent-left">Let's say there is this method that calls a third party service: </p>
 <pre><code class="presentation">
-public List<User> doubleListElements() {
+public List<User> createUsers() {
 	WebRequest httpRequest = WebRequest.Create("http://foo.com/users");
 	var response = httpRequest.GetReponse();
 	Stream responseStream = response.GetResponseStream();	
@@ -209,23 +209,51 @@ public List<User> doubleListElements() {
 	return users;
 }
 </code></pre>
-					<p class="alterconf-left">The outer loop iterates through the first word. </p>
-					<p class="alterconf-left">For each iteration of the outer loop, the inner loop traverses the whole second word. </p>
 				</section>
 				
 				<section><!-- slide 10 -->
-					<h4>Always think of the time complexity of the solution</h4>
-					<p class="sixty-percent-left">Interviewers will probably ask about it.</p>
-					<p class="sixty-percent-left">Easy shortcuts to estimate time complexity:</p>
-					<ul>
-						<li class="alterconf">Searching for an element in an ordered list or binary tree is <code><b>O(log(n))</b></code></li>
-						<li class="alterconf">Sorting a list of elements in most general case (if nothing special is known about the elements) is <code><b>O(n log(n))</b></code></li>
-					</ul>									
-					<p class="sixty-percent-left">Identify operations in your algorithm that are executed independently of each other. Take a maximum of their time complexity.</p>
-					<p class="sixty-percent-left">E.g. in the anagrams solution there are 3 standalone loops of complexities O(n), O(n), and O(1) => total is O(n).</p>
-					<p class="sixty-percent-left">If an operation involves a suboperation (e.g. doing something in each iteration of the loop), multiply complexity of the "outer" operation by the complexity of the "inner" operation. </p>
-					<p class="sixty-percent-left">E.g. in the "naive anagrams" algorithm, the outer loop is O(n) and the inner loop is O(n) => total is O(n<sup>2</sup>)</p>
+					<h4>Another, simpler version, more like pseudocode</h4>
+
+<pre><code class="presentation">
+public List<User> createUsers() {
+	WebRequest httpRequest = WebRequest.Create("http://foo.com/users");
+	var response = httpRequest.GetReponse();
+	Stream responseStream = response.GetResponseStream();	
+	List<User> users = new List<User>();
+	
+    	string[] responseLines = response.ReadLines();
+        foreach (string line in responseLines) {
+            		User user = new User(line);
+            		users.Add(user);
+    	}	
+	return users;
+}
+</code></pre>
 				</section>
+
+				<section><!-- slide 10 -->
+					<h4>One possible solution</h4>
+
+<pre><code class="presentation">
+public List<User> createUsers(string[] responseLines) {
+	List<User> users = new List<User>();
+        foreach (string line in responseLines) {
+            		User user = new User(line);
+            		users.Add(user);
+    	}	
+	return users;
+}
+</code></pre>
+<p class="sixty-percent-left">In the code that calls <code>createUsers</code>: </p>
+<pre><code class="presentation">
+	WebRequest httpRequest = WebRequest.Create("http://foo.com/users");
+	var response = httpRequest.GetReponse();
+	Stream responseStream = response.GetResponseStream();	
+	List<User> users = createUsers(responseStream.ReadLines());
+</code></pre>
+<p class="sixty-percent-left">So as you see, you created a <code>responseStream</code> object outside of the <code>createUsers</code> method, and injected the array of strings that it returns into the <code>createUsers</code> method. </p>
+				</section>
+
 				
 			<section><!-- slide 12 -->
 					<h3>THE END</h3>
