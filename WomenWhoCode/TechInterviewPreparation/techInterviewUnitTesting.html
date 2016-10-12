@@ -211,7 +211,7 @@ public List<User> createUsers() {
 </code></pre>
 				</section>
 				
-				<section><!-- slide 10 -->
+				<section><!-- slide 12 -->
 					<h4>Another, simpler version, more like pseudocode</h4>
 
 <pre><code class="presentation">
@@ -231,7 +231,7 @@ public List<User> createUsers() {
 </code></pre>
 				</section>
 
-				<section><!-- slide 10 -->
+				<section><!-- slide 13 -->
 					<h4>One possible solution</h4>
 
 <pre><code class="presentation">
@@ -252,9 +252,31 @@ public List<User> createUsers(string[] responseLines) {
 	List<User> users = createUsers(responseStream.ReadLines());
 </code></pre>
 <p class="sixty-percent-left">So as you see, you created a <code>responseStream</code> object outside of the <code>createUsers</code> method, and injected the array of strings that it returns into the <code>createUsers</code> method. </p>
+<p class="sixty-percent-left">You may point out the the first 3 lines before the call to <code>responseStream</code> are not unit-testable, and that would be correct. Not everything is unit-testable. But those three lines are pretty much out of the can. </p>
 				</section>
 
-				
+				<section><!-- slide 14 -->
+					<h4>Mocks, fakes, and stubs</h4>
+<p class="sixty-percent-left">Most of the time, however, we don't need to create these "fake" objects by hand. </p>
+<p class="sixty-percent-left">For that, we use various mock frameworks. There are many of them, and usually they are specific to the programming language you use. </p>
+					<ul>
+						<li class="alterconf">Javascript: <b>Jasmine</b>, <b>ngMock</b> for Angular.js</li>
+						<li class="alterconf">C#: <b>FakeItEasy</b> </li>
+					</ul>
+<p class="sixty-percent-left">... and many others. </p>
+<p class="sixty-percent-left">NEED an example of how they are used. Maybe show how a method is spied on / how a method call is faked? </p>
+			</section>
+			<section><!-- slide 15 -->
+				<h4>Mocks, fakes, and stubs in Javascript</h4>
+<p class="sixty-percent-left">NEED an example of to unit-test a method and check if the methods it calls were called </p>
+<p class="sixty-percent-left">For that, we use various mock frameworks. There are many of them, and usually they are specific to the programming language you use. </p>
+					<ul>
+						<li class="alterconf">Javascript: <b>Jasmine</b>, <b>ngMock</b> for Angular.js</li>
+						<li class="alterconf">C#: <b>FakeItEasy</b> </li>
+					</ul>
+<p class="sixty-percent-left">... and many others. </p>
+<p class="sixty-percent-left">NEED an example of how they are used. Maybe show how a method is spied on / how a method call is faked? </p>
+			</section>
 			<section><!-- slide 12 -->
 					<h3>THE END</h3>
 					<p>&nbsp;</p>
