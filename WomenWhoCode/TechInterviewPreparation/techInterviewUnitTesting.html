@@ -269,14 +269,23 @@ public List<User> createUsers(string[] responseLines) {
 			<section><!-- slide 15 -->
 				<h4>Mocks, fakes, and stubs in Javascript</h4>
 <p class="sixty-percent-left">NEED an example of to unit-test a method and check if the methods it calls were called </p>
-<p class="sixty-percent-left">For that, we use various mock frameworks. There are many of them, and usually they are specific to the programming language you use. </p>
-					<ul>
-						<li class="alterconf">Javascript: <b>Jasmine</b>, <b>ngMock</b> for Angular.js</li>
-						<li class="alterconf">C#: <b>FakeItEasy</b> </li>
-					</ul>
-<p class="sixty-percent-left">... and many others. </p>
-<p class="sixty-percent-left">NEED an example of how they are used. Maybe show how a method is spied on / how a method call is faked? </p>
+
 			</section>
+			<section><!-- slide 16 -->
+				<h4>Other important considerations for unit testability</h4>
+<p class="sixty-percent-left">The fewer side effects a method has, the easier it is to unit-test. </p>
+<p class="sixty-percent-left">Why? </p>
+<p class="sixty-percent-left">If your method performs lots of calculations that have intermediate state -- lots of local variables -- your unit test can't "look" into that state and check if those calculations are being performed correctly. The intermediate state is fleeting. Spies can check whether some function was called, but they can't check if some complex loop-within-a-loop or multiple nested if-then-else statements are executed correctly.  </p>
+<p class="sixty-percent-left">What to do? Try as much as possible to put that complex logic -- loops, if-then-else statements, etc. -- into their own methods. Make those methods return the value of the intermediate computation. </p>
+<p class="sixty-percent-left">Then you'll be able to write a unit test that tests the return value of that computation. </p>
+			</section>
+
+			<section><!-- slide 17 -->
+				<h4>NEED example for the previous slide</h4>
+<p class="sixty-percent-left">This ties in with the so-called SOLID principles, specifically, with the first S. </p>
+
+			</section>
+
 			<section><!-- slide 12 -->
 					<h3>THE END</h3>
 					<p>&nbsp;</p>
