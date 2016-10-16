@@ -31,8 +31,8 @@
 
 		<div class="reveal">
 
-			<p style="text-align: center; font-size: 25px"><small>Unit testing | <a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</a> | Women Who Code tech interview preparation</small></p>
-			<p style="text-align: center; font-size: 12px">Press Esc to see thumbnails of all slides.</p>
+			<p class="presentation-header"><small>Unit testing | <a href="http://geekitude.com">Elze Hamilton</a> / <a href="http://twitter.com/elze">@elze</a> | Women Who Code tech interview preparation</small></p>
+			<p class="presentation-header" style="text-align: center; font-size: 10px">Press Esc to see thumbnails of all slides.</p>
 			<!-- Any section element inside of this container is displayed as a slide -->
 
 			<div class="slides">			
@@ -161,8 +161,8 @@ doubleListElements_should_return_a_list_of_doubled_values(repository);
 				<section><!-- slide 9 -->
 					<h4 class="alterconf">Simple explanation of dependency injection</h4>
 
-					<p class="sixty-percent-left"><code>IRepository</code> object is a dependency: the <code>doubleListElements()</code> depends on it. It is being <i>injected</i>, i.e. passed as an argument, to the <code>doubleListElements()</code> method.</p>
-					<p class="sixty-percent-left">If it were not passed, the <code>doubleListElements()</code> method would need to create it on its own: </p>
+					<p class="alterconf"><code>IRepository</code> object is a dependency: the <code>doubleListElements()</code> depends on it. It is being <i>injected</i>, i.e. passed as an argument, to the <code>doubleListElements()</code> method.</p>
+					<p class="alterconf">If it were not passed, the <code>doubleListElements()</code> method would need to create it on its own: </p>
 <pre><code class="presentation">
 public List<int> doubleListElements() {
 	IRepository repository = new Repository(connectionString);
@@ -173,15 +173,15 @@ public List<int> doubleListElements() {
 	return listOfDoubles;
 }
 </code></pre>
-					<p class="sixty-percent-left">Thus, <code>doubleListElements()</code> would need to know how to create an <code>IRepository</code> object. In that case, the <code>IRepository</code> object would be "hardcoded" in the method, and we could not substitute a fake <code>IRepository</code> object for it. </p>
+					<p class="alterconf">Thus, <code>doubleListElements()</code> would need to know how to create an <code>IRepository</code> object. In that case, the <code>IRepository</code> object would be "hardcoded" in the method, and we could not substitute a fake <code>IRepository</code> object for it. </p>
 
 				</section>
 
 				<section><!-- slide 10 -->
 					<h4>Dependency injection for languages without interfaces</h4>
-					<p class="sixty-percent-left">Some programming languages don't have interfaces, but have abstract classes, e.g. Python.</p>
-					<p class="sixty-percent-left">Ruby has neither interfaces nor abstract classes, but dependency injection in it is still possible. You will just need to find out how to do it for yourself, if Ruby is your language of choice.</p>
-					<p class="sixty-percent-left">Javascript does not have classes or object-based inheritance at all, but you can still do dependency injection in it. The important thing is to inject an object that has the same method as the "real" object that encapsulates external dependency. </p>
+					<p class="alterconf">Some programming languages don't have interfaces, but have abstract classes, e.g. Python.</p>
+					<p class="alterconf">Ruby has neither interfaces nor abstract classes, but dependency injection in it is still possible. You will just need to find out how to do it for yourself, if Ruby is your language of choice.</p>
+					<p class="alterconf">Javascript does not have classes or object-based inheritance at all, but you can still do dependency injection in it. The important thing is to inject an object that has the same method as the "real" object that encapsulates external dependency. </p>
 
 <img class="img-left-no-shadow" src="img/interfaceRepository_20161006_480.png"/>
 
@@ -191,7 +191,7 @@ public List<int> doubleListElements() {
 
 				<section><!-- slide 11 -->
 					<h4>Exercise: Let's make something unit-testable</h4>
-					<p class="sixty-percent-left">Let's say there is this method that calls a third party service: </p>
+					<p class="alterconf">Let's say there is this method that calls a third party service: </p>
 <pre><code class="presentation">
 public List<User> createUsers() {
 	WebRequest httpRequest = WebRequest.Create("http://foo.com/users");
@@ -232,7 +232,7 @@ public List<User> createUsers() {
 				</section>
 
 				<section><!-- slide 13 -->
-					<h4>One possible solution</h4>
+					<h4  class="alterconf">One possible solution</h4>
 
 <pre><code class="presentation">
 public List<User> createUsers(string[] responseLines) {
@@ -244,55 +244,72 @@ public List<User> createUsers(string[] responseLines) {
 	return users;
 }
 </code></pre>
-<p class="sixty-percent-left">In the code that calls <code>createUsers</code>: </p>
+<p class="alterconf">In the code that calls <code>createUsers</code>: </p>
 <pre><code class="presentation">
 	WebRequest httpRequest = WebRequest.Create("http://foo.com/users");
 	var response = httpRequest.GetReponse();
 	Stream responseStream = response.GetResponseStream();	
 	List<User> users = createUsers(responseStream.ReadLines());
 </code></pre>
-<p class="sixty-percent-left">So as you see, you created a <code>responseStream</code> object outside of the <code>createUsers</code> method, and injected the array of strings that it returns into the <code>createUsers</code> method. </p>
-<p class="sixty-percent-left">You may point out the the first 3 lines before the call to <code>responseStream</code> are not unit-testable, and that would be correct. Not everything is unit-testable. But those three lines are pretty much out of the can. </p>
+<p class="alterconf">So as you see, you created a <code>responseStream</code> object outside of the <code>createUsers</code> method, and injected the array of strings that it returns into the <code>createUsers</code> method. </p>
+<p class="alterconf">You may point out the the first 3 lines before the call to <code>responseStream</code> are not unit-testable, and that would be correct. Not everything is unit-testable. But those three lines are pretty much out of the can. </p>
 				</section>
 
 				<section><!-- slide 14 -->
 					<h4>Mocks, fakes, and stubs</h4>
-<p class="sixty-percent-left">Most of the time, however, we don't need to create these "fake" objects by hand. </p>
-<p class="sixty-percent-left">For that, we use various mock frameworks. There are many of them, and usually they are specific to the programming language you use. </p>
+<p class="alterconf">Most of the time, however, we don't need to create these "fake" objects by hand. </p>
+<p class="alterconf">For that, we use various mock frameworks. There are many of them, and usually they are specific to the programming language you use. </p>
 					<ul>
 						<li class="alterconf">Javascript: <b>Jasmine</b>, <b>ngMock</b> for Angular.js</li>
 						<li class="alterconf">C#: <b>FakeItEasy</b> </li>
 					</ul>
-<p class="sixty-percent-left">... and many others. </p>
-<p class="sixty-percent-left">NEED an example of how they are used. Maybe show how a method is spied on / how a method call is faked? </p>
+<p class="alterconf">... and many others. </p>
+<p class="alterconf">NEED an example of how they are used. Maybe show how a method is spied on / how a method call is faked? </p>
 			</section>
 			<section><!-- slide 15 -->
 				<h4>Mocks, fakes, and stubs in Javascript</h4>
-<p class="sixty-percent-left">NEED an example of to unit-test a method and check if the methods it calls were called </p>
+<p class="alterconf">NEED an example of to unit-test a method and check if the methods it calls were called </p>
 
 			</section>
 			<section><!-- slide 16 -->
 				<h4>Other important considerations for unit testability</h4>
-<p class="sixty-percent-left">The fewer side effects a method has, the easier it is to unit-test. </p>
-<p class="sixty-percent-left">Why? </p>
-<p class="sixty-percent-left">If your method performs lots of calculations that have intermediate state -- lots of local variables -- your unit test can't "look" into that state and check if those calculations are being performed correctly. The intermediate state is fleeting. Spies can check whether some function was called, but they can't check if some complex loop-within-a-loop or multiple nested if-then-else statements are executed correctly.  </p>
-<p class="sixty-percent-left">What to do? Try as much as possible to put that complex logic -- loops, if-then-else statements, etc. -- into their own methods. Make those methods return the value of the intermediate computation. </p>
-<p class="sixty-percent-left">Then you'll be able to write a unit test that tests the return value of that computation. </p>
+<p class="alterconf">The fewer side effects a method has, the easier it is to unit-test. </p>
+<p class="alterconf">Why? </p>
+<p class="alterconf">If your method performs lots of calculations that have intermediate state -- lots of local variables -- your unit test can't "look" into that state and check if those calculations are being performed correctly. The intermediate state is fleeting. Spies can check whether some function was called, but they can't check if some complex loop-within-a-loop or multiple nested if-then-else statements are executed correctly.  </p>
+<p class="alterconf">What to do? Try as much as possible to put that complex logic -- loops, if-then-else statements, etc. -- into their own methods. Make those methods return the value of the intermediate computation. </p>
+<p class="alterconf">Then you'll be able to write a unit test that tests the return value of that computation. </p>
 			</section>
 
 			<section><!-- slide 17 -->
 				<h4>NEED example for the previous slide</h4>
-<p class="sixty-percent-left">This ties in with the so-called SOLID principles, specifically, with the first S. </p>
-<p class="sixty-percent-left">The first S stands for Single responsibility. </p>
-<p class="sixty-percent-left">This means a class or a method should only do one thing. For example: </p> 
+<p class="alterconf">This ties in with the so-called SOLID principles, specifically, with the first S. </p>
+<p class="alterconf">The first S stands for Single responsibility. </p>
+<p class="alterconf">This means a class or a method should only do one thing. For example: </p> 
 <ul>
   <li class="alterconf">only read from a file</li>
   <li class="alterconf">only parse lines </li>
   <li class="alterconf">only calculate interest </li>
 					</ul>
-<p class="sixty-percent-left">... as opposed to a method that does... what? Calculates the wire transfer fee AND transfers the money? </p> 
+<p class="alterconf">... as opposed to a method that does... what? Calculates the wire transfer fee AND transfers the money? </p> 
 			</section>
 
+
+			<section><!-- slide 18 -->
+				<h4>A method tht does too much</h4>
+<pre><code class="presentation">
+public void transferMoney(double amountToTransfer, Account account1, Account account2) {
+  double transferFee = 0;
+  if (amount < 100)
+    transferFee = 10;
+  else if (amount < 500)
+    transferFee = 15;
+       else
+    	transferFee = 20;
+  account1.amount = account1.amount - amountToTransfer - transferFee;
+  account2.amount = account2.amount + amountToTransfer;
+}
+</code></pre>
+			</section>
 			<section><!-- slide 12 -->
 					<h3>THE END</h3>
 					<p>&nbsp;</p>
