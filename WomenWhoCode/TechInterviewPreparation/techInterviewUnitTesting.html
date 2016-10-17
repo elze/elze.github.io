@@ -295,21 +295,74 @@ public List<User> createUsers(string[] responseLines) {
 
 
 			<section><!-- slide 18 -->
-				<h4>A method tht does too much</h4>
+				<h4>A method that does too much</h4>
 <pre><code class="presentation">
 public void transferMoney(double amountToTransfer, Account account1, Account account2) {
   double transferFee = 0;
-  if (amount < 100)
+  if (amount < 100) 
     transferFee = 10;
-  else if (amount < 500)
-    transferFee = 15;
-       else
-    	transferFee = 20;
+  else 
+    transferFee = 20;
   account1.amount = account1.amount - amountToTransfer - transferFee;
+  account1.amount = account1.amount + account1.amount * 0.05;
   account2.amount = account2.amount + amountToTransfer;
 }
 </code></pre>
+<p class="alterconf">How do we break it up? </p> 
 			</section>
+			<section><!-- slide 19 -->
+				<h4>A better example of a method that does too much. No, still not a good example</h4>
+<pre><code class="presentation">
+public void computeTransferFee(double amountToTransfer) {
+  double transferFee = 0;
+  if (amount < 100) 
+    transferFee = 10;
+  else 
+    transferFee = 20;
+}
+public void transferMoney(double amountToTransfer, Account account1, Account account2) {
+  account1.amount = account1.amount - amountToTransfer - transferFee;
+  account1.amount = account1.amount + account1.amount * 0.05;
+  account2.amount = account2.amount + amountToTransfer;
+}
+</code></pre>
+<p class="alterconf">How do we break it up? </p> 
+			</section>
+			<section><!-- slide 19 -->
+				<h4>An even better example of a method that does too much.</h4>
+<p class="alterconf">This method computes the quarterly interest for the account AND generates the account statement. </p>
+<pre><code class="presentation">
+public PdfDocument generateStatement(Account account, int numDays) {
+  double interest = account.AverageDailyBalance * account.InterestRate * numDays / 365;
+  account.Transactions.Add(new Transaction {type = Credit, amount = interest });
+  return PdfWriter.GeneratePdf(account);
+}
+</code></pre>
+<p class="alterconf">Which parts of this method are unit-testable? </p> 
+<p class="alterconf">Does it allow us to verify that the PDF document is returned? </p> 
+<p class="alterconf">Does it allow to verify what is the interest deposited to the account? </p> 
+<p class="alterconf">How do we ensure the latter? </p> 
+<p class="alterconf">We need to break it up the method. How? </p> 
+			</section>
+
+				<h4>How do we break up the previous method?</h4>
+<pre><code class="presentation">
+public void computeTransferFee(double amountToTransfer) {
+  double transferFee = 0;
+  if (amount < 100) 
+    transferFee = 10;
+  else 
+    transferFee = 20;
+}
+public void transferMoney(double amountToTransfer, Account account1, Account account2) {
+  account1.amount = account1.amount - amountToTransfer - transferFee;
+  account1.amount = account1.amount + account1.amount * 0.05;
+  account2.amount = account2.amount + amountToTransfer;
+}
+</code></pre>
+<p class="alterconf">How do we break it up? </p> 
+			</section>
+
 			<section><!-- slide 12 -->
 					<h3>THE END</h3>
 					<p>&nbsp;</p>
