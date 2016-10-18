@@ -332,10 +332,12 @@ public void transferMoney(double amountToTransfer, Account account1, Account acc
 				<h4>An even better example of a method that does too much.</h4>
 <p class="alterconf">This method computes the quarterly interest for the account AND generates the account statement. </p>
 <pre><code class="presentation">
-public PdfDocument generateStatement(Account account, int numDays) {
-  double interest = account.AverageDailyBalance * account.InterestRate * numDays / 365;
-  account.Transactions.Add(new Transaction {type = Credit, amount = interest });
-  return PdfWriter.GeneratePdf(account);
+class Account {
+  public List<string> generateTransactionRows(int numDays) {
+    double interest = account.AverageDailyBalance * account.InterestRate * numDays / 365;
+    transactions.Add(new Transaction {type = Credit, amount = interest });
+    List<string> transactionsList = transactions.ToList<string>();
+    return transactionsList;
 }
 </code></pre>
 <p class="alterconf">Which parts of this method are unit-testable? </p> 
@@ -347,7 +349,7 @@ public PdfDocument generateStatement(Account account, int numDays) {
 
 				<h4>How do we break up the previous method?</h4>
 <pre><code class="presentation">
-public void computeTransferFee(double amountToTransfer) {
+public void computeInterest(Account account) {
   double transferFee = 0;
   if (amount < 100) 
     transferFee = 10;
