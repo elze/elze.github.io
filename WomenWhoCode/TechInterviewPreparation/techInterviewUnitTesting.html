@@ -137,7 +137,8 @@ class FakeRepository: IRepository {
 					<h4 class="alterconf">Back to the unit test</h4>
 					<p class="alterconf">Here is the previous unit test, rewritten with a <code>IRepository</code> fake.</p>
 <pre><code class="presentation">
-public doubleListElements_should_return_a_list_of_doubled_values(IRepository repository) {
+public doubleListElements_should_return_a_list_of_doubled_values() {
+	IRepository repository = new FakeRepository();
 	var doubledList = doubleListElements(repository); 
 	Assert.IsEqual(6, doubledList[0]);
 	Assert.IsEqual(10, doubledList[1]);
@@ -146,11 +147,10 @@ public doubleListElements_should_return_a_list_of_doubled_values(IRepository rep
 </code></pre>
 					<p class="alterconf">And this is how we call this test:</p>
 <pre><code class="presentation">
-IRepository repository = new FakeRepository();
 // doubleListElements() will call repository.GetList(),
 // which in this case will be FakeRepository.GetList()
 // The FakeRepository.GetList() will return the hardcoded list [3, 5, 8]
-doubleListElements_should_return_a_list_of_doubled_values(repository);
+doubleListElements_should_return_a_list_of_doubled_values();
 </code></pre>
 </section>
 				<section><!-- slide 8 -->
@@ -358,22 +358,38 @@ class Account { // Let's try to make something better
 				<h4>How do we break up the previous method?</h4>
 <pre><code class="presentation">
 class Account {
-  public float computeAverageDailyBalance(float averageDailyBalance, float interestRate, int numDays) {
-    return averageDailyBalance * interestRate * numDays / 365;
+  public List<Transaction> transactions { get; set;}
+  public float InterestRate { get; set;}
+  public float computeAverageDailyBalance(int numDays) {
+    // compute and return averageDailyBalance
   }
   public float computeInterest(float averageDailyBalance, float interestRate, int numDays) {
     return averageDailyBalance * interestRate * numDays / 365;
   }
   public PdfDocument generatePdfStatement(int numDays, PdfWriter pdfWriter) {
-    float interest = computeInterest(AverageDailyBalance * InterestRate * numDays);
+    float interest = computeInterest(computeAverageDailyBalance(numDays) * InterestRate * numDays);
     transactions.Add(new Transaction {type = Credit, amount = interest });
     List<string> transactionsList = transactions.ToList<string>();
-    return transactionsList;
+    return pdfWriter.CreateDocument(transactionsList);
   }
 }
 </code></pre>
-<p class="alterconf">How do we break it up? </p> 
+<p class="alterconf">What can be unit-tested now? </p> 
+<p class="alterconf fragment">Computing the average daily balance, interest, and generation of the PDF statement can all be unit-tested now. </p> 
 			</section>
+
+				<section><!-- slide 20 -->
+					<h4 class="alterconf">Here are some possible unit tests</h4>
+<pre><code class="presentation">
+public averageDailyBalance_test() {
+  Account account = new Account({InterestRate = 0.03});
+	var doubledList = doubleListElements(repository); 
+	Assert.IsEqual(6, doubledList[0]);
+	Assert.IsEqual(10, doubledList[1]);
+	Assert.IsEqual(16, doubledList[2]);
+}
+</code></pre>
+</section>
 
 			<section><!-- slide 12 -->
 					<h3>THE END</h3>
