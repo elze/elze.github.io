@@ -24,6 +24,11 @@
   word-wrap: break-word; 
 }
 
+.reveal h4.little-vertical-space { 
+  margin: 0 0 0 0;
+  line-height: 1.0;
+ }
+
 div.card-columns.presentation {
     column-count: 2;
     -moz-column-count: 2;
@@ -111,6 +116,13 @@ p.card-title.presentation {
   font-size:75%;
   background-color: white;
   color: black;
+ }
+
+.reveal code.presentation.bigger-height { 
+  font-size:75%;
+  background-color: white;
+  color: black;
+  height: auto;
  }
 
 .reveal code.presentation-bigger { 
