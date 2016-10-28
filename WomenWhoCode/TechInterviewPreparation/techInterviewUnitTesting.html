@@ -305,6 +305,10 @@ function ThirdPartyService {
     }
 }
 
+function MockThirdPartyService() {
+  return null;
+}
+
 function WriteThirdPartyListToAFile () {
         var expectedResult = new App.Schedules.Models.SimpleSchedule(123);
         var getThirdPartySpy = spyOn(mockThirdPartyGenerator, 'GetThirdPartyData').and.returnValue(new List[3, 5, 8]));       
@@ -326,8 +330,14 @@ function WriteThirdPartyListToAFile () {
             });
     });
 </code></pre>
-
 			</section>
+
+			<section><!-- slide 16 -->
+<p class="sixty-percent-left fragment">Why do we need to do it this way? </p>
+<p class="sixty-percent-left fragment">Why do we create a mock service that returns null, and then simulate a method call? </p>
+<p class="sixty-percent-left fragment">Why not put that method in the mock service? </p>
+			</section>
+
 			<section><!-- slide 16 -->
 				<h4>Other important considerations for unit testability</h4>
 <p class="alterconf">The fewer side effects a method has, the easier it is to unit-test. </p>
