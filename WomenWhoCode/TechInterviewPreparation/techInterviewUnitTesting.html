@@ -297,10 +297,11 @@ doubleListElements_should_return_a_list_of_doubled_values() {
 				<h4>Mocks, fakes, and stubs in Javascript</h4>
 <p class="alterconf">NEED an example of to unit-test a method and check if the methods it calls were called </p>
 <pre><code class="presentation">
-function ThirdPartyService {
+function ThirdPartyService() {
     this.GetThirdPartyData = function(url) {
 	var thirdPartyList = [];
 	// send a request to the url, retrieve a list, and assign it to thirdPartyList;
+	sendRequest(url);
      	return thirdPartyList;
     }
 }
@@ -310,10 +311,10 @@ function MockThirdPartyService() {
 }
 
 function WriteThirdPartyListToAFile () {
-        var expectedResult = new App.Schedules.Models.SimpleSchedule(123);
+        var url = "http://myUrl.com/users";
         var getThirdPartySpy = spyOn(mockThirdPartyGenerator, 'GetThirdPartyData').and.returnValue(new List[3, 5, 8]));       
         controller.LoadData().then(() => {
-                expect(getThirdPartySpy).toHaveBeenCalled();
+                expect(getThirdPartySpy).toHaveBeenCalledWith(url);
             }).catch((error) => { fail(error); }).finally(() => {
 		done();
             });
