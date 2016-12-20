@@ -357,7 +357,7 @@ doubleListElements_should_return_a_list_of_doubled_values() {
 <h4 class="alterconf">Tasks to practice </h4>
 <p class="sixty-percent-left fragment">Find a mock / fake / stub framework you like, or merely a popular one, like Jasmine for Javascript. </p>
 <p class="sixty-percent-left fragment">Write a simple program that involves using an object. </p>
-<p class="sixty-percent-left fragment">It makes sure that given a <code>userPermissionsObject</code> object, the correct fields of that object (<code>userId</code> and <code>deptId</code>) get passed to <code>SpecializedData/GetList</code>. Since <code>SpecializedData/GetList</code> is a remote call (to another server) we can't check the arguments that server receives. All we can do is to make sure that we are passing the correct argument. </p>
+
 			</section>
 
 
@@ -436,7 +436,10 @@ class Account {
 					<h4 class="alterconf">Here are some possible unit tests</h4>
 <pre><code class="presentation">
 public averageDailyBalance_test() {
-  Account account = new Account({InterestRate = 0.03});
+  Account account = new Account({StartingAmount = 300.00, DaysInBillingCycle = 25, InterestRate = 0.03,
+	Transactions = new List<Transaction>({ new Transaction {Type = D, Amount = 200}, new Transaction {Type = Credit, Amount = 175})});
+  float expectedAverageDailyBalance = 13; // $4575 / 25 = $183
+  Assert.IsEqual(expectedAverageDailyBalance, computeAverageDailyBalance(25));
 	var doubledList = doubleListElements(repository); 
 	Assert.IsEqual(6, doubledList[0]);
 	Assert.IsEqual(10, doubledList[1]);
@@ -444,6 +447,60 @@ public averageDailyBalance_test() {
 }
 </code></pre>
 </section>
+
+				<section><!-- slide 21 -->
+<p class="alterconf">How would you write mocks, fakes, and stubs to facilitate the testing of the above example? </p> 
+<p class="alterconf">Maybe this just isn't a very good example. </p> 
+<pre><code class="presentation">
+	// The actual method under test
+
+  public List<PendingAccountRequest> GetPendingAccountRequests(AccountService accountService, char[] accountTypes)	{
+    List<PendingAccountRequest> pendingAccountRequests = new List<PendingAccountRequest>();
+    foreach (char accountType in accountTypes) {
+      pendingAccountRequests.Add(accountService.GetPendingAccountRequests(accountType));
+    }
+  }
+
+  // This is what you should write
+  //var pendingAccountsRequests = 
+List<PendingAccountRequest>({ new PendingAccountRequest {type = C /* "Checking" */, customer = new Customer {name="Foo"}}}, new PendingAccountRequest {Type = S /* "Savings" */, new Customer {name="Bar"}}, new PendingAccountRequest {Type = M /* "Money Market" */, new Customer {name="Baz"}})});
+
+
+  var pendingAccountsRequestsTypeC = List<PendingAccountRequest>({ 
+	new PendingAccountRequest {type = C /* "Checking" */, customer = new Customer {name="Abc"}}, 
+	new PendingAccountRequest {type = C /* "Checking" */, customer = new Customer {name="Def"}}, 
+	new PendingAccountRequest {type = C /* "Checking" */, customer = new Customer {name="Ghi"}}	
+	});
+
+  var pendingAccountsRequestsTypeM = List<PendingAccountRequest>({ 
+	new PendingAccountRequest {type = M /* "Money Market" */, customer = new Customer {name="Jkk"}}, 
+	new PendingAccountRequest {type = M /* "Money Market" */, customer = new Customer {name="Mno"}}, 
+	new PendingAccountRequest {type = M /* "Money Market" */, customer = new Customer {name="Pqr"}}	
+	});
+
+  //serviceResult.Data = new PendingAccountRequest[]
+
+  var accountService = A.Fake<AccountService>();
+  A.CallTo(() => accountService.GetPendingAccountRequests("C")).Returns(pendingAccountsRequestsTypeC);
+  A.CallTo(() => accountService.GetPendingAccountRequests("M")).Returns(pendingAccountsRequestsTypeM);
+  var accountController = new AccountController(accountService);
+  var pendingRequests = accountController.GetPendingAccountRequests(["C", "M"]); // using bitwise operations to ask for more than one account type?
+  // No, maybe it would be enough to pass an array, like this:
+  // var actionResult = testController.GetPendingEmployeeRequests([A, S]);
+  // But maybe the service would translate that into bitwise operation. And so the WasCalled.With would check for that bitwise combination
+
+  A.CallTo(() => accountService.GetPendingAccountRequests()).MustHaveHappened(Repeated.Exactly.Twice);
+  A.CallTo(() => accountService.GetPendingAccountRequests("C")).MustHaveHappened(Repeated.Exactly.Once);
+  A.CallTo(() => accountService.GetPendingAccountRequests("M")).MustHaveHappened(Repeated.Exactly.Once);
+
+A.CallTo(fakeShop).Where(call => call.Arguments.Count > 4)
+                  .Throws(new Exception("too many arguments is bad");
+
+</code></pre>
+
+
+			</section>
+
 
 			<section><!-- slide 12 -->
 					<h3>THE END</h3>
