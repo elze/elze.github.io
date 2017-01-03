@@ -147,8 +147,7 @@ public doubleListElements_should_return_a_list_of_doubled_values() {
 </code></pre>
 					<p class="alterconf">And this is how we call this test:</p>
 <pre><code class="presentation">
-// doubleListElements() will call repository.GetList(),
-// which in this case will be FakeRepository.GetList()
+// doubleListElements() will call repository.GetList(), which in this case will be FakeRepository.GetList()
 // The FakeRepository.GetList() will return the hardcoded list [3, 5, 8]
 doubleListElements_should_return_a_list_of_doubled_values();
 </code></pre>
@@ -213,9 +212,11 @@ public List<User> createUsers() {
 				
 				<section><!-- slide 12 -->
 					<h4>Another, simpler version, more like pseudocode</h4>
+<p class="alterconf"><code>createUsers()</code> method reads data from a URL, and creates User objects based on the returned data. <code>WebRequest</code> and <code>Stream</code> are .NET framework classes, and we don't need to test them. User is our class.
 
+</p>
 <pre><code class="presentation">
-public List<User> createUsers() {
+public List<User> createUsers() { // Reads data from a URL, and creates User objects based on the returned data.
 	WebRequest httpRequest = WebRequest.Create("http://foo.com/users");
 	var response = httpRequest.GetReponse();
 	Stream responseStream = response.GetResponseStream();	
@@ -252,7 +253,7 @@ public List<User> createUsers(string[] responseLines) {
 	List<User> users = createUsers(responseStream.ReadLines());
 </code></pre>
 <p class="alterconf">So as you see, you created a <code>responseStream</code> object outside of the <code>createUsers</code> method, and injected the array of strings that it returns into the <code>createUsers</code> method. </p>
-<p class="alterconf">You may point out the the first 3 lines before the call to <code>responseStream</code> are not unit-testable, and that would be correct. Not everything is unit-testable. But those three lines are pretty much out of the can. </p>
+<p class="alterconf">You may point out the the first 3 lines before the call to <code>responseStream</code> are not unit-testable, and that would be correct. Not everything is unit-testable. But those three lines are pretty much out of the can. You do nothing but call .NET framework methods in them. If all your code does is call methods from a framework or third-party library, you don't need to unit-test it, because you can assume that third-party code has been tested. But if your code does its own processing (e.g. instantiating user objects from data, or doubling list elements), you need to unit-test is. </p>
 				</section>
 
 				<section><!-- slide 14 -->
@@ -371,36 +372,43 @@ doubleListElements_should_return_a_list_of_doubled_values() {
 			</section>
 
 			<section><!-- slide 17 -->
-				<h4>NEED example for the previous slide</h4>
+				<h4>What software engineering principles does this follow?</h4>
 <p class="alterconf">This ties in with the so-called SOLID principles, specifically, with the first S. </p>
 <p class="alterconf">The first S stands for Single responsibility. </p>
 <p class="alterconf">This means a class or a method should only do one thing. For example: </p> 
 <ul>
   <li class="alterconf">only read from a file</li>
-  <li class="alterconf">only parse lines </li>
+  <li class="alterconf">only parse transaction lines </li>
   <li class="alterconf">only calculate interest </li>
+  <li class="alterconf">only generate a PDF document </li>
 					</ul>
-<p class="alterconf">... as opposed to a method that does... what? Calculates the wire transfer fee AND transfers the money? </p> 
+<p class="alterconf">... as opposed to a method that reads transaction lines from a file, calculates interest earned for that time period, and generates a PDF. </p> 
 			</section>
 
 
 			<section><!-- slide 18 -->
+				<h4>Example for the previous slide</h4>
 				<h4>A method that does too much</h4>
-<p class="alterconf">This method computes the quarterly interest for the account AND generates the account statement. </p>
+<p class="alterconf">This method computes the interest for the account AND generates the account statement. </p>
 <pre><code class="presentation">
-class Account { // Let's try to make something better
+class Account { 
+  public float InterestRate { get; set;}
+  public List<Transaction> transactions { get; set;}
+  public float computeAverageDailyBalance(int numDays) {
+    // compute and return averageDailyBalance
+  }
   public PdfDocument generatePdfStatement(int numDays, PdfWriter pdfWriter) {
-    double interest = account.computeAverageDailyBalance(numDays) * 
-	account.InterestRate * numDays / 365;
-    List<string> transactionsList = 
-	account.transactions.Add(new Transaction {type = Credit, amount = interest }).ToList<string>();
+    double interest = account.averageDailyBalance(numDays) * account.InterestRate * numDays / 365;
+    // Here it adds a new "transaction" to the list of transactions for this account,
+    // which shows that interest was deposited to the account
+    account.transactions.Add(new Transaction {type = Credit, amount = interest }).ToList<string>();
     return pdfWriter.GeneratePdf(transactionsList);
 }
 </code></pre>
 <p class="alterconf">Which parts of this method are unit-testable? </p> 
 <p class="alterconf">Does it allow us to verify that the PDF document is returned? </p> 
-<p class="alterconf">Does it allow to verify what is the interest deposited to the account? </p> 
-<p class="alterconf">How do we ensure the latter? </p> 
+<p class="alterconf">Does it allow to check the amount of interest that was deposited to the account? </p> 
+<p class="alterconf">How do we check the latter? </p> 
 <p class="alterconf">We need to break it up the method. How? </p> 
 			</section>
 			<section><!-- slide 18 -->
@@ -449,53 +457,42 @@ public averageDailyBalance_test() {
 </section>
 
 				<section><!-- slide 21 -->
+
+
+<p class="alterconf fragment">But suppose <code>PdfWriter</code> class is written by a third party, and you can't test its functions, such as <code>CreateDocument</code>, directly. Sometimes you get an error trying to call it. Its maintainers say that the error is on your end: you are not passing the arguments correctly. How would you verify that you are passing them correctly? </p> 
+<p class="alterconf fragment">Can you test that <code>transactionsList</code> that you are passing to <code>CreateDocument</code> is correct? Not directly. So how would you test that you are calling this method correctly? </p> 
+			</section>
+
+				<section><!-- slide 21 -->
 <p class="alterconf">How would you write mocks, fakes, and stubs to facilitate the testing of the above example? </p> 
-<p class="alterconf">Maybe this just isn't a very good example. </p> 
 <pre><code class="presentation">
 	// The actual method under test
-
-  public List<PendingAccountRequest> GetPendingAccountRequests(AccountService accountService, char[] accountTypes)	{
-    List<PendingAccountRequest> pendingAccountRequests = new List<PendingAccountRequest>();
+  public List<PendingAccountRequest> ApprovePendingAccountRequests(AccountService accountService, char[] accountTypes)	{
     foreach (char accountType in accountTypes) {
-      pendingAccountRequests.Add(accountService.GetPendingAccountRequests(accountType));
+      int retVal = accountService.ApprovePendingAccountRequests(accountType);
     }
   }
+</code></pre>
+<p class="alterconf"><code>AccountService.ApprovePendingAccountRequests</code> is a third party service. We can't test if it works correctly. The only thing we can test is whether we are calling it correctly, i.e. with the right arguments, the right number of times. </p>
+<p class="alterconf">This method, given an account service and a list of account types, iterates through the list of account types and calls the account service to approve that request.</p>
+<p class="alterconf">Each account type is designated by one letter, e.g. C for Checking, S for Savings, M for Money Market.</p>
+<p class="alterconf">You want to test if <code>ApprovePendingAccountRequests</code> method is being called off the <code>accountService</code> for every account type in the list. </p>
+<p class="alterconf">Checking the <code>retVal</code>s that are being returned is not enough: you also want to know if <code>accountService.ApprovePendingAccountRequests</code> is being called with the right arguments. </p>
+</section>
+				<section><!-- slide 21 -->
+<p class="alterconf">You could write a unit test like this. </p> 
 
-  // This is what you should write
-  //var pendingAccountsRequests = 
-List<PendingAccountRequest>({ new PendingAccountRequest {type = C /* "Checking" */, customer = new Customer {name="Foo"}}}, new PendingAccountRequest {Type = S /* "Savings" */, new Customer {name="Bar"}}, new PendingAccountRequest {Type = M /* "Money Market" */, new Customer {name="Baz"}})});
-
-
-  var pendingAccountsRequestsTypeC = List<PendingAccountRequest>({ 
-	new PendingAccountRequest {type = C /* "Checking" */, customer = new Customer {name="Abc"}}, 
-	new PendingAccountRequest {type = C /* "Checking" */, customer = new Customer {name="Def"}}, 
-	new PendingAccountRequest {type = C /* "Checking" */, customer = new Customer {name="Ghi"}}	
-	});
-
-  var pendingAccountsRequestsTypeM = List<PendingAccountRequest>({ 
-	new PendingAccountRequest {type = M /* "Money Market" */, customer = new Customer {name="Jkk"}}, 
-	new PendingAccountRequest {type = M /* "Money Market" */, customer = new Customer {name="Mno"}}, 
-	new PendingAccountRequest {type = M /* "Money Market" */, customer = new Customer {name="Pqr"}}	
-	});
-
-  //serviceResult.Data = new PendingAccountRequest[]
-
+<pre><code class="presentation">
+  // Setting up the fake and real objects for the test
   var accountService = A.Fake<AccountService>();
   A.CallTo(() => accountService.GetPendingAccountRequests("C")).Returns(pendingAccountsRequestsTypeC);
   A.CallTo(() => accountService.GetPendingAccountRequests("M")).Returns(pendingAccountsRequestsTypeM);
-  var accountController = new AccountController(accountService);
-  var pendingRequests = accountController.GetPendingAccountRequests(["C", "M"]); // using bitwise operations to ask for more than one account type?
-  // No, maybe it would be enough to pass an array, like this:
-  // var actionResult = testController.GetPendingEmployeeRequests([A, S]);
-  // But maybe the service would translate that into bitwise operation. And so the WasCalled.With would check for that bitwise combination
-
+  var accountController = new AccountController(accountService); // AccountController is under test, so it has to be real
+  var pendingRequests = accountController.ApprovePendingAccountRequests(["C", "M"]);
+  // Checking the test results
   A.CallTo(() => accountService.GetPendingAccountRequests()).MustHaveHappened(Repeated.Exactly.Twice);
   A.CallTo(() => accountService.GetPendingAccountRequests("C")).MustHaveHappened(Repeated.Exactly.Once);
   A.CallTo(() => accountService.GetPendingAccountRequests("M")).MustHaveHappened(Repeated.Exactly.Once);
-
-A.CallTo(fakeShop).Where(call => call.Arguments.Count > 4)
-                  .Throws(new Exception("too many arguments is bad");
-
 </code></pre>
 
 
