@@ -394,8 +394,14 @@ doubleListElements_should_return_a_list_of_doubled_values() {
 class Account { 
   public float InterestRate { get; set;}
   public List<Transaction> transactions { get; set;}
-  public float computeAverageDailyBalance(int numDays) {
-    // compute and return averageDailyBalance
+  public float computeAverageDailyBalance(Datetime beginDate, Datetime endDate) {
+     // Assume that Account class has a method getTransactionList that returns all transactions between given dates
+     List<Transaction> transactionsForThisTimePeriod = getTransactionList(beginDate, endDate);
+     int numDays = endDate.Subtract(beginDate).Days;
+     float balanceSum = 0;
+     foreach (var transaction in transactionsForThisTimePeriod) 
+  	balanceSum += transaction.amount;
+     return averageDailyBalance = balanceSum / numDays;
   }
   public PdfDocument generatePdfStatement(int numDays, PdfWriter pdfWriter) {
     double interest = account.averageDailyBalance(numDays) * account.InterestRate * numDays / 365;
@@ -417,12 +423,18 @@ class Account {
 class Account {
   public List<Transaction> transactions { get; set;}
   public float InterestRate { get; set;}
-  public float computeAverageDailyBalance(int numDays) {
-    // compute and return averageDailyBalance
+  public float computeAverageDailyBalance(Datetime beginDate, Datetime endDate) {
+     // Assume that Account class has a method getTransactionList that returns all transactions between given dates
+     List<Transaction> transactionsForThisTimePeriod = getTransactionList(beginDate, endDate);
+     int numDays = endDate.Subtract(beginDate).Days;
+     float balanceSum = 0;
+     foreach (var transaction in transactionsForThisTimePeriod) 
+  	balanceSum += transaction.amount;
+     return averageDailyBalance = balanceSum / numDays;
   }
 
   public float computeInterest(float averageDailyBalance, float interestRate, int numDays) {
-    return averageDailyBalance * interestRate * numDays / 365;
+    return averageDailyBalance * interestRate * numDays / 365; // To keep this code sample simple, we'll assume all years have 365 days
   }
 
   public PdfDocument generatePdfStatement(int numDays, PdfWriter pdfWriter) {
@@ -444,14 +456,18 @@ class Account {
 					<h4 class="alterconf">Here are some possible unit tests</h4>
 <pre><code class="presentation">
 public averageDailyBalance_test() {
-  Account account = new Account({StartingAmount = 300.00, DaysInBillingCycle = 25, InterestRate = 0.03,
-	Transactions = new List<Transaction>({ new Transaction {Type = D, Amount = 200}, new Transaction {Type = Credit, Amount = 175})});
-  float expectedAverageDailyBalance = 13; // $4575 / 25 = $183
-  Assert.IsEqual(expectedAverageDailyBalance, computeAverageDailyBalance(25));
-	var doubledList = doubleListElements(repository); 
-	Assert.IsEqual(6, doubledList[0]);
-	Assert.IsEqual(10, doubledList[1]);
-	Assert.IsEqual(16, doubledList[2]);
+  // Account account = new Account({StartingAmount = 300.00, /* DaysInBillingCycle = 25, */ InterestRate = 0.01,
+  // Instead of StartingAmount let's just use an initial transaction, which
+ Account account = new Account({StartingAmount = 300.00, /* DaysInBillingCycle = 25, */ InterestRate = 0.01,
+	Transactions = new List<Transaction>({ new Transaction {Type = D, Amount = 200, Date = "2016-10-10"}, new Transaction {Type = Credit, Amount = 100, Date = "2016-10-20"})});
+  float expectedAverageDailyBalance = 200; 
+  // $4575 / 25 = $183 -- What?
+  // (300 * 10 + 100 * 10 + 200 * 10) / 30 = 6000 / 30 = 200
+
+  // expectedInterest = averageDailyBalance * interestRate * numDays / 365; = 200 * 0.01 * 30 / 365  = 0.16;
+  float expectedInterest = 0.16;
+  Assert.IsEqual(expectedAverageDailyBalance, computeAverageDailyBalance(30));
+  Assert.IsEqual(expectedInterest, computeInterest(computeAverageDailyBalance(30), account.InterestRate, 30));
 }
 </code></pre>
 </section>
@@ -460,8 +476,41 @@ public averageDailyBalance_test() {
 
 
 <p class="alterconf fragment">But suppose <code>PdfWriter</code> class is written by a third party, and you can't test its functions, such as <code>CreateDocument</code>, directly. Sometimes you get an error trying to call it. Its maintainers say that the error is on your end: you are not passing the arguments correctly. How would you verify that you are passing them correctly? </p> 
-<p class="alterconf fragment">Can you test that <code>transactionsList</code> that you are passing to <code>CreateDocument</code> is correct? Not directly. So how would you test that you are calling this method correctly? </p> 
+<p class="alterconf fragment">Can you test that <code>transactionsList</code> that you are passing to <code>CreateDocument</code> is correct? Not directly, because they are created inside the method <code>generatePdfStatement</code>. So how would you test that you are calling this method correctly? </p> 
 			</section>
+
+				<section><!-- slide 21 -->
+
+
+<p class="alterconf fragment">This is where mocks come into picture. You need to mock this method call.</p>
+
+<p class="alterconf fragment">What that means that you create a fake of the <code>PdfWriter</code> class -- a fake object that implements (in a fake way) the "shell" of the third-party method you want to test. It implements only enough of that method so you could check if this method was called and with what arguments.</p>
+
+<p class="alterconf fragment">That's where mock, stub, and fake frameworks are helpful, because you don't have to write that code yourself. Instead, here is an example in FakeItEasy of how you could do it. (A precondition for it is that <code>PdfWriter</code> needs to implement an interface, e.g. <code>IPdfWriter</code>.)</p>
+
+  var fakePdfWriter = A.Fake<PdfWriter>();
+  // Maybe this shouldn't be a fake? After all, we want to test if the arguments are being passed correctly
+  // to pdfWriter.CreateDocument(). So we need to create a list of real Transaction objects.
+  //var transactionList = new List<A.Fake<Transaction>>(); 
+  var numberOfDays = 30;
+  var transactions = new List<Transaction>({ new Transaction {Type = D, Amount = 200}, new Transaction {Type = Credit, Amount = 175});
+  Account account = new Account({StartingAmount = 300.00, DaysInBillingCycle = 25, InterestRate = 0.03,
+	Transactions = transactions);
+
+  var transactionsAndInterest = transactions.Add(account.computeInterest(numberOfDays)); // 
+
+  //A.CallTo(() => pdfWriter.CreateDocument(account.Transactions)).Returns(null); // we don't need it to return an actual PDF document
+  //A.CallTo(() => accountService.GetPendingAccountRequests("M")).Returns(pendingAccountsRequestsTypeM);
+
+ // Do we need A.CallTo at all? If we don't need to specify what the mock of pdfWriter.CreateDocument returns, do we need this at all? Will the mock function be called just because it was created when the whole mock was created?
+
+  PdfDocument fakePdfDocument = account.generatePdfStatement(30, fakePdfWriter);
+  A.CallTo(() => fakePdfWriter.CreateDocument(transactionsAndInterest)).MustHaveHappened();
+
+<p class="alterconf fragment">What that last statement is checking is that a call to <code>CreateDocument</code> happened with the exact arguments that we are passing to it, which is the list of account transactions with the last one being the computed interest. If it passes the test, you have a strong reason to believe that you on your end haven't changed anything about how you are calling the third-party function. </p>
+
+			</section>
+
 
 				<section><!-- slide 21 -->
 <p class="alterconf">How would you write mocks, fakes, and stubs to facilitate the testing of the above example? </p> 
