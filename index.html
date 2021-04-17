@@ -80,7 +80,18 @@ alt="free hit counters"></a></div></noscript>
 
 <hr/>
 
-<p><a href="https://github.com/elze/armadillocon">Angular.js SPA website for ArmadilloCon, an Austin science fiction convention.</a> This will continue to be a work in progress as the day of the convention approaches. It is deployed <a href="http://armadillocon.org">here</a>.</p>
+
+<p><b>SkillClusters</b> with Angular 11, Angular Material Tree and @ngrx/data. The data this application displays doesn't make much sense at the moment. It's a work in progress. For now, its purpose is to demonstrate how to get Angular Material Tree to work with @ngrx/data. It uses Angular 11 and @ngrx/data 10.</p>
+
+<p>One of the first challenges you encounter in working with <code>@ngrx/data</code> is that it assumes what your backend API URLs are. It makes an assumption that your URLs use the singular version of the entity name for single entity routes, and plural version of entity names for collection routes. So, it will call <code>GET /user/1</code> if you want to get a single user, and <code>GET /users/</code> if you want to get all the users. It also appends a trailing slash. But your backend API routes could be named differently and that might be out of your control as a frontend developer. So as soon as you start working with <code>@ngrx/data</code> you are likely to run into this problem.</p>
+
+<p>There are a couple of similar ways to solve it, and this application shows one of them. </p>
+
+<p><a href="https://stackblitz.com/edit/angular-ngrx-data-custom-api-urls">It is deployed here on StackBlitz</a>.
+
+<p><a href="https://github.com/elze/angular-ngrx-data-custom-api-urls">The source code is here</a>.
+
+
 
 <hr/>
 
